@@ -1,2 +1,2 @@
 # NorAdrenaline
-NorAdrenaline private perfect CS 1.6 hook
+Hack for Counter-Strike 1.6 by _xvi
