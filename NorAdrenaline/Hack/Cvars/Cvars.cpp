@@ -11,20 +11,20 @@ void CCvars::Init()
 	aim = true;
 	aim_teammates = false; // Deathmatch mode
 	aim_target_selection = 3; // psilent FoV based
-	aim_hitbox = 6;
-	aim_multi_point = 0; // ?
+	aim_hitbox = 6; // Vital legit
+	aim_multi_point = 3; // try to hit anything visible?
 	aim_penetration = true; // autowall
-	aim_silent = true;
-	aim_perfect_silent = true;
+	aim_silent = true; // silent (no flick)
+	aim_perfect_silent = true; // bSendPacket psilent
 	aim_autoshoot = false; // Do not auto shoot
-    aim_fov = 4;
+    aim_fov = 5; // FoV
 
 	fakelag = true;
 	fakelag_while_shooting = false;
 	fakelag_type = 3;
-	fakelag_move = 3;
-	fakelag_variance = 30;
-	fakelag_limit = 0;
+	fakelag_move = 4;
+	fakelag_variance = 15;
+	fakelag_limit = 15;
 
 	brightness = 0;
 	brightness_r = 0;
@@ -166,7 +166,7 @@ void CCvars::Init()
 	draw_aim_fov_g = 255;
 	draw_aim_fov_b = 0;
 
-	norecoil = false;
+	norecoil = true;
 	norecoil_visual = false;
 
 	nospread = false;
