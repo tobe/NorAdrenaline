@@ -12,7 +12,9 @@ void CMisc::FastZoom(struct usercmd_s *cmd)
 
     if(cvar.fastzoom && IsCurWeaponSniper() && g_Local.iFOV == DEFAULT_FOV && (cmd->buttons & IN_ATTACK)) {
         cmd->buttons &= ~IN_ATTACK;
-        if(g_Local.weapon.m_flNextSecondaryAttack >= 0.0f)
+        cmd->buttons |= IN_ATTACK2;
+        cmd->buttons |= IN_ATTACK;
+        /*if(g_Local.weapon.m_flNextSecondaryAttack >= 0.0f)
             cmd->buttons &= ~IN_ATTACK2;
         else
             cmd->buttons |= IN_ATTACK2;
@@ -20,7 +22,7 @@ void CMisc::FastZoom(struct usercmd_s *cmd)
         if(g_Local.weapon.m_flNextSecondaryAttack >= 0.0f)
             cmd->buttons &= ~IN_ATTACK;
         else
-            cmd->buttons |= IN_ATTACK;
+            cmd->buttons |= IN_ATTACK;*/
     }
 }
 
