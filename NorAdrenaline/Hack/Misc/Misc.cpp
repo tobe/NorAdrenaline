@@ -510,18 +510,15 @@ void CMisc::GroundStrafeOn() {
 }
 void CMisc::GroundStrafeOff() {
     this->bGroundStrafe = false;
-    g_Engine.pfnClientCmd("-duck");
 }
 void CMisc::GroundStrafe(struct usercmd_s *cmd) {
     if(!cvar.groundstrafe) return;
 
-    if(this->bGroundStrafe) {
-        if(pmove->flags & FL_ONGROUND) {
-            g_Engine.pfnClientCmd("-duck;wait;+duck;wait;-duck");
-        }
-        if(pmove->flags) {
-            g_Engine.pfnClientCmd("+duck");
-        }
+    if(this->bGroundStrafe && pmove->waterlevel < 2 && pmove->movetype != MOVETYPE_FLY) {
+        if(pmove->flags & FL_ONGROUND)
+            cmd->buttons |= IN_DUCK;
+        if(((pmove->flags & FL_ONGROUND) && (pmove->bInDuck)) || !(pmove->flags & FL_ONGROUND))
+            cmd->buttons &= ~IN_DUCK;
     }
 }
 
