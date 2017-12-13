@@ -194,6 +194,7 @@ public:
 	bool bunnyhop;
 	bool knifebot;
     bool groundstrafe;
+    bool autostrafe;
     bool fastrun;
 
 	float name_stealer;

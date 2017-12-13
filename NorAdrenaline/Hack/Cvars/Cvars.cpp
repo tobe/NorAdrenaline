@@ -193,6 +193,7 @@ void CCvars::Init()
 	bunnyhop = true;
 	knifebot = false;
     groundstrafe = true;
+    autostrafe = true;
     fastrun = true;
 
 	name_stealer = false;

@@ -136,7 +136,120 @@ void CSystems::BunnyHop(struct usercmd_s *cmd)
 
 void CSystems::AutoStrafe(struct usercmd_s *cmd)
 {
-	
+    #define STRAFE_DIR 1
+    #define STRAFE_SPEED 69.0
+    #define STRAFE_FPS 1
+    #define STRAFE_FASTRUN 1
+    #define STRAFE_SIDEMOVE 437.8928
+    #define STRAFE_ANGLE 30.0
+    if(!cvar.autostrafe) return;
+
+    if(!(pmove->flags & FL_ONGROUND) && (pmove->movetype != 5) /*&& !g_Local.bSlowDown*/) {
+        float dir = 0.0f;
+
+        int dir_value = STRAFE_DIR;
+
+        if(dir_value == 1)dir = 0 * M_PI / 180.0f;
+        else if(dir_value == 2)	dir = 90 * M_PI / 180.0f;
+        else if(dir_value == 3)	dir = 180 * M_PI / 180.0f;
+        else if(dir_value == 4)	dir = -90 * M_PI / 180.0f;
+
+        if(g_Local.flSpeed < 15.0f) {
+            if(cmd->buttons&IN_FORWARD) {
+                if(cmd->buttons&IN_MOVELEFT) {
+                    cmd->forwardmove = 900;
+                    cmd->sidemove = -900;
+                } else if(cmd->buttons&IN_MOVERIGHT) {
+                    cmd->forwardmove = 900;
+                    cmd->sidemove = 900;
+                } else
+                    cmd->forwardmove = 900;
+            } else if(cmd->buttons&IN_BACK) {
+                if(cmd->buttons&IN_MOVELEFT) {
+                    cmd->forwardmove = -900;
+                    cmd->sidemove = -900;
+                } else if(cmd->buttons&IN_MOVERIGHT) {
+                    cmd->forwardmove = -900;
+                    cmd->sidemove = 900;
+                } else
+                    cmd->forwardmove = -900;
+            } else if(cmd->buttons&IN_MOVELEFT)
+                cmd->sidemove = -900;
+            else if(cmd->buttons&IN_MOVERIGHT)
+                cmd->sidemove = 900;
+            else
+                cmd->forwardmove = 900;
+        } else {
+            float va_speed = atan2(pmove->velocity.y, pmove->velocity.x);
+
+            float va[3] = {};
+            g_Engine.GetViewAngles(va);
+
+            float adif = va_speed - va[1] * M_PI / 180.0f - dir;
+
+            adif = sin(adif);
+            adif = atan2(adif, sqrt(1 - adif*adif));
+
+            cmd->sidemove = (STRAFE_SIDEMOVE)*(adif > 0 ? 1 : -1);
+            cmd->forwardmove = 0;
+
+            float angle;
+            float osin, ocos, nsin, ncos;
+
+            angle = cmd->viewangles.y * M_PI / 180.0f;
+            osin = sin(angle);
+            ocos = cos(angle);
+
+            angle = 2.0f * cmd->viewangles.y * M_PI / 180.0f - va_speed + dir;
+            nsin = sin(angle);
+            ncos = cos(angle);
+
+            cmd->forwardmove = cmd->sidemove * (osin * ncos - ocos * nsin);
+            cmd->sidemove *= osin * nsin + ocos * ncos;
+
+            float fs = 0;
+            if(atan2(STRAFE_ANGLE / g_Local.flSpeed, 1.0f) >= abs(adif)) {
+                Vector vBodyDirection;
+
+                if(dir_value & 1)
+                    vBodyDirection = g_Local.vForward;
+                else
+                    vBodyDirection = g_Local.vRight;
+
+                vBodyDirection[2] = 0;
+                vBodyDirection = vBodyDirection.Normalize();
+
+                // TODO: pow base 2?
+                float vel = pow(vBodyDirection[0] * pmove->velocity[0], 2) + pow(vBodyDirection[1] * pmove->velocity[1], 2);
+
+                fs = sqrt(STRAFE_SPEED * 100000 / vel);
+            }
+
+            cmd->forwardmove += fs;
+        }
+
+        float sdmw = cmd->sidemove;
+        float fdmw = cmd->forwardmove;
+
+        switch(STRAFE_DIR) {
+            case 1:
+            cmd->forwardmove = fdmw;
+            cmd->sidemove = sdmw;
+            break;
+            case 2:
+            cmd->forwardmove = -sdmw;
+            cmd->sidemove = fdmw;
+            break;
+            case 3:
+            cmd->forwardmove = -fdmw;
+            cmd->sidemove = -sdmw;
+            break;
+            case 4:
+            cmd->forwardmove = sdmw;
+            cmd->sidemove = -fdmw;
+            break;
+        }
+    }
 
 	/*cmd->buttons &= ~(IN_MOVELEFT | IN_MOVERIGHT | IN_FORWARD | IN_BACK);
 

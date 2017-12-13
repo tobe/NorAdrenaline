@@ -643,6 +643,9 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Bunny hop");
 			line_y += 20;
 
+            Checkbox(x + box_indent_x, y + line_y, cvar.autostrafe, "Autostrafe");
+            line_y += 20;
+
 			Checkbox(x + box_indent_x, y + line_y, cvar.groundstrafe, "Ground strafe");
 			line_y += 20;
 
