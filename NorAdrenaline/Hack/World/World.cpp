@@ -89,8 +89,6 @@ void CWorld::UpdateLocalPlayer(float frametime, struct usercmd_s *cmd)
 		g_Local.flVelocity = pmove->velocity.Length2D();
 		g_Local.vOrigin = pmove->origin;
 		g_Local.vEye = pmove->origin + pmove->view_ofs;
-        g_Local.flVelocity = pmove->flFallVelocity;
-        g_Local.flSpeed = sqrt((pmove->velocity[0])*(pmove->velocity[0]) + (pmove->velocity[1])*(pmove->velocity[1]));
 
 		//Get Distance to Ground
 		{
@@ -304,7 +302,8 @@ void CWorld::UpdatePlayers()
 				{
 					szWeapon = &szWeapon[3];
 					g_Utils.StringReplace(szWeapon, ".mdl", "");
-					g_PlayerExtraInfoList[ent->index].szWeaponName = szWeapon;
+					g_PlayerExtraInfoList[ent->index].szWeaponName = new char[strlen(mdl->name) + 1];
+					strcpy(g_PlayerExtraInfoList[ent->index].szWeaponName, szWeapon);
 				}
 			}
 		}
@@ -344,10 +343,10 @@ void CWorld::UpdateVisibility(int id)
 	bool teammates = false;
 	bool walls = false;
 
-	if (cvar.aim_teammates || cvar.legit_teammates)
+	if (cvar.aim_teammates)
 		teammates = true;
 
-	if ((cvar.aim && cvar.aim_penetration) && IsCurWeaponGun())
+	if (((cvar.aim && cvar.aim_autowall) || (cvar.legit[g_Local.weapon.m_iWeaponID].trigger && cvar.legit[g_Local.weapon.m_iWeaponID].trigger_penetration)) && IsCurWeaponGun())
 		walls = true;
 
 	if (!teammates && g_Player[id].iTeam == g_Local.iTeam)
@@ -382,13 +381,57 @@ void CWorld::UpdateVisibility(int id)
 			}
 			else if (cvar.aim_hitbox == 6)//Vital
 			{
-                Hitboxes.push_back(7);
-                Hitboxes.push_back(8);
-                Hitboxes.push_back(9);
-                Hitboxes.push_back(10);
-                Hitboxes.push_back(12);
-                Hitboxes.push_back(17);
+				for (unsigned int j = 0; j <= 11; j++)
+					Hitboxes.push_back(j);
 			}
+		}
+		else if (cvar.legit[g_Local.weapon.m_iWeaponID].aim)
+		{
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].aim_head)
+				Hitboxes.push_back(11);
+
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].aim_chest)
+				Hitboxes.push_back(7);
+
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].aim_stomach)
+				Hitboxes.push_back(0);
+
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger)
+			{
+				if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_head && !cvar.legit[g_Local.weapon.m_iWeaponID].aim_head)
+					Hitboxes.push_back(11);
+
+				if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_chest && !cvar.legit[g_Local.weapon.m_iWeaponID].aim_chest)
+				{
+					Hitboxes.push_back(7);
+					Hitboxes.push_back(8);
+					Hitboxes.push_back(9);
+					Hitboxes.push_back(10);
+					Hitboxes.push_back(12);
+					Hitboxes.push_back(17);
+				}
+
+				if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_stomach && !cvar.legit[g_Local.weapon.m_iWeaponID].aim_stomach)
+					Hitboxes.push_back(0);
+			}
+		}
+		else if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger)
+		{
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_head)
+				Hitboxes.push_back(11);
+
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_chest)
+			{
+				Hitboxes.push_back(7);
+				Hitboxes.push_back(8);
+				Hitboxes.push_back(9);
+				Hitboxes.push_back(10);
+				Hitboxes.push_back(12);
+				Hitboxes.push_back(17);
+			}
+
+			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_stomach)
+				Hitboxes.push_back(0);
 		}
 	}
 	else if (IsCurWeaponKnife() && cvar.knifebot)
@@ -402,10 +445,8 @@ void CWorld::UpdateVisibility(int id)
 	pmtrace_t tr;
 	int detect = 0;
 
-	for (unsigned int x = 0; x < Hitboxes.size(); x++)
+	for (auto &&hitbox : Hitboxes)
 	{
-		unsigned int hitbox = Hitboxes[x];
-
 		g_Engine.pEventAPI->EV_SetTraceHull(2);
 
 		if (cvar.bypass_trace_blockers)
@@ -527,7 +568,6 @@ void CWorld::Reset()
 	ClearLocalPlayer();
 	ClearPlayers();
 	ClearEntities();
-	bOtherResolver = false;
 }
 
 void CWorld::Update(float frametime, struct usercmd_s *cmd)

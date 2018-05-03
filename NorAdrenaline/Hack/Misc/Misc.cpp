@@ -4,26 +4,11 @@ CMisc g_Misc;
 
 void CMisc::FastZoom(struct usercmd_s *cmd)
 {
-	/*if (!cvar.aim && cvar.fastzoom && IsCurWeaponSniper() && g_Local.iFOV == DEFAULT_FOV && cmd->buttons & IN_ATTACK)
+	if (!cvar.aim && cvar.fastzoom && IsCurWeaponSniper() && g_Local.iFOV == DEFAULT_FOV && cmd->buttons & IN_ATTACK)
 	{
 		cmd->buttons &= ~IN_ATTACK;
 		cmd->buttons |= IN_ATTACK2;
-	}*/
-
-    if(cvar.fastzoom && IsCurWeaponSniper() && g_Local.iFOV == DEFAULT_FOV && (cmd->buttons & IN_ATTACK)) {
-        cmd->buttons &= ~IN_ATTACK;
-        cmd->buttons |= IN_ATTACK2;
-        cmd->buttons |= IN_ATTACK;
-        /*if(g_Local.weapon.m_flNextSecondaryAttack >= 0.0f)
-            cmd->buttons &= ~IN_ATTACK2;
-        else
-            cmd->buttons |= IN_ATTACK2;
-
-        if(g_Local.weapon.m_flNextSecondaryAttack >= 0.0f)
-            cmd->buttons &= ~IN_ATTACK;
-        else
-            cmd->buttons |= IN_ATTACK;*/
-    }
+	}
 }
 
 void CMisc::FakeLag(struct usercmd_s *cmd) 
@@ -55,10 +40,6 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
 			if (g_Local.flHeight <= 0)
 				fakelag = false;
 		}
-        else if(cvar.fakelag_move == 4) // GroundStrafe or FastRun
-        {
-            fakelag = (this->bGroundStrafe || this->bFastRun ) ? true : false;
-        }
 		
 		if (fakelag) 
 		{
@@ -104,6 +85,35 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
 					g_Utils.bSendpacket(false);
 
 				jitter = !jitter;
+			}
+			else if (cvar.fakelag_type == 4)//Break lag compensation
+			{
+				Vector velocity = pmove->velocity;
+				velocity.z = 0;
+
+				float len = velocity.Length() * g_Local.flFrametime;
+
+				if (len < 64.0f && velocity.Length() > 0.05f)
+				{
+					int need_choke = 64.0f / len;
+
+					if (need_choke > cvar.fakelag_limit)
+						need_choke = cvar.fakelag_limit;
+
+					//g_Engine.Con_NPrintf(1, "need_choke: %i", need_choke);
+
+					if (choked < need_choke)
+					{
+						g_Utils.bSendpacket(false);
+
+						choked++;
+					}
+					else {
+						choked = 0;
+					}
+
+					//g_Engine.Con_NPrintf(2, "choked: %i", choked);
+				}
 			}
 		}
 	}
@@ -503,74 +513,4 @@ void CMisc::NameStealer()
 
 		timer = GetTickCount();
 	}
-}
-
-void CMisc::GroundStrafeOn() {
-    this->bGroundStrafe = true;
-}
-void CMisc::GroundStrafeOff() {
-    this->bGroundStrafe = false;
-}
-void CMisc::GroundStrafe(struct usercmd_s *cmd) {
-    if(!cvar.groundstrafe) return;
-
-    if(this->bGroundStrafe && pmove->waterlevel < 2 && pmove->movetype != MOVETYPE_FLY) {
-        if(pmove->flags & FL_ONGROUND)
-            cmd->buttons |= IN_DUCK;
-        if(((pmove->flags & FL_ONGROUND) && (pmove->bInDuck)) || !(pmove->flags & FL_ONGROUND))
-            cmd->buttons &= ~IN_DUCK;
-    }
-}
-
-void CMisc::FastRunOn() {
-    this->bFastRun = true;
-}
-void CMisc::FastRunOff() {
-    this->bFastRun = false;
-}
-void CMisc::FastRun(struct usercmd_s *cmd) {
-    if(!cvar.fastrun) return;
-    if(!pmove->flags & FL_ONGROUND) return;
-
-
-    if(this->bFastRun && g_Local.flSpeed > 0 && g_Local.flHeightGround == 0)
-    {
-        if((cmd->buttons&IN_FORWARD && cmd->buttons&IN_MOVELEFT) || (cmd->buttons&IN_BACK && cmd->buttons&IN_MOVERIGHT)) {
-            if(this->bFastRun) {
-                this->bFastRun = false;
-                cmd->sidemove -= 89.6f;
-                cmd->forwardmove -= 89.6f;
-            }else{
-                this->bFastRun = true;
-                cmd->sidemove += 89.6f;
-                cmd->forwardmove += 89.6f;
-            }
-        }else if((cmd->buttons&IN_FORWARD && cmd->buttons&IN_MOVERIGHT) || (cmd->buttons&IN_BACK && cmd->buttons&IN_MOVELEFT)) {
-            if(this->bFastRun) {
-                this->bFastRun = false;
-                cmd->sidemove -= 89.6f;
-                cmd->forwardmove += 89.6f;
-            }else {
-                this->bFastRun = true;
-                cmd->sidemove += 89.6f;
-                cmd->forwardmove -= 89.6f;
-            }
-        }else if(cmd->buttons&IN_FORWARD || cmd->buttons&IN_BACK) {
-            if(this->bFastRun) {
-                this->bFastRun = false;
-                cmd->sidemove -= 126.6f;
-            }else {
-                this->bFastRun = true;
-                cmd->sidemove += 126.6f;
-            }
-        }else if(cmd->buttons&IN_MOVELEFT || cmd->buttons&IN_MOVERIGHT) {
-            if(this->bFastRun) {
-                this->bFastRun = false;
-                cmd->forwardmove -= 126.6f;
-            }else {
-                this->bFastRun = true;
-                cmd->forwardmove += 126.6f;
-            }
-        }
-    }
 }

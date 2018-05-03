@@ -1,0 +1,815 @@
+﻿  Client.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\client.cpp(48): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\client.cpp(344): warning C4312: 'type cast': conversion from 'DWORD' to 'LPBYTE' of greater size
+d:\noradrenaline-master\noradrenaline\client.cpp(345): warning C4312: 'type cast': conversion from 'DWORD' to 'LPBYTE' of greater size
+d:\noradrenaline-master\noradrenaline\client.cpp(347): warning C4311: 'type cast': pointer truncation from 'StudioModelRenderer_t *' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\client.cpp(347): warning C4302: 'type cast': truncation from 'StudioModelRenderer_t *' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\client.cpp(349): warning C4311: 'type cast': pointer truncation from 'StudioModelRenderer_t *' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\client.cpp(349): warning C4302: 'type cast': truncation from 'StudioModelRenderer_t *' to 'DWORD'
+  Aimbot.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(19): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(128): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(160): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(161): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(219): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(220): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(222): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(224): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(251): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(476): warning C4018: '<': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(495): warning C4018: '<=': signed/unsigned mismatch
+  Cvars.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(221): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(228): warning C4244: '-=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(240): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(206): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(209): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(212): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(520): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(521): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(522): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(530): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(531): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(532): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(533): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(535): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(536): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(537): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(538): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(551): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(552): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(553): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(555): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(556): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(565): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(566): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(567): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(568): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(569): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(570): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(571): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(572): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(573): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(574): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(575): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(576): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(577): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(578): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(579): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(587): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(589): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(590): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(591): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(592): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(594): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(595): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(596): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(597): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(607): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(611): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(612): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(613): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(618): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(619): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(620): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(626): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(627): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(628): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(630): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(631): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(632): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(638): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(639): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(640): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(642): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(643): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(644): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(648): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(650): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(651): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(652): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(654): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(655): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(656): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(658): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(659): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(660): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(662): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(663): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(664): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(671): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(672): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(673): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(679): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(681): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(682): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(683): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(684): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(685): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(687): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(688): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(689): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(690): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(691): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(694): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(697): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(718): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(719): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(720): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(721): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(723): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(724): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(725): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(726): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(727): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(728): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(735): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\cvars\cvars.cpp(750): warning C4312: 'type cast': conversion from 'DWORD' to 'double *' of greater size
+  Drawing.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\drawing\drawing.cpp(27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\drawing\drawing.cpp(43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\drawing\drawing.cpp(145): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\drawing\drawing.cpp(129): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1398): note: see declaration of '_vsnprintf'
+d:\noradrenaline-master\noradrenaline\hack\drawing\drawing.cpp(169): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\drawing\drawing.cpp(153): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1398): note: see declaration of '_vsnprintf'
+  Misc.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(98): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(101): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(131): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(242): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(302): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(352): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(416): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(426): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(448): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(449): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\misc\misc.cpp(472): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(89): note: see declaration of 'strcat'
+  NoFlash.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\noflash\noflash.cpp(31): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  NoRecoil.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\norecoil\norecoil.cpp(38): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\norecoil\norecoil.cpp(39): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\norecoil\norecoil.cpp(41): warning C4244: '-=': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\norecoil\norecoil.cpp(42): warning C4244: '+=': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\norecoil\norecoil.cpp(44): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  NoSpread.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(55): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(144): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(148): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(224): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(225): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(237): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(356): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(357): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(361): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\removals\nospread\nospread.cpp(380): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Systems.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\systems\systems.cpp(9): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Utils.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(50): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(55): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(55): warning C4311: 'type cast': pointer truncation from 'DWORD *' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(55): warning C4302: 'type cast': truncation from 'DWORD *' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(64): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(111): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(112): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(89): note: see declaration of 'strcat'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(270): warning C4244: '=': conversion from 'float' to 'qboolean', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(350): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(353): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(354): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(357): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(358): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(361): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(362): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(365): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(366): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(369): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(370): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(373): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(401): warning C4244: '*=': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(408): warning C4244: '*=': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(415): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(417): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(421): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(423): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(429): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(433): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(465): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(470): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(518): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Menu.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1049): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(635): warning C4101: 'save': unreferenced local variable
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1003): warning C4101: 'save': unreferenced local variable
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1091): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1100): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1124): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1142): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1173): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1173): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1194): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1232): warning C4018: '<': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1246): warning C4018: '<': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1250): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1250): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1259): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1259): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1261): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1272): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1303): warning C4018: '<': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1318): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1346): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1355): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1360): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1381): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1412): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1479): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1488): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1493): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1514): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1619): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1619): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1620): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1620): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1621): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1621): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1622): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1622): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1641): warning C4018: '>=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1641): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1664): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\menu\menu.cpp(1671): warning C4018: '<=': signed/unsigned mismatch
+  Sounds.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Visuals.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(123): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(129): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(131): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(136): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(138): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(143): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(145): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(165): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(167): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(242): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(243): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(251): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(305): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(316): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(354): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(356): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(389): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(414): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(470): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(502): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(503): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(504): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(508): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(509): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(510): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(517): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(518): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(519): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(523): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(524): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(525): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(531): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(532): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(533): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(551): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(559): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(621): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(623): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(626): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(632): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(634): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(640): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(642): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(647): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(649): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(661): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(666): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(670): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(676): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(681): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(684): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(690): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(700): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(703): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(706): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(710): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(713): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(716): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(720): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(723): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(726): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(730): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(733): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(736): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(744): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(760): warning C4244: 'initializing': conversion from 'double' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(761): warning C4244: 'initializing': conversion from 'double' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(765): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(767): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(782): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(784): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(786): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(788): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(790): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(792): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(799): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(800): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(818): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(819): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(861): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(886): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(994): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(997): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1006): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1054): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1055): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1056): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1060): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1061): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1062): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1083): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1088): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1095): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1128): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1209): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1210): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1211): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1214): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1220): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\visuals\visuals.cpp(1256): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Textures.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\textures\textures.cpp(58): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\world\textures\textures.cpp(76): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\world\textures\textures.cpp(79): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\world\textures\textures.cpp(82): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\world\textures\textures.cpp(162): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+  Weapons.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(61): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(63): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(65): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(67): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(79): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(81): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(85): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(110): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(124): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(126): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(128): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(140): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(142): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(144): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(146): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(158): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(160): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(162): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(164): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(176): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(178): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(190): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(192): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(194): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(196): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(211): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(213): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(215): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(227): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(229): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(231): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(247): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(249): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(251): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(253): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(258): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(260): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(262): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(264): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(279): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(281): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(283): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(285): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(290): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(292): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(294): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(296): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(309): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(313): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(317): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(332): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(334): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(346): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(348): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(350): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(374): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(376): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(378): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(383): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(385): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(387): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(400): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(402): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(414): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(416): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(418): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(420): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(435): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(437): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(439): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(441): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(453): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(455): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(457): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(469): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(471): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(473): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(485): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(487): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(489): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(529): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(531): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(533): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(545): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(547): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(549): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(566): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(568): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(570): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(572): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(589): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(591): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(593): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(595): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(607): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(609): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(611): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(632): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(634): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(636): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(638): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(652): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(654): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(656): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(658): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(673): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(675): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(677): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(699): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(701): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(703): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(705): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(710): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(712): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(714): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(716): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(731): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(733): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(735): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(740): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(742): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(744): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(757): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(759): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(761): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(773): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(775): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(781): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(787): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(789): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(801): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(803): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(805): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(822): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(824): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(826): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(828): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(840): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(842): warning C4305: '=': truncation from 'double' to 'float'
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(844): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(846): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(861): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(863): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(865): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(877): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(879): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(891): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(893): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(912): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(914): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(916): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(918): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(923): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(925): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(927): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(929): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(1078): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\weapons\weapons.cpp(1222): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  World.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(37): warning C4018: '<': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(100): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(196): warning C4018: '<=': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(172): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(306): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(379): warning C4018: '<': signed/unsigned mismatch
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(637): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hack\world\world.cpp(616): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+  Hook.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\hook.cpp(57): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(59): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(60): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(60): warning C4312: 'type cast': conversion from 'DWORD' to 'FARPROC' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(67): warning C4311: 'type cast': pointer truncation from 'LPVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hook.cpp(67): warning C4302: 'type cast': truncation from 'LPVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hook.cpp(68): warning C4312: 'type cast': conversion from 'DWORD' to 'PVOID' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(68): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(70): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(80): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(80): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hook.cpp(80): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hook.cpp(85): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(86): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(86): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hook.cpp(86): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\hook.cpp(93): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\hook.cpp(99): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+  Offsets.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\offsets.cpp(41): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(41): warning C4312: 'type cast': conversion from 'DWORD' to 'PVOID' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(43): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(43): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(46): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(46): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(48): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(48): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(74): warning C4312: 'type cast': conversion from 'DWORD' to 'uintptr_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(74): warning C4244: '=': conversion from 'uintptr_t' to 'DWORD', possible loss of data
+d:\noradrenaline-master\noradrenaline\offsets.cpp(86): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(86): warning C4312: 'type cast': conversion from 'DWORD' to 'void *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(108): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(char *,pfnUserMsgHook)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(108): warning C4302: 'type cast': truncation from 'int (__cdecl *)(char *,pfnUserMsgHook)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(120): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(120): warning C4312: '<function-style-cast>': conversion from 'DWORD' to 'UserMsg' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(126): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(126): warning C4312: 'type cast': conversion from 'DWORD' to 'PVOID' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(128): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(128): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(136): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(136): warning C4302: 'type cast': truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(136): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(136): warning C4312: 'type cast': conversion from 'DWORD' to 'cl_enginefunc_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(138): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(138): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(140): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(140): warning C4302: 'type cast': truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(140): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(140): warning C4312: 'type cast': conversion from 'DWORD' to 'cl_enginefunc_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(142): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(142): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(144): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(144): warning C4302: 'type cast': truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(144): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(144): warning C4312: 'type cast': conversion from 'DWORD' to 'cl_enginefunc_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(146): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(146): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(148): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(148): warning C4302: 'type cast': truncation from 'int (__cdecl *)(cl_enginefunc_t *,int)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(148): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(148): warning C4312: 'type cast': conversion from 'DWORD' to 'cl_enginefunc_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(150): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(150): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(161): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(int,r_studio_interface_s **,engine_studio_api_s *)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(161): warning C4302: 'type cast': truncation from 'int (__cdecl *)(int,r_studio_interface_s **,engine_studio_api_s *)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(161): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(161): warning C4312: 'type cast': conversion from 'DWORD' to 'engine_studio_api_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(163): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(163): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(165): warning C4311: 'type cast': pointer truncation from 'int (__cdecl *)(int,r_studio_interface_s **,engine_studio_api_s *)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(165): warning C4302: 'type cast': truncation from 'int (__cdecl *)(int,r_studio_interface_s **,engine_studio_api_s *)' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(165): warning C4312: 'type cast': conversion from 'DWORD' to 'DWORD *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(165): warning C4312: 'type cast': conversion from 'DWORD' to 'engine_studio_api_t *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(167): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(167): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(177): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(177): warning C4312: 'type cast': conversion from 'DWORD' to 'PVOID' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(179): warning C4311: 'type cast': pointer truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(179): warning C4302: 'type cast': truncation from 'PVOID' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(204): warning C4312: 'type cast': conversion from 'DWORD' to 'PDWORD' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(230): warning C4312: '<function-style-cast>': conversion from 'DWORD' to 'PIMAGE_DOS_HEADER' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(230): warning C4312: '<function-style-cast>': conversion from 'unsigned long' to 'PIMAGE_NT_HEADERS' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(243): warning C4311: 'type cast': pointer truncation from 'HMODULE' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(243): warning C4302: 'type cast': truncation from 'HMODULE' to 'DWORD'
+d:\noradrenaline-master\noradrenaline\offsets.cpp(252): warning C4312: 'type cast': conversion from 'DWORD' to 'void *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(257): warning C4312: 'type cast': conversion from 'DWORD' to 'void *' of greater size
+d:\noradrenaline-master\noradrenaline\offsets.cpp(258): warning C4312: 'type cast': conversion from 'DWORD' to 'void *' of greater size
+  OpenGL.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\opengl.cpp(96): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  QAngle.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\qangle.cpp(7): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\qangle.cpp(8): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\qangle.cpp(9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\qangle.cpp(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\qangle.cpp(46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\qangle.cpp(47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+d:\noradrenaline-master\noradrenaline\hack\utils\utils.cpp(104): warning C4172: returning address of local variable or temporary: cTempString
+  Compiling...
+  StudioModelRenderer.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(181): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(182): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(183): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(187): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(188): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(189): warning C4244: '=': conversion from 'float' to 'byte', possible loss of data
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(275): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(344): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(346): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(348): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(348): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(348): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(349): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(349): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(349): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(352): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(354): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(356): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(356): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(356): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(357): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(357): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(358): error C2146: syntax error: missing ';' before identifier 'StudioRenderModel'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(358): error C2143: syntax error: missing ';' before '}'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(357): warning C4551: function call missing argument list
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(361): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(363): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(365): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(365): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(365): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(366): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(366): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(366): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(369): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(371): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(373): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(373): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(373): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(374): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(374): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(375): error C2146: syntax error: missing ';' before identifier 'StudioDrawModel'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(375): error C2143: syntax error: missing ';' before '}'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(374): warning C4551: function call missing argument list
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(378): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(380): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(382): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(382): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(382): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(383): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(383): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(383): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(386): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(388): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(390): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(390): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(390): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(391): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(391): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(392): error C2146: syntax error: missing ';' before identifier 'StudioDrawPlayer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(392): error C2143: syntax error: missing ';' before '}'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(391): warning C4551: function call missing argument list
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(395): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(397): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(399): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(399): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(399): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(400): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(400): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(400): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(403): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(405): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(407): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(407): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(407): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(408): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(408): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(409): error C2146: syntax error: missing ';' before identifier 'StudioGetAnim'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(409): error C2143: syntax error: missing ';' before '}'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(408): warning C4551: function call missing argument list
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(412): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(414): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(416): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(416): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(416): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(417): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(417): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(417): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(420): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(422): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(424): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(424): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(424): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(425): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(425): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(426): error C2146: syntax error: missing ';' before identifier 'StudioSetUpTransform'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(426): error C2143: syntax error: missing ';' before '}'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(425): warning C4551: function call missing argument list
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(429): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(431): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(433): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(433): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(433): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(434): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(434): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(434): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(437): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(439): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(441): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(441): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(441): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(442): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(442): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(443): error C2146: syntax error: missing ';' before identifier 'StudioSetupBones'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(443): error C2143: syntax error: missing ';' before '}'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(442): warning C4551: function call missing argument list
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(446): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(448): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(450): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(450): error C2146: syntax error: missing ';' before identifier 'ecx'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(450): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(451): error C2146: syntax error: missing ';' before identifier 'jmp'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(451): error C2065: 'jmp': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(451): error C2146: syntax error: missing ';' before identifier 'g_StudioModelRenderer'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(454): error C2485: 'naked': unrecognized extended attribute
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(456): error C4235: nonstandard extension used: '__asm' keyword not supported on this architecture
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(458): error C2065: 'mov': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(458): error C2146: syntax error: missing ';' before identifier 'pThis'
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(458): error C2065: 'ecx': undeclared identifier
+d:\noradrenaline-master\noradrenaline\studiomodelrenderer.cpp(459): fatal error C1003: error count exceeds 100; stopping compilation
+  Usermsg.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  interface.cpp
+  parsemsg.cpp
+d:\noradrenaline-master\noradrenaline\valvesdk\parsemsg.cpp(239): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\noradrenaline-master\noradrenaline\valvesdk\parsemsg.cpp(247): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+  Vector.cpp
+d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(7): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(8): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(51): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(67): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(90): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(97): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(106): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(115): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(122): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(136): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(143): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\noradrenaline-master\noradrenaline\vector.cpp(152): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...

@@ -218,7 +218,7 @@ void CMenu::Tabs()
 		unsigned int save[LIMIT_SAVE];
 
 		{//BOX1
-			DrawBox(x, y, 250, 300);//Aimbot
+			DrawBox(x, y, 250, 230);//Aimbot
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 60, y + 2);
 			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Aimbot");
@@ -226,7 +226,7 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.aim, "Enabled");
 			line_y += 30;
 
-			static char *szTargetSelection[] = { "Field of view", "(Distance)", "Cycle" };
+			static char *szTargetSelection[] = { "Field of view", "Distance", "Cycle" };
 			save[7] = y + line_y;
 			line_y += 40;
 
@@ -241,7 +241,7 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.aim_teammates, "Teammates");
 			line_y += 20;
 
-			Checkbox(x + indent_x, y + line_y, cvar.aim_penetration, "Automatic penetration");
+			Checkbox(x + indent_x, y + line_y, cvar.aim_autowall, "Autowall");
 			line_y += 20;
 
 			Checkbox(x + indent_x, y + line_y, cvar.aim_silent, "Silent aim");
@@ -253,9 +253,6 @@ void CMenu::Tabs()
 			ListBox(iListIndex++, x + indent_x, save[9], "Multi-point", cvar.aim_multi_point, szMultipoint, 3, true);
 			ListBox(iListIndex++, x + indent_x, save[8], "Target hitbox", cvar.aim_hitbox, szTargetHitbox, 6, false);
 			ListBox(iListIndex++, x + indent_x, save[7], "Target selection", cvar.aim_target_selection, szTargetSelection, 3, false);
-
-            Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "FoV");
-            line_y += 20;
 		}
 
 		{//BOX1.2
@@ -271,11 +268,11 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.fakelag, "Enabled");
 			line_y += 20;
 
-			char *tmp4[] = { "On land", "On move", "In air", "GStrafe or FastRun" };
+			char *tmp4[] = { "On land", "On move", "In air", "All" };
 			save[4] = y + line_y;
 			line_y += 30;
 
-			char *tmp3[] = { "Dynamic", "Maximum", "Flucture" };
+			char *tmp3[] = { "Dynamic", "Maximum", "Flucture", "Break lag compensation" };
 			save[3] = y + line_y;
 			line_y += 40;
 
@@ -289,7 +286,7 @@ void CMenu::Tabs()
 			line_y += 20;
 
 			ListBox(iListIndex++, x + indent_x, save[3], "", cvar.fakelag_move, tmp4, 4, false);
-			ListBox(iListIndex++, x + indent_x, save[4], "", cvar.fakelag_type, tmp3, 3, false);
+			ListBox(iListIndex++, x + indent_x, save[4], "", cvar.fakelag_type, tmp3, 4, false);
 		}
 
 		{//BOX2
@@ -309,17 +306,18 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.nospread, "Remove spread");
 			line_y += 20;
 
-			Checkbox(x + indent_x, y + line_y, cvar.quick_stop, "Quick stop");
-			line_y += 20;
+			Checkbox(x + indent_x, y + line_y, cvar.aim_autoscope, "Automatic scope");
+			line_y += 60;
 
-			Checkbox(x + indent_x, y + line_y, cvar.quick_stop_duck, "Quick stop + duck");
-			line_y += 30;
-
-			Checkbox(x + indent_x, y + line_y, cvar.aim_autoshoot, "Automatic shoot");
-			line_y += 20;
+            Slider(x + indent_x, y + line_y, 0, 255, cvar.aim_psilent_ticks, "Perfect silent ticks", true);
+            line_y += 40;
 
 			char *tmp[] = { "Pitch / Yaw", "Roll" };
 			ListBox(iListIndex++, x + indent_x, y + line_y, "Remove spread method", cvar.nospread_method, tmp, 2, false);
+            line_y += 40;
+
+            Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
+            line_y += 40;
 		}
 
 		{//BOX3
@@ -363,265 +361,6 @@ void CMenu::Tabs()
 			ListBox(iListIndex++, x + indent_x, save[0], "Pitch", cvar.aa_pitch, tmp1, 5, true);
 		}
 	}
-	/*else if (iCurrentTab == 2)//Legit
-	{
-		int x = MenuX + 100;
-		int y = MenuY + 30;
-		int box_indent_x = 10;
-		int box_indent_y = 15;
-
-		int save[256];
-
-		int line_y = 15;
-
-		int weapon_id = 0;
-
-		if (cvar.menu_legit_global_section == 1)
-		{
-			if (cvar.menu_legit_sub_section == 1)
-				weapon_id = WEAPON_GLOCK18;
-			else if (cvar.menu_legit_sub_section == 2)
-				weapon_id = WEAPON_P228;
-			else if (cvar.menu_legit_sub_section == 3)
-				weapon_id = WEAPON_DEAGLE;
-			else if (cvar.menu_legit_sub_section == 4)
-				weapon_id = WEAPON_ELITE;
-			else if (cvar.menu_legit_sub_section == 5)
-				weapon_id = WEAPON_FIVESEVEN;
-			else if (cvar.menu_legit_sub_section == 6)
-				weapon_id = WEAPON_USP;
-		}
-		else if (cvar.menu_legit_global_section == 2)
-		{
-			if (cvar.menu_legit_sub_section == 1)
-				weapon_id = WEAPON_AWP;
-			else if (cvar.menu_legit_sub_section == 2)
-				weapon_id = WEAPON_SCOUT;
-			else if (cvar.menu_legit_sub_section == 3)
-				weapon_id = WEAPON_G3SG1;
-			else if (cvar.menu_legit_sub_section == 4)
-				weapon_id = WEAPON_SG550;
-		}
-		else if (cvar.menu_legit_global_section == 3)
-		{
-			if (cvar.menu_legit_sub_section == 1)
-				weapon_id = WEAPON_M4A1;
-			else if (cvar.menu_legit_sub_section == 2)
-				weapon_id = WEAPON_GALIL;
-			else if (cvar.menu_legit_sub_section == 3)
-				weapon_id = WEAPON_FAMAS;
-			else if (cvar.menu_legit_sub_section == 4)
-				weapon_id = WEAPON_AUG;
-			else if (cvar.menu_legit_sub_section == 5)
-				weapon_id = WEAPON_AK47;
-			else if (cvar.menu_legit_sub_section == 6)
-				weapon_id = WEAPON_SG552;
-		}
-		else if (cvar.menu_legit_global_section == 4)
-		{
-			if (cvar.menu_legit_sub_section == 1)
-				weapon_id = WEAPON_XM1014;
-			else if (cvar.menu_legit_sub_section == 2)
-				weapon_id = WEAPON_M3;
-		}
-		else if (cvar.menu_legit_global_section == 5)
-		{
-			if (cvar.menu_legit_sub_section == 1)
-				weapon_id = WEAPON_M249;
-		}
-		else if (cvar.menu_legit_global_section == 6)
-		{
-			if (cvar.menu_legit_sub_section == 1)
-				weapon_id = WEAPON_TMP;
-			else if (cvar.menu_legit_sub_section == 2)
-				weapon_id = WEAPON_P90;
-			else if (cvar.menu_legit_sub_section == 3)
-				weapon_id = WEAPON_MP5N;
-			else if (cvar.menu_legit_sub_section == 4)
-				weapon_id = WEAPON_MAC10;
-			else if (cvar.menu_legit_sub_section == 5)
-				weapon_id = WEAPON_UMP45;
-		}
-
-		if (weapon_id > 0)
-		{
-			y = y + 45 + 20;
-
-			{//BOX2
-				DrawBox(x, y, 250, 365);//Aimbot
-
-				g_pISurface->DrawSetColor(1, 8, 8, 255);
-				g_pISurface->DrawFilledRect(x + 14, y - 1, x + 60, y + 2);
-				g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Aimbot");
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].aim, "Enabled");
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 100, cvar.legit[weapon_id].aim_speed, "Speed (auto)");
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 100, cvar.legit[weapon_id].aim_speed_in_attack, "Speed (in attack)");
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 100, cvar.legit[weapon_id].aim_speed_scale_fov, "Speed scale - FOV", true, "%");
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 1000, cvar.legit[weapon_id].aim_reaction_time, "Reaction time", true, "ms");
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 180, cvar.legit[weapon_id].aim_fov, "Maximum FOV", false, "°", true);
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 100, cvar.legit[weapon_id].aim_recoil_compensation_pitch, "Recoil compensation (P/Y)", true, "%");
-				line_y += 20;
-
-				Slider(x + box_indent_x, y + line_y, 0, 100, cvar.legit[weapon_id].aim_recoil_compensation_yaw, "", true, "%");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].aim_humanize, "Humanize");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].aim_quick_stop, "Quick stop");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].aim_head, "Head");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].aim_chest, "Chest");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].aim_stomach, "Stomach");
-				line_y += 30;
-			}
-
-			x = x + 270;
-			line_y = 15;
-
-			{//BOX3
-
-				DrawBox(x, y, 250, 175);//Triggerbot
-
-				g_pISurface->DrawSetColor(1, 8, 8, 255);
-				g_pISurface->DrawFilledRect(x + 14, y - 1, x + 80, y + 2);
-				g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Triggerbot");
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].trigger, "Enabled");
-				KeyBind(x + box_indent_x + 180, y + line_y - 10, cvar.trigger_key);
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].trigger_penetration, "Automatic penetration");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].trigger_head, "Head");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].trigger_chest, "Chest");
-				line_y += 20;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit[weapon_id].trigger_stomach, "Stomach");
-				line_y += 30;
-
-				char *tmp[] = { "Recoil", "Recoil / Spread" };
-				save[0] = y + line_y;
-
-				line_y += 30;
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.trigger_only_zoomed, "Only zoomed");
-				line_y += 20;
-
-				ListBox(iListIndex++, x + box_indent_x, save[0], "Accuracy boost", cvar.legit[weapon_id].trigger_accuracy, tmp, 2, true);
-			}
-
-			y = y + 175 + 20;
-			line_y = 15;
-
-			{//BOX4
-
-				DrawBox(x, y, 250, 170);//Other
-
-				g_pISurface->DrawSetColor(1, 8, 8, 255);
-				g_pISurface->DrawFilledRect(x + 14, y - 1, x + 54, y + 2);
-				g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Other");
-
-				Checkbox(x + box_indent_x, y + line_y, cvar.legit_teammates, "Teammates");
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 1000, cvar.block_attack_after_kill, "Block attack after kill", true, "ms");
-				line_y += 30;
-
-				char *tmp[] = { "Aiming", "Recoil", "Recoil / Spread" };
-				save[0] = y + line_y;
-				//ListBox(iListIndex++, x + box_indent_x, y + line_y, "Accuracy boost", cvar.legit[weapon_id].aim_accuracy, tmp, 3, true);
-				line_y += 40;
-
-				Slider(x + box_indent_x, y + line_y, 0, 1, cvar.legit[weapon_id].aim_psilent, "Perfect silent", false, "°", true);
-				line_y += 30;
-
-				Slider(x + box_indent_x, y + line_y, 0, 10, cvar.legit[weapon_id].aim_recoil_compensation_after_shots_fired, "Recoil compensation after shots fired", true);
-				line_y += 20;
-
-				ListBox(iListIndex++, x + box_indent_x, save[0], "Accuracy boost", cvar.legit[weapon_id].aim_accuracy, tmp, 3, true);
-			}
-		}
-
-		x = MenuX + 100;
-		y = MenuY + 30;
-		line_y = 15;
-
-		{//BOX1
-			DrawBox(x, y, 520, 45);//Section
-
-			g_pISurface->DrawSetColor(1, 8, 8, 255);
-			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 60, y + 2);
-			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Section");
-
-			char *tmp[] = { "Pistol", "Sniper", "Rifle", "Shotgun", "Machine gun", "Submachine gun" };
-			ListBox(iListIndex++, x + box_indent_x, y + line_y, "", cvar.menu_legit_global_section, tmp, 6, false);
-
-			if (cvar.menu_legit_global_section == 1) {
-				char *tmp2[] = { "GLOCK18", "P228", "DEAGLE", "ELITE", "FIVESEVEN", "USP" };
-				ListBox(iListIndex++, x + box_indent_x + 270, y + line_y, "", cvar.menu_legit_sub_section, tmp2, 6, false);
-
-				if (cvar.menu_legit_sub_section > 6)
-					cvar.menu_legit_sub_section = 6;
-			}
-			else if (cvar.menu_legit_global_section == 2) {
-				char *tmp2[] = { "AWP", "SCOUT", "G3SG1", "SG550", };
-				ListBox(iListIndex++, x + box_indent_x + 270, y + line_y, "", cvar.menu_legit_sub_section, tmp2, 4, false);
-
-				if (cvar.menu_legit_sub_section > 4)
-					cvar.menu_legit_sub_section = 4;
-			}
-			else if (cvar.menu_legit_global_section == 3) {
-				char *tmp2[] = { "M4A1", "GALIL", "FAMAS", "AUG", "AK47", "SG552" };
-				ListBox(iListIndex++, x + box_indent_x + 270, y + line_y, "", cvar.menu_legit_sub_section, tmp2, 6, false);
-
-				if (cvar.menu_legit_sub_section > 6)
-					cvar.menu_legit_sub_section = 6;
-			}
-			else if (cvar.menu_legit_global_section == 4) {
-				char *tmp2[] = { "XM1014", "M3" };
-				ListBox(iListIndex++, x + box_indent_x + 270, y + line_y, "", cvar.menu_legit_sub_section, tmp2, 2, false);
-
-				if (cvar.menu_legit_sub_section > 2)
-					cvar.menu_legit_sub_section = 2;
-			}
-			else if (cvar.menu_legit_global_section == 5) {
-				char *tmp2[] = { "M249" };
-				ListBox(iListIndex++, x + box_indent_x + 270, y + line_y, "", cvar.menu_legit_sub_section, tmp2, 1, false);
-
-				if (cvar.menu_legit_sub_section > 1)
-					cvar.menu_legit_sub_section = 1;
-			}
-			else if (cvar.menu_legit_global_section == 6) {
-				char *tmp2[] = { "TMP", "P90", "MP5N", "MAC10", "UMP45" };
-				ListBox(iListIndex++, x + box_indent_x + 270, y + line_y, "", cvar.menu_legit_sub_section, tmp2, 5, false);
-
-				if (cvar.menu_legit_sub_section > 5)
-					cvar.menu_legit_sub_section = 5;
-			}
-		}
-	}*/
 	else if (iCurrentTab == 3)//Systems
 	{
 		int x = MenuX + 100;
@@ -643,13 +382,28 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Bunny hop");
 			line_y += 20;
 
-            Checkbox(x + box_indent_x, y + line_y, cvar.autostrafe, "Autostrafe");
-            line_y += 20;
-
-			Checkbox(x + box_indent_x, y + line_y, cvar.groundstrafe, "Ground strafe");
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "FPS boost");
 			line_y += 20;
 
-			Checkbox(x + box_indent_x, y + line_y, cvar.fastrun, "Fast run");
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Air strafe");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Air duck");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Ground strafe");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Circle strafe");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Jump bug");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Fast run");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Use all undetected");
 			line_y += 20;
 		}
 
@@ -702,9 +456,6 @@ void CMenu::Tabs()
 			save[5] = y + line_y;
 			line_y += 20;
 
-			Checkbox(x + box_indent_x, y + line_y, cvar.esp_health, "Health bar");
-			line_y += 20;
-
 			Checkbox(x + box_indent_x, y + line_y, cvar.esp_name, "Name");
 			line_y += 30;
 
@@ -719,14 +470,7 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.esp_flags, "Flags");
 			line_y += 20;
 
-			Checkbox(x + box_indent_x, y + line_y, cvar.esp_line_of_sight, "Line of sight");
-			save[1] = y + line_y;
-			line_y += 20;
-
 			Checkbox(x + box_indent_x, y + line_y, cvar.esp_sound, "Visualize sounds");
-			line_y += 20;
-
-			Checkbox(x + box_indent_x, y + line_y, cvar.esp_shots_fired, "Shots fired");
 			line_y += 20;
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.esp_hitboxes, "Hitboxes");
@@ -749,9 +493,6 @@ void CMenu::Tabs()
 
 			char *tmp[] = { "Flat", "Texture", "Material" };
 			ListBox(iListIndex++, x + box_indent_x, y + line_y, "", cvar.chams_type, tmp, 3);
-
-			char *tmp3[] = { "Text", "Icon" };
-			ListBox(iListIndex++, x + box_indent_x, save[6], "Weapon", cvar.esp_weapon, tmp3, 2, true);
 		}
 
 		{//BOX2
@@ -789,11 +530,6 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.draw_aim_fov, "Aimbot FOV");
 			Palette(x + 227, y + line_y, cvar.draw_aim_fov_r, cvar.draw_aim_fov_g, cvar.draw_aim_fov_b);
 			line_y += 30;
-
-			char *tmp2[] = { "Text", "Icon" };
-			ListBox(iListIndex++, x + box_indent_x, y + line_y, "Dropped weapons", cvar.esp_world_weapon, tmp2, 2, true);
-			Palette(x + 227, y + line_y - 15, cvar.esp_world_weapon_r, cvar.esp_world_weapon_g, cvar.esp_world_weapon_b);
-			line_y += 20;
 		}
 
 		{//BOX3
@@ -823,15 +559,7 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.norecoil_visual, "Visual norecoil");
 			line_y += 20;
 
-			line_y += 10;
-			Slider(x + box_indent_x, y + line_y, 0, 255, cvar.brightness, "Brightness adjustment", true);
-			Palette(x + 227, y + line_y - 15, cvar.brightness_r, cvar.brightness_g, cvar.brightness_b);
-			line_y += 20;
-
 			Checkbox(x + box_indent_x, y + line_y, cvar.disable_render_teammates, "Disable rendering of teammates");
-			line_y += 20;
-
-			Checkbox(x + box_indent_x, y + line_y, cvar.bullets_trace, "Bullets trace");
 			line_y += 20;
 		}
 
@@ -850,11 +578,6 @@ void CMenu::Tabs()
 
 			Palette(x + 227, save[0], cvar.esp_box_ct_vis_r, cvar.esp_box_ct_vis_g, cvar.esp_box_ct_vis_b);
 			Palette(x + 207, save[0], cvar.esp_box_t_vis_r, cvar.esp_box_t_vis_g, cvar.esp_box_t_vis_b);
-
-
-			Palette(x + 227, save[1], cvar.esp_line_of_sight_r, cvar.esp_line_of_sight_g, cvar.esp_line_of_sight_b);
-
-			Palette(x + 227, save[6] - 15, cvar.esp_weapon_r, cvar.esp_weapon_g, cvar.esp_weapon_b);
 		}
 	}
 	else if (iCurrentTab == 5)
@@ -898,7 +621,7 @@ void CMenu::Tabs()
 			x = x + 270;
 			line_y = 15;
 
-			DrawBox(x, y, 250, 200);//Presets
+			DrawBox(x, y, 250, 160);//Presets
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 64, y + 2);
@@ -930,10 +653,10 @@ void CMenu::Tabs()
 		}
 
 		{//BOX3
-			y = y + 220;
+			y = y + 180;
 			line_y = 15;
 
-			DrawBox(x, y, 250, 210);//Other
+			DrawBox(x, y, 250, 250);//Other
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 54, y + 2);
@@ -943,6 +666,9 @@ void CMenu::Tabs()
 			line_y += 20;
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.hide_from_obs, "Hide from OBS");
+			line_y += 20;
+
+			Checkbox(x + box_indent_x, y + line_y, cvar.bypass_valid_blockers, "Bypass valid blockers");
 			line_y += 20;
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.bypass_trace_blockers, "Bypass trace blockers");

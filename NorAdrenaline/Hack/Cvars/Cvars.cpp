@@ -8,31 +8,24 @@ void CCvars::Init()
 {
 	hide_from_obs = false;
 
-	aim = true;
-	aim_teammates = false; // Deathmatch mode
-	aim_target_selection = 3; // psilent FoV based
-	aim_hitbox = 6; // Vital legit
-	aim_multi_point = 3; // try to hit anything visible?
-	aim_penetration = true; // autowall
-	aim_silent = true; // silent (no flick)
-	aim_perfect_silent = true; // bSendPacket psilent
-	aim_autoshoot = false; // Do not auto shoot
-    aim_fov = 5; // FoV
+	aim = true; // Aim or not
+	aim_teammates = false; // Deathmatch
+	aim_target_selection = 3; // 
+	aim_hitbox = 6; // Hitbox of choice
+	aim_multi_point = 0; // Multipoint
+	aim_autowall = true; // Autowall
+	aim_silent = true;
+	aim_perfect_silent = true;
+    aim_psilent_ticks = 2;
+    aim_autoscope = true;
+    aim_fov = 10;
 
-	fakelag = true;
+	fakelag = false;
 	fakelag_while_shooting = false;
 	fakelag_type = 3;
-	fakelag_move = 4;
-	fakelag_variance = 15;
-	fakelag_limit = 15;
-
-	brightness = 0;
-	brightness_r = 0;
-	brightness_g = 0;
-	brightness_b = 0;
-
-	quick_stop = false;
-	quick_stop_duck = false;
+	fakelag_move = 3;
+	fakelag_variance = 0;
+	fakelag_limit = 0;
 
 	autopistol = true;
 	autoreload = false;
@@ -49,7 +42,6 @@ void CCvars::Init()
 	noflash = 0;
 	thirdperson = 0;
 	disable_render_teammates = false;
-	bullets_trace = false;
 
 	esp = true;
 	esp_behind = true;
@@ -59,59 +51,40 @@ void CCvars::Init()
 	esp_box_ct_vis_r = 0;
 	esp_box_ct_vis_g = 255;
 	esp_box_ct_vis_b = 255;
+
 	esp_box_t_vis_r = 255;
-	esp_box_t_vis_g = 255;
+	esp_box_t_vis_g = 0;
 	esp_box_t_vis_b = 0;
+
 	esp_box_ct_invis_r = 0;
 	esp_box_ct_invis_g = 255;
 	esp_box_ct_invis_b = 255;
-	esp_box_t_invis_r = 255;
-	esp_box_t_invis_g = 255;
-	esp_box_t_invis_b = 0;
 
-	esp_box_friends_r = 0;
-	esp_box_friends_g = 255;
-	esp_box_friends_b = 0;
+	esp_box_t_invis_r = 255;
+	esp_box_t_invis_g = 0;
+	esp_box_t_invis_b = 0;
 
 	esp_box_outline = false;
 	esp_name = false;
 
 	esp_fake = true;
 	bypass_trace_blockers = true;
+	bypass_valid_blockers = true;
 	esp_sound_minimum_volume = 0;
-
-	esp_weapon = 0;
-	esp_weapon_r = 255;
-	esp_weapon_g = 0;
-	esp_weapon_b = 255;
-
-	esp_world_weapon = 0;
-	esp_world_weapon_r = 255;
-	esp_world_weapon_g = 255;
-	esp_world_weapon_b = 255;
-
-	esp_shots_fired = false;
 
 	esp_flags = false;
 	esp_distance = false;
 	esp_hitboxes = false;
 	esp_sound = false;
-	esp_health = false;
 
 	esp_alpha = 200;
 
-	esp_line_of_sight = false;
-
-	esp_line_of_sight_r = 255;
-	esp_line_of_sight_g = 255;
-	esp_line_of_sight_b = 255;
-
-	esp_screen = false; // ?
+	esp_screen = false;
 
 	esp_bomb = true;
 	esp_bomb_r = 255;
-	esp_bomb_g = 0;
-	esp_bomb_b = 0;
+	esp_bomb_g = 255;
+	esp_bomb_b = 255;
 
 	grenade_trajectory = false;
 
@@ -139,10 +112,10 @@ void CCvars::Init()
 
 	chams = true;
 	chams_behind_wall = false;
-	chams_type = 3;
+	chams_type = 1;
 
 	chams_t_vis_r = 255;
-	chams_t_vis_g = 255;
+	chams_t_vis_g = 0;
 	chams_t_vis_b = 0;
 
 	chams_t_invis_r = 255;
@@ -178,11 +151,6 @@ void CCvars::Init()
 	aa_pitch = 0;
 	aa_edge = 0;
 
-	legit_teammates = false;
-	trigger_only_zoomed = false;
-	block_attack_after_kill = 0;
-	trigger_key = -1;
-
 	menu_legit_global_section = 1;
 	menu_legit_sub_section = 1;
 	menu_key = 45;
@@ -191,14 +159,11 @@ void CCvars::Init()
 	menu_color_b = 234;
 
 	bunnyhop = true;
-	knifebot = false;
-    groundstrafe = true;
-    autostrafe = true;
-    fastrun = true;
+	knifebot = true;
 
 	name_stealer = false;
 
-	debug = false;
+	debug = true;
 }
 
 static double PRECISION = 0.00000000000001;
@@ -290,10 +255,11 @@ void CFunctions::SaveCvars()
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_target_selection", dtoa(s, cvar.aim_target_selection));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_hitbox", dtoa(s, cvar.aim_hitbox));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_multi_point", dtoa(s, cvar.aim_multi_point));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_penetration", dtoa(s, cvar.aim_penetration));
+	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_autowall", dtoa(s, cvar.aim_autowall));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_silent", dtoa(s, cvar.aim_silent));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_perfect_silent", dtoa(s, cvar.aim_perfect_silent));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_autoshoot", dtoa(s, cvar.aim_autoshoot));
+    g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_psilent_ticks", dtoa(s, cvar.aim_psilent_ticks));
+	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim_autoscope", dtoa(s, cvar.aim_autoscope));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "fakelag", dtoa(s, cvar.fakelag));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "fakelag_while_shooting", dtoa(s, cvar.fakelag_while_shooting));
@@ -301,14 +267,6 @@ void CFunctions::SaveCvars()
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "fakelag_move", dtoa(s, cvar.fakelag_move));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "fakelag_variance", dtoa(s, cvar.fakelag_variance));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "fakelag_limit", dtoa(s, cvar.fakelag_limit));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "brightness", dtoa(s, cvar.brightness));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "brightness_r", dtoa(s, cvar.brightness_r));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "brightness_g", dtoa(s, cvar.brightness_g));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "brightness_b", dtoa(s, cvar.brightness_b));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "quick_stop", dtoa(s, cvar.quick_stop));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "quick_stop_duck", dtoa(s, cvar.quick_stop_duck));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "autopistol", dtoa(s, cvar.autopistol));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "autoreload", dtoa(s, cvar.autoreload));
@@ -325,7 +283,6 @@ void CFunctions::SaveCvars()
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "noflash", dtoa(s, cvar.noflash));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "thirdperson", dtoa(s, cvar.thirdperson));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "disable_render_teammates", dtoa(s, cvar.disable_render_teammates));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "bullets_trace", dtoa(s, cvar.bullets_trace));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp", dtoa(s, cvar.esp));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_behind", dtoa(s, cvar.esp_behind));
@@ -344,42 +301,21 @@ void CFunctions::SaveCvars()
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_t_invis_r", dtoa(s, cvar.esp_box_t_invis_r));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_t_invis_g", dtoa(s, cvar.esp_box_t_invis_g));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_t_invis_b", dtoa(s, cvar.esp_box_t_invis_b));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_friends_r", dtoa(s, cvar.esp_box_friends_r));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_friends_g", dtoa(s, cvar.esp_box_friends_g));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_friends_b", dtoa(s, cvar.esp_box_friends_b));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_box_outline", dtoa(s, cvar.esp_box_outline));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_name", dtoa(s, cvar.esp_name));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_fake", dtoa(s, cvar.esp_fake));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "bypass_trace_blockers", dtoa(s, cvar.bypass_trace_blockers));
+	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "bypass_valid_blockers", dtoa(s, cvar.bypass_valid_blockers));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_sound_minimum_volume", dtoa(s, cvar.esp_sound_minimum_volume));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_weapon", dtoa(s, cvar.esp_weapon));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_weapon_r", dtoa(s, cvar.esp_weapon_r));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_weapon_g", dtoa(s, cvar.esp_weapon_g));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_weapon_b", dtoa(s, cvar.esp_weapon_b));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_world_weapon", dtoa(s, cvar.esp_world_weapon));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_world_weapon_r", dtoa(s, cvar.esp_world_weapon_r));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_world_weapon_g", dtoa(s, cvar.esp_world_weapon_g));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_world_weapon_b", dtoa(s, cvar.esp_world_weapon_b));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_shots_fired", dtoa(s, cvar.esp_shots_fired));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_flags", dtoa(s, cvar.esp_flags));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_distance", dtoa(s, cvar.esp_distance));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_hitboxes", dtoa(s, cvar.esp_hitboxes));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_sound", dtoa(s, cvar.esp_sound));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_health", dtoa(s, cvar.esp_health));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_alpha", dtoa(s, cvar.esp_alpha));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_line_of_sight", dtoa(s, cvar.esp_line_of_sight));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_line_of_sight_r", dtoa(s, cvar.esp_line_of_sight_r));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_line_of_sight_g", dtoa(s, cvar.esp_line_of_sight_g));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_line_of_sight_b", dtoa(s, cvar.esp_line_of_sight_b));
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "esp_screen", dtoa(s, cvar.esp_screen));
 
@@ -465,11 +401,6 @@ void CFunctions::SaveCvars()
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "bunnyhop", dtoa(s, cvar.bunnyhop));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "knifebot", dtoa(s, cvar.knifebot));
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "name_stealer", dtoa(s, cvar.name_stealer));
-
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "legit_teammates", dtoa(s, cvar.legit_teammates));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "block_attack_after_kill", dtoa(s, cvar.block_attack_after_kill));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "trigger_only_zoomed", dtoa(s, cvar.trigger_only_zoomed));
-	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "trigger_key", dtoa(s, cvar.trigger_key));
 }
 
 void CFunctions::LoadCvars()
@@ -487,10 +418,11 @@ void CFunctions::LoadCvars()
 	cvar.aim_target_selection = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_target_selection", "0"));
 	cvar.aim_hitbox = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_hitbox", "0"));
 	cvar.aim_multi_point = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_multi_point", "0"));
-	cvar.aim_penetration = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_penetration", "0"));
+	cvar.aim_autowall = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_autowall", "0"));
 	cvar.aim_silent = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_silent", "0"));
 	cvar.aim_perfect_silent = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_perfect_silent", "0"));
-	cvar.aim_autoshoot = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_autoshoot", "0"));
+    cvar.aim_psilent_ticks = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_psilent_ticks", "0"));
+	cvar.aim_autoscope = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "aim_autoscope", "0"));
 
 	cvar.fakelag = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag", "0"));
 	cvar.fakelag_while_shooting = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_while_shooting", "0"));
@@ -498,14 +430,6 @@ void CFunctions::LoadCvars()
 	cvar.fakelag_move = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_move", "0"));
 	cvar.fakelag_variance = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_variance", "0"));
 	cvar.fakelag_limit = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_limit", "0"));
-
-	cvar.brightness = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "brightness", "0"));
-	cvar.brightness_r = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "brightness_r", "0"));
-	cvar.brightness_g = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "brightness_g", "0"));
-	cvar.brightness_b = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "brightness_b", "0"));
-
-	cvar.quick_stop = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "quick_stop", "0"));
-	cvar.quick_stop_duck = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "quick_stop_duck", "0"));
 	
 	cvar.autopistol = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "autopistol", "0"));
 	cvar.autoreload = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "autoreload", "0"));
@@ -522,7 +446,6 @@ void CFunctions::LoadCvars()
 	cvar.noflash = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "noflash", "0"));
 	cvar.thirdperson = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "thirdperson", "0"));
 	cvar.disable_render_teammates = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "disable_render_teammates", "0"));
-	cvar.bullets_trace = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "bullets_trace", "0"));
 
 	cvar.esp = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp", "0"));
 	cvar.esp_behind = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_behind", "0"));
@@ -541,42 +464,21 @@ void CFunctions::LoadCvars()
 	cvar.esp_box_t_invis_r = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_t_invis_r", "0"));
 	cvar.esp_box_t_invis_g = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_t_invis_g", "0"));
 	cvar.esp_box_t_invis_b = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_t_invis_b", "0"));
-	cvar.esp_box_friends_r = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_friends_r", "0"));
-	cvar.esp_box_friends_g = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_friends_g", "0"));
-	cvar.esp_box_friends_b = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_friends_b", "0"));
 
 	cvar.esp_box_outline = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_box_outline", "0"));
 	cvar.esp_name = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_name", "0"));
 
 	cvar.esp_fake = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_fake", "0"));
 	cvar.bypass_trace_blockers = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "bypass_trace_blockers", "0"));
+	cvar.bypass_valid_blockers = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "bypass_valid_blockers", "0"));
 	cvar.esp_sound_minimum_volume = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_sound_minimum_volume", "0"));
-
-	cvar.esp_weapon = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_weapon", "0"));
-	cvar.esp_weapon_r = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_weapon_r", "0"));
-	cvar.esp_weapon_g = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_weapon_g", "0"));
-	cvar.esp_weapon_b = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_weapon_b", "0"));
-
-	cvar.esp_world_weapon = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_world_weapon", "0"));
-	cvar.esp_world_weapon_r = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_world_weapon_r", "0"));
-	cvar.esp_world_weapon_g = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_world_weapon_g", "0"));
-	cvar.esp_world_weapon_b = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_world_weapon_b", "0"));
-
-	cvar.esp_shots_fired = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_shots_fired", "0"));
 
 	cvar.esp_flags = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_flags", "0"));
 	cvar.esp_distance = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_distance", "0"));
 	cvar.esp_hitboxes = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_hitboxes", "0"));
 	cvar.esp_sound = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_sound", "0"));
-	cvar.esp_health = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_health", "0"));
 
 	cvar.esp_alpha = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_alpha", "0"));
-
-	cvar.esp_line_of_sight = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_line_of_sight", "0"));
-
-	cvar.esp_line_of_sight_r = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_line_of_sight_r", "0"));
-	cvar.esp_line_of_sight_g = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_line_of_sight_g", "0"));
-	cvar.esp_line_of_sight_b = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_line_of_sight_b", "0"));
 
 	cvar.esp_screen = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "esp_screen", "0"));
 
@@ -658,11 +560,6 @@ void CFunctions::LoadCvars()
 	cvar.menu_key = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "menu_key", "45"));
 
 	cvar.name_stealer = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "name_stealer", "0"));
-
-	cvar.legit_teammates = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "legit_teammates", "0"));
-	cvar.block_attack_after_kill = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "block_attack_after_kill", "0"));
-	cvar.trigger_only_zoomed = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "trigger_only_zoomed", "0"));
-	cvar.trigger_key = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "trigger_key", "-1"));
 
 	cvar.bunnyhop = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "bunnyhop", "0"));
 	cvar.knifebot = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "knifebot", "0"));

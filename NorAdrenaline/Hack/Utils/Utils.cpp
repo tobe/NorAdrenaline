@@ -39,15 +39,6 @@ bool CUtils::GetTextureInfo(CImageTexture texture, unsigned int &index, unsigned
 	return false;
 }
 
-float CUtils::GroundDistance() {
-    Vector vTemp = g_Local.vOrigin;
-    vTemp[2] -= 8192;
-    pmtrace_t *trace = g_Engine.PM_TraceLine(g_Local.vOrigin, vTemp, 1, 0, -1);
-
-    vec3_t vDistance = (vTemp - g_Local.vOrigin) * trace->fraction;
-    return -vDistance[2];
-}
-
 void CUtils::bSendpacket(bool status) 
 {
 	static bool bsendpacket_status = true;

@@ -48,6 +48,5 @@ private:
 public:
 	void Run();
 	void IconInit();
-	void Lightmap();
 };
 extern CVisuals g_Visuals;

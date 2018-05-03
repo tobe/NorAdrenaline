@@ -54,7 +54,6 @@ LRESULT CALLBACK Hooked_WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	return CallWindowProc(g_pGlobals.WndProcBackup, hwnd, uMsg, wParam, lParam);
 }
 
-
 DWORD WINAPI Hook(LPVOID lpThreadParameter)
 {
 	CreateInterfaceFn gameui_factory = CaptureFactory("gameui.dll");
@@ -64,6 +63,7 @@ DWORD WINAPI Hook(LPVOID lpThreadParameter)
 
 	if (gameui_factory && vgui2_factory && hardware_factory && client_factory)
 	{
+		VIRTUALIZER_START
 		while (!g_Offsets.FindHardware())
 			Sleep(100);
 
@@ -78,12 +78,6 @@ DWORD WINAPI Hook(LPVOID lpThreadParameter)
 		g_pEngine = (cl_enginefunc_t*)g_Offsets.FindEngine();
 		g_pStudio = (engine_studio_api_t*)g_Offsets.FindStudio();
 		g_pStudioModelRenderer = (StudioModelRenderer_t*)g_Offsets.FindStudioModelRenderer();
-
-		/*if (License())
-		{
-			g_Offsets.Error("Bad license.");
-			return 1;
-		}*/
 		
 		while (!g_Client.V_CalcRefdef)
 			RtlCopyMemory(&g_Client, g_pClient, sizeof(cl_clientfunc_t));
@@ -132,6 +126,7 @@ DWORD WINAPI Hook(LPVOID lpThreadParameter)
 		g_pGlobals.WndProcBackup = (WNDPROC)SetWindowLongA(g_pGlobals.hWindow, GWL_WNDPROC, (LONG_PTR)&Hooked_WndProc);
 
 		HookClient();
+		VIRTUALIZER_END
 	}
 
 	return NULL;
@@ -150,9 +145,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 	{
 		hAppInstance = hinstDLL;
 
-        AllocConsole();
-        freopen("CONOUT$", "w", stdout);
-
 		DisableThreadLibraryCalls(hinstDLL);
 
 		if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, g_pGlobals.BaseDir)))
@@ -169,5 +161,5 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 		}
 	}
 
-	return bReturnValue;
+	return bReturnValue;//git test
 }

@@ -40,8 +40,6 @@ public:
 	void GetFirstNonSolidPoint(const Vector& inStartPos, const Vector& inEndPos, Vector& outNonSolidPoint);
 
 	bool GetTextureInfo(CImageTexture texture, unsigned int &index, unsigned int &w, unsigned int &h);
-
-    float __fastcall GroundDistance();
 };
 extern CUtils g_Utils;
 

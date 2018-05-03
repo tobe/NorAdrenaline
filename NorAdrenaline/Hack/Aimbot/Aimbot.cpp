@@ -29,12 +29,13 @@ void SmoothAimAngles(QAngle MyViewAngles, QAngle AimAngles, QAngle &OutAngles, f
 
 void CAimBot::Run(struct usercmd_s *cmd)
 {
-	if (cvar.aim) {
-		RageAimbot(cmd);
+	if (cvar.aim)
+	{
+		Aimbot(cmd);
 	}
 }
 
-void CAimBot::RageAimbot(struct usercmd_s *cmd)
+void CAimBot::Aimbot(struct usercmd_s *cmd)
 {
 	if (!cvar.aim && !IsCurWeaponGun() || !CanAttack())
 		return;
@@ -65,14 +66,11 @@ void CAimBot::RageAimbot(struct usercmd_s *cmd)
 		for (unsigned int k = 12; k < g_Local.iMaxHitboxes; k++)
 			Hitboxes.push_back(k);
 	}
-	else if (cvar.aim_hitbox == 6)//Vital // These are legit lol
+	else if (cvar.aim_hitbox == 6)//Vital
 	{
-        Hitboxes.push_back(7);
-        Hitboxes.push_back(8);
-        Hitboxes.push_back(9);
-        Hitboxes.push_back(10);
-        Hitboxes.push_back(12);
-        Hitboxes.push_back(17);
+        unsigned int vitalHitboxes[] = {0, 7, 8, 9, 10, 12, 17};
+        for(auto &hitbox : vitalHitboxes)
+            Hitboxes.push_front(hitbox);
 	}
 
 	if (Hitboxes.empty())
@@ -102,10 +100,8 @@ void CAimBot::RageAimbot(struct usercmd_s *cmd)
 		if (!cvar.aim_teammates && g_Player[id].iTeam == g_Local.iTeam)
 			continue;
 
-		for (unsigned int x = 0; x < Hitboxes.size(); x++)
+		for (auto &&hitbox : Hitboxes)
 		{
-			unsigned int hitbox = Hitboxes[x];
-
 			if (g_PlayerExtraInfoList[id].bHitboxVisible[hitbox])
 			{
 				m_iHitbox = hitbox;
@@ -115,10 +111,8 @@ void CAimBot::RageAimbot(struct usercmd_s *cmd)
 
 		if (m_iHitbox == -1)
 		{
-			for (unsigned int x = 0; x < Hitboxes.size(); x++)
+			for (auto &&hitbox : Hitboxes)
 			{
-				unsigned int hitbox = Hitboxes[x];
-
 				if (cvar.aim_multi_point > 0)
 				{
 					if (cvar.aim_multi_point == 1 && hitbox != 11)
@@ -179,50 +173,51 @@ void CAimBot::RageAimbot(struct usercmd_s *cmd)
 		}
 	}
 
-	if (m_iTarget > 0)
+    if(m_iTarget <= 0) return;
+
+	if (cvar.aim_autoscope && IsCurWeaponSniper() && g_Local.iFOV == DEFAULT_FOV)
 	{
-		if (cvar.quick_stop_duck)
+		cmd->buttons |= IN_ATTACK2;
+	}
+	else if (CanAttack())
+	{
+		QAngle QMyAngles, QAimAngles, QSmoothAngles;
+		Vector vAimOrigin;
+
+		if(m_iPoint >= 0 && m_iPoint < 8)
+			vAimOrigin = g_PlayerExtraInfoList[m_iTarget].vHitboxPoints[m_iHitbox][m_iPoint];
+		else
+			vAimOrigin = g_PlayerExtraInfoList[m_iTarget].vHitbox[m_iHitbox];
+
+		g_Engine.GetViewAngles(QMyAngles);
+
+		g_Utils.VectorAngles(vAimOrigin - g_Local.vEye, QAimAngles);
+
+        // We have to be in attack to process the rest. And also check the fov.
+        if(!(cmd->buttons & IN_ATTACK) || m_flBestFOV > cvar.aim_fov) return;
+
+		if (cvar.aim_perfect_silent)
 		{
-			cmd->forwardmove = 0;
-			cmd->sidemove = 0;
-			cmd->upmove = 0;
-			cmd->buttons |= IN_DUCK;
+			g_Utils.MakeAngle(false, QAimAngles, cmd);
+			g_Utils.bSendpacket(false);
+
+            //g_Engine.pfnConsolePrint("initial choke!");
+
+            /*if(++this->choked < cvar.aim_psilent_ticks) {
+                g_Engine.Con_NPrintf(2, "choked: %i", this->choked);
+                g_Utils.bSendpacket(false);
+            } else {
+                g_Engine.Con_NPrintf(2, "not choking anymore");
+                g_Utils.bSendpacket(true);
+                //g_Utils.MakeAngle(false, QMyAngles, cmd);
+                this->choked = 0;
+            }*/
 		}
-		else if (cvar.quick_stop)
-		{
-			cmd->forwardmove = 0;
-			cmd->sidemove = 0;
-			cmd->upmove = 0;
-		}
-		else if (CanAttack())
-		{
-			QAngle QMyAngles, QAimAngles, QSmoothAngles;
+		else {
+			g_Utils.MakeAngle(false, QAimAngles, cmd);
 
-			Vector vAimOrigin;
-
-			if(m_iPoint >= 0 && m_iPoint < 8)
-				vAimOrigin = g_PlayerExtraInfoList[m_iTarget].vHitboxPoints[m_iHitbox][m_iPoint];
-			else
-				vAimOrigin = g_PlayerExtraInfoList[m_iTarget].vHitbox[m_iHitbox];
-
-			g_Engine.GetViewAngles(QMyAngles);
-
-			g_Utils.VectorAngles(vAimOrigin - g_Local.vEye, QAimAngles);
-
-			if (cvar.aim_perfect_silent) {
-                if(m_flBestFOV <= cvar.aim_fov && (cmd->buttons & IN_ATTACK)) {
-                    g_Utils.MakeAngle(false, QAimAngles, cmd);
-                    g_Utils.bSendpacket(false);
-                }
-			}else {
-				g_Utils.MakeAngle(false, QAimAngles, cmd);
-
-				if (!cvar.aim_silent) g_Engine.SetViewAngles(QAimAngles);
-			}
-
-			if(cvar.aim_autoshoot) cmd->buttons |= IN_ATTACK;
-		}else {
-            if(cvar.aim_autoshoot) cmd->buttons &= ~IN_ATTACK;
+			if (!cvar.aim_silent)
+				g_Engine.SetViewAngles(QAimAngles);
 		}
 	}
 }

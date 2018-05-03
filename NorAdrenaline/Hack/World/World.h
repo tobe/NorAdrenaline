@@ -13,8 +13,6 @@ public:
 	void UpdateEntities();
 	void GetHitboxes(struct cl_entity_s *ent);
 	void UpdateMapInfo();
-
-	bool bOtherResolver;
 };
 extern CWorld World;
 
@@ -35,7 +33,6 @@ public:
 	float flGroundAngle;
 	float flHeight;
 	float flHeightPlane;
-    float flSpeed;
 
 	bool bAlive;
 	bool bScoped;

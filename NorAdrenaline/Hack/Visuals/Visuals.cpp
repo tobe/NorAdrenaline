@@ -124,13 +124,6 @@ void CVisuals::DrawHistory(int i)
 
 		char *szWeapon = g_PlayerExtraInfoList[i].szWeaponName;
 
-		if (cvar.esp_weapon > 0 && szWeapon)
-		{
-			unsigned int y = ScreenBot[1] + (8 - _h);
-
-			g_Drawing.DrawString(ESP, ScreenTop[0], y, r, g, b, 255, FONT_CENTER, "%s", szWeapon);
-		}
-
 		if (cvar.esp_distance)
 		{
 			unsigned int y = ScreenBot[1] + (-8 - _h);
@@ -143,28 +136,6 @@ void CVisuals::DrawHistory(int i)
 			unsigned int y = box_height - 8 + ScreenTop[1];
 
 			g_Drawing.DrawString(ESP, ScreenTop[0], y, r, g, b, cvar.esp_alpha, FONT_CENTER, "%s", g_PlayerInfoList[i].name);
-		}
-	}
-}
-
-void TriggerStatus()
-{
-	static DWORD dwTemporaryBlockTimer = GetTickCount();
-	static bool old = g_AimBot.TriggerKeyStatus;
-
-	if (cvar.trigger_key > 0 && cvar.trigger_key < 255) {
-		if (g_AimBot.TriggerKeyStatus != old)
-		{
-			old = g_AimBot.TriggerKeyStatus;
-			dwTemporaryBlockTimer = GetTickCount();
-		}
-
-		if (GetTickCount() - dwTemporaryBlockTimer < 2000)
-		{
-			if (g_AimBot.TriggerKeyStatus)
-				g_Drawing.DrawString(ESP, g_Screen.iWidth / 2, g_Screen.iHeight / 2 + 64, 0, 255, 0, cvar.esp_alpha, FONT_CENTER, "Trigger activated");
-			else
-				g_Drawing.DrawString(ESP, g_Screen.iWidth / 2, g_Screen.iHeight / 2 + 64, 255, 0, 0, cvar.esp_alpha, FONT_CENTER, "Trigger deactivated");
 		}
 	}
 }
@@ -188,7 +159,7 @@ void CVisuals::Run()
 
 	for (int i = 1; i <= g_Engine.GetMaxClients(); i++)
 	{
-		if (i == g_Local.iIndex) 
+		if (i == g_Local.iIndex)
 			continue;
 
 		if (!g_Player[i].bAlive)
@@ -230,7 +201,6 @@ void CVisuals::Run()
 	DrawAimBotFOV();
 
 	PenetrationInfo();
-	TriggerStatus();
 }
 
 void CVisuals::DrawAimBotFOV()
@@ -526,12 +496,6 @@ void CVisuals::PlayerESP(unsigned int i)
 			}
 		}
 	}
-	else if (g_Player[i].bFriend) 
-	{
-		r = cvar.esp_box_friends_r;
-		g = cvar.esp_box_friends_g;
-		b = cvar.esp_box_friends_b;
-	}
 
 	Vector Top = Vector(ent->origin.x, ent->origin.y, ent->origin.z + ent->curstate.mins.z);
 	Vector Bot = Vector(ent->origin.x, ent->origin.y, ent->origin.z + ent->curstate.maxs.z);
@@ -549,91 +513,6 @@ void CVisuals::PlayerESP(unsigned int i)
 
 		if (cvar.esp_box)
 			g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], box_width, box_height, r, g, b, 255);
-
-		char *szWeapon = g_PlayerExtraInfoList[i].szWeaponName;
-
-		if (cvar.esp_weapon > 0 && szWeapon)
-		{
-			if (cvar.esp_weapon == 2) //Icon
-			{
-				unsigned int y = ScreenBot[1] + (2 - _h);
-
-				unsigned int texture = 0;
-				unsigned int w = 0;
-				unsigned int h = 0;
-				
-				if (!lstrcmpA(szWeapon, "knife"))
-					g_Utils.GetTextureInfo(wpn_knife, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "ak47"))
-					g_Utils.GetTextureInfo(wpn_ak47, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "m4a1"))
-					g_Utils.GetTextureInfo(wpn_m4a1, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "deagle"))
-					g_Utils.GetTextureInfo(wpn_deagle, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "awp"))
-					g_Utils.GetTextureInfo(wpn_awp, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "scout"))
-					g_Utils.GetTextureInfo(wpn_scout, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "mp5"))
-					g_Utils.GetTextureInfo(wpn_mp5n, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "glock"))
-					g_Utils.GetTextureInfo(wpn_glock18, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "p90"))
-					g_Utils.GetTextureInfo(wpn_p90, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "usp"))
-					g_Utils.GetTextureInfo(wpn_usp, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "xm1014"))
-					g_Utils.GetTextureInfo(wpn_xm1014, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "p228"))
-					g_Utils.GetTextureInfo(wpn_p228, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "sg550"))
-					g_Utils.GetTextureInfo(wpn_sg550, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "sg552"))
-					g_Utils.GetTextureInfo(wpn_sg552, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "m249"))
-					g_Utils.GetTextureInfo(wpn_m249, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "g3sg1"))
-					g_Utils.GetTextureInfo(wpn_g3sg1, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "m3"))
-					g_Utils.GetTextureInfo(wpn_m3, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "elite"))
-					g_Utils.GetTextureInfo(wpn_elite, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "aug"))
-					g_Utils.GetTextureInfo(wpn_aug, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "mac10"))
-					g_Utils.GetTextureInfo(wpn_mac10, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "fiveseven"))
-					g_Utils.GetTextureInfo(wpn_fiveseven, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "ump45"))
-					g_Utils.GetTextureInfo(wpn_ump45, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "tmp"))
-					g_Utils.GetTextureInfo(wpn_tmp, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "galil"))
-					g_Utils.GetTextureInfo(wpn_galil, texture, w, h);
-				else if (!lstrcmpA(szWeapon, "famas"))
-					g_Utils.GetTextureInfo(wpn_famas, texture, w, h);
-
-				w /= 2;
-				h /= 2;
-
-				if (texture && w && h) 
-				{
-					unsigned int x0 = ScreenTop[0] - (w / 2);
-					unsigned int y0 = y;
-					unsigned int x1 = ScreenTop[0] + (w / 2);
-					unsigned int y1 = y0 + h;
-
-					g_Drawing.DrawTexture(texture, x0, y0, x1, y1, cvar.esp_weapon_r, cvar.esp_weapon_g, cvar.esp_weapon_b, 255);
-				}
-				else goto default_draw_weapon;
-			}
-			else {
-			default_draw_weapon:
-				unsigned int y = ScreenBot[1] + (8 - _h);
-
-				g_Drawing.DrawString(ESP, ScreenTop[0], y, 255, 255, 255, 255, FONT_CENTER, "%s", szWeapon);
-			}
-		}
 
 		if (cvar.esp_distance)
 		{
@@ -656,11 +535,6 @@ void CVisuals::PlayerESP(unsigned int i)
 			unsigned int seq = Cstrike_SequenceInfo[ent->curstate.sequence];
 
 			unsigned int y = 4;
-
-			if (cvar.esp_shots_fired) {
-				g_Drawing.DrawString(ESP, ScreenTop[0] - box_width + indent, box_height + y + ScreenTop[1], 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "%i", g_Player[i].iShotsFired);
-				y += 12;
-			}
 
 			if (seq == SEQUENCE_RELOAD) {
 				g_Drawing.DrawString(ESP, ScreenTop[0] - box_width + indent, box_height + y + ScreenTop[1], 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "R");
@@ -685,87 +559,58 @@ void CVisuals::PlayerESP(unsigned int i)
 				y += 12;
 			}
 		}
-		else {
-			if (cvar.esp_shots_fired) {
-				g_Drawing.DrawString(ESP, ScreenTop[0] - box_width + indent, box_height + 4 + ScreenTop[1], 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "%i", g_Player[i].iShotsFired);
-			}
-		}
 
-		if (cvar.esp_hitboxes) 
-		{
-			float flScreenHead[2], flScreenHead2[2];
+        if(cvar.esp_hitboxes) {
+            float flScreenHead[2], flScreenHead2[2];
 
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][0], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][2], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][0], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][3], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][0], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][4], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][0], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][2], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][0], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][3], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][0], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][4], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
 
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][6], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][1], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][6], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][2], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][6], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][4], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][6], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][1], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][6], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][2], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][6], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][4], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
 
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][5], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][1], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][5], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][3], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][5], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][4], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][5], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][1], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][5], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][3], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][5], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][4], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
 
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][7], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][1], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][7], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][2], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][7], flScreenHead);
-			g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][3], flScreenHead2);
-			g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][7], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][1], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][7], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][2], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][7], flScreenHead);
+            g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitboxPoints[11][3], flScreenHead2);
+            g_Drawing.DrawLine(flScreenHead[0], flScreenHead[1], flScreenHead2[0], flScreenHead2[1], 0, 255, 0, 255);
 
-			for (unsigned int x = 0; x < 21; x++)
-			{
-				float ft1[2];
+            for(unsigned int x = 0; x < 21; x++) {
+                float ft1[2];
 
-				if (g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitbox[x], ft1)) 
-				{
-					g_Drawing.DrawString(ESP, ft1[0], ft1[1], 0, 255, 0, cvar.esp_alpha, FONT_CENTER, "%i", x);
-				}
-			}
-		}
-
-		if (cvar.esp_health && !cvar.hide_from_obs)
-		{
-			float health_width = box_width - 5;
-
-			unsigned int hp = g_Player[i].iHealth;
-
-			if (hp < 0)
-				hp = 0;
-			else if (hp > 100)
-				hp = 100;
-
-			byte Red = 255 - (hp * 2.55);
-			byte Green = hp * 2.55;
-
-			float health_height = (box_height / 100) * hp;
-
-			g_Drawing.DrawRect((ScreenTop[0] + health_width), ScreenTop[1], 1, health_height, Red, Green, 0, 255);
-
-			g_Drawing.DrawOutlinedRect((ScreenTop[0] + health_width) - 1, ScreenTop[1], 3, box_height, 0, 0, 0, 255);
-		}
+                if(g_Utils.bCalcScreen(g_PlayerExtraInfoList[i].vHitbox[x], ft1)) {
+                    g_Drawing.DrawString(ESP, ft1[0], ft1[1], 0, 255, 0, cvar.esp_alpha, FONT_CENTER, "%i", x);
+                }
+            }
+        }
 	}
 	else if(!m_bScreenTop && !m_bScreenBot)
 	{
@@ -791,14 +636,6 @@ void CVisuals::Debug()
 		y += 15;
 		g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "m_flBombRadius: %.3f", g_MapInfo.m_flBombRadius);
 		y += 15;
-
-        // Speed, Height, Velocity
-        g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Speed: %.5f", g_Local.flSpeed);
-        y += 15;
-        g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Height: %.5f", g_Local.flHeight);
-        y += 15;
-        g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Velocity: %.5f", g_Local.flVelocity);
-        y += 15;
 	}
 }
 
@@ -1016,36 +853,6 @@ void CVisuals::Bomb()
 	}
 }
 
-void CVisuals::Lightmap()
-{
-	if (g_pIRunGameEngine->IsInGame())
-	{
-		static bool replaced = false;
-		static float brightness_r = cvar.brightness_r;
-		static float brightness_g = cvar.brightness_g;
-		static float brightness_b = cvar.brightness_b;
-		static float brightness = cvar.brightness;
-
-		if (cvar.brightness > 0 && !cvar.hide_from_obs)
-		{
-			if (!replaced) {
-				g_Engine.OverrideLightmap(1);
-				g_Engine.SetLightmapColor(cvar.brightness_r, cvar.brightness_g, cvar.brightness_b);
-				g_Engine.SetLightmapDarkness(cvar.brightness);
-				replaced = true;
-			}
-			else {
-				if (brightness_r != cvar.brightness_r || brightness_g != cvar.brightness_g || brightness_b != cvar.brightness_b || brightness != cvar.brightness)
-					replaced = false;
-			}
-		}
-		else {
-			g_Engine.OverrideLightmap(0);
-			replaced = false;
-		}
-	}
-}
-
 void CVisuals::DrawFake(int PlayerID, int EntityID)
 {
 	if (!g_Player[PlayerID].bAlive && g_PlayerInfoList[PlayerID].name != NULL && (g_Player[PlayerID].iTeam == TERRORIST || g_Player[PlayerID].iTeam == CT))
@@ -1139,98 +946,6 @@ void CVisuals::DrawEntities()
 
 		if (g_Entities[i].bIsWeapon)
 		{
-			if (cvar.esp_world_weapon > 0)
-			{
-				float flScreen[2];
-
-				if (g_Utils.bCalcScreen(g_Entities[i].vOrigin, flScreen))
-				{
-					char *szWeapon = strstr(g_Entities[i].szModelName, "/w_");
-
-					if (szWeapon)
-					{
-						szWeapon = &szWeapon[3];
-						g_Utils.StringReplace(szWeapon, ".mdl", "");
-
-						if (cvar.esp_world_weapon == 2)
-						{
-							unsigned int texture = 0;
-							unsigned int w = 0;
-							unsigned int h = 0;
-
-							if (!lstrcmpA(szWeapon, "knife"))
-								g_Utils.GetTextureInfo(wpn_knife, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "ak47"))
-								g_Utils.GetTextureInfo(wpn_ak47, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "m4a1"))
-								g_Utils.GetTextureInfo(wpn_m4a1, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "deagle"))
-								g_Utils.GetTextureInfo(wpn_deagle, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "awp"))
-								g_Utils.GetTextureInfo(wpn_awp, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "scout"))
-								g_Utils.GetTextureInfo(wpn_scout, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "mp5"))
-								g_Utils.GetTextureInfo(wpn_mp5n, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "glock"))
-								g_Utils.GetTextureInfo(wpn_glock18, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "p90"))
-								g_Utils.GetTextureInfo(wpn_p90, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "usp"))
-								g_Utils.GetTextureInfo(wpn_usp, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "xm1014"))
-								g_Utils.GetTextureInfo(wpn_xm1014, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "p228"))
-								g_Utils.GetTextureInfo(wpn_p228, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "sg550"))
-								g_Utils.GetTextureInfo(wpn_sg550, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "sg552"))
-								g_Utils.GetTextureInfo(wpn_sg552, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "m249"))
-								g_Utils.GetTextureInfo(wpn_m249, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "g3sg1"))
-								g_Utils.GetTextureInfo(wpn_g3sg1, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "m3"))
-								g_Utils.GetTextureInfo(wpn_m3, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "elite"))
-								g_Utils.GetTextureInfo(wpn_elite, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "aug"))
-								g_Utils.GetTextureInfo(wpn_aug, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "mac10"))
-								g_Utils.GetTextureInfo(wpn_mac10, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "fiveseven"))
-								g_Utils.GetTextureInfo(wpn_fiveseven, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "ump45"))
-								g_Utils.GetTextureInfo(wpn_ump45, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "tmp"))
-								g_Utils.GetTextureInfo(wpn_tmp, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "galil"))
-								g_Utils.GetTextureInfo(wpn_galil, texture, w, h);
-							else if (!lstrcmpA(szWeapon, "famas"))
-								g_Utils.GetTextureInfo(wpn_famas, texture, w, h);
-
-							w /= 2;
-							h /= 2;
-
-							if (texture && w && h)
-							{
-								unsigned int x0 = flScreen[0] - (w / 2);
-								unsigned int y0 = flScreen[1];
-								unsigned int x1 = flScreen[0] + (w / 2);
-								unsigned int y1 = y0 + h;
-
-								g_Drawing.DrawTexture(texture, x0, y0, x1, y1, cvar.esp_world_weapon_r, cvar.esp_world_weapon_g, cvar.esp_world_weapon_b, 255);
-							}
-							else goto default_draw_weapon;
-						}
-						else {
-						default_draw_weapon:
-							g_Drawing.DrawString(ESP, flScreen[0], flScreen[1], cvar.esp_world_weapon_r, cvar.esp_world_weapon_g, cvar.esp_world_weapon_b, cvar.esp_alpha, FONT_CENTER, "%s", szWeapon);
-						}
-					}
-				}
-			}
-
 			if (cvar.grenade_trajectory && (strstr(g_Entities[i].szModelName, "flashbang") || strstr(g_Entities[i].szModelName, "smokegrenade") || strstr(g_Entities[i].szModelName, "hegrenade")))
 			{
 				if (!Grenades[i].vPoints.empty() && Grenades[i].vPoints[Grenades[i].vPoints.size() - 1] != g_Entities[i].vOrigin)

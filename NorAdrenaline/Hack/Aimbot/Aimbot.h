@@ -10,7 +10,9 @@ public:
 
 	bool TriggerKeyStatus;
 private:
-	void RageAimbot(struct usercmd_s *cmd);
+	void Aimbot(struct usercmd_s *cmd);
+
+    unsigned int choked = 0;
 };
 extern CAimBot g_AimBot;
 

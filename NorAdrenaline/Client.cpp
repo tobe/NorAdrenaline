@@ -54,7 +54,6 @@ void WINAPI PaintTraversePanel(vgui::IPanel* vguiPanel, bool forceRepaint, bool 
 	else if (strstr(PanelName, "LoadingDialog") || strstr(PanelName, "BasePanel"))
 	{
 		g_pGlobals.dwLoadingFinished = GetTickCount();
-
 	}
 
 	PanelHook.ReHook();
@@ -79,23 +78,8 @@ void CL_CreateMove(float frametime, struct usercmd_s *cmd, int active)
 		g_Misc.AutoReload(cmd);
 		g_Misc.AutoPistol(cmd);
 		g_Misc.FastZoom(cmd);
-        g_Misc.GroundStrafe(cmd);
-        g_Misc.FastRun(cmd);
 
 		ItemPostFrame(cmd);// do weapon stuff
-
-		if (!cvar.hide_from_obs && !g_pGlobals.bSnapshot && !g_pGlobals.bScreenshot && cvar.bullets_trace && CanAttack() && cmd->buttons & IN_ATTACK)
-		{
-			Vector vForward;
-			Vector vAngle = cmd->viewangles;
-			g_Engine.pfnAngleVectors(vAngle, vForward, NULL, NULL);
-			int beamindex = g_Engine.pEventAPI->EV_FindModelIndex("sprites/laserbeam.spr");
-			pmtrace_t tr;
-			g_Engine.pEventAPI->EV_SetTraceHull(2);
-			g_Engine.pEventAPI->EV_PlayerTrace(g_Local.vEye, g_Local.vEye + vForward * 8192, PM_GLASS_IGNORE, -1, &tr);
-
-			g_Engine.pEfxAPI->R_BeamPoints(g_Local.vEye, tr.endpos, beamindex, 0.3f, 0.4f, 0, 32, 2, 0, 0, 0, 255, 0);
-		}
 
 		g_NoRecoil.CL_CreateMove(cmd);
 		g_NoSpread.CL_CreateMove(cmd);
@@ -136,8 +120,6 @@ void HUD_Frame(double time)
 
 	World.UpdateMapInfo();
 
-	g_Visuals.Lightmap();
-
 	g_Client.HUD_Frame(time);
 }
 
@@ -167,7 +149,7 @@ void HUD_Frame_init(double time)
 	cvar.Init();
 	func.Init();
 
-	//func.LoadCvars();
+	func.LoadCvars();
 
 	HookOpenGL();
 
@@ -175,14 +157,8 @@ void HUD_Frame_init(double time)
 		g_pConsole->Activate();
 
 	g_pConsole->DPrintf("\n\tNorAdrenaline loaded.\n");
-
-    #define LAMBDA(x) []() { ##x(); }
-    g_Engine.pfnAddCommand("+na_fastrun", LAMBDA(g_Misc.FastRunOn));
-    g_Engine.pfnAddCommand("-na_fastrun", LAMBDA(g_Misc.FastRunOff));
-    g_Engine.pfnAddCommand("+na_gstrafe", LAMBDA(g_Misc.GroundStrafeOn));
-    g_Engine.pfnAddCommand("-na_gstrafe", LAMBDA(g_Misc.GroundStrafeOff));
-    g_Engine.pfnAddCommand("na_hitbox_head",  []() { cvar.aim_hitbox = 1; });
-    g_Engine.pfnAddCommand("na_hitbox_vital", []() { cvar.aim_hitbox = 6; });
+	g_pConsole->DPrintf("\n\tSite: hack.ovh\n");
+	g_pConsole->DPrintf("\n\tSupport: noradrenalinehelp@hack.ovh\n");
 
 	g_pClient->HUD_Frame = HUD_Frame;
 
@@ -229,45 +205,6 @@ int HUD_AddEntity(int type, struct cl_entity_s *ent, const char *modelname)
 	{
 		if ((!cvar.esp_teammates || cvar.disable_render_teammates) && g_Player[ent->index].iTeam == g_Local.iTeam)
 			return g_Client.HUD_AddEntity(type, ent, modelname);
-
-		if (cvar.bullets_trace || cvar.esp_line_of_sight)
-		{
-			int beamindex = g_Engine.pEventAPI->EV_FindModelIndex("sprites/laserbeam.spr");
-
-			Vector vecStart, vecEnd, vecForward;
-
-			pmtrace_t tr;
-
-			vecStart = g_PlayerExtraInfoList[ent->index].vHitbox[11];
-
-			g_Engine.pfnAngleVectors(g_Player[ent->index].vAngles, vecForward, NULL, NULL);
-
-			vecEnd = vecStart + vecForward * 8192;
-
-			g_Engine.pEventAPI->EV_SetTraceHull(2);
-			g_Engine.pEventAPI->EV_PlayerTrace(vecStart, vecEnd, PM_GLASS_IGNORE, -1, &tr);
-
-			if (cvar.esp_line_of_sight)
-				g_Engine.pEfxAPI->R_BeamPoints(vecStart, tr.endpos, beamindex, 0.001f, 0.9f, 0, 32, 2, 0, 0, cvar.esp_line_of_sight_r / 255, cvar.esp_line_of_sight_g / 255, cvar.esp_line_of_sight_b / 255);
-
-			if (cvar.bullets_trace)
-			{
-				int seq = Cstrike_SequenceInfo[ent->curstate.sequence];
-
-				if (seq == SEQUENCE_SHOOT && g_PlayerExtraInfoList[ent->index].szWeaponName != NULL && lstrcmpA(g_PlayerExtraInfoList[ent->index].szWeaponName, "knife"))
-				{
-					Vector view_ofs(0, 0, PM_VEC_VIEW);
-
-					if (g_Player[ent->index].bDucked)
-						view_ofs[2] = PM_VEC_DUCK_VIEW;
-
-					if (g_Player[ent->index].iTeam == TERRORIST)
-						g_Engine.pEfxAPI->R_BeamPoints(vecStart, tr.endpos, beamindex, 0.001f, 0.4f, 0, 32, 2, 0, 0, 1, 0, 0);
-					else if (g_Player[ent->index].iTeam == CT)
-						g_Engine.pEfxAPI->R_BeamPoints(vecStart, tr.endpos, beamindex, 0.001f, 0.4f, 0, 32, 2, 0, 0, 0, 0, 1);
-				}
-			}
-		}
 	}
 
 	return g_Client.HUD_AddEntity(type, ent, modelname);
@@ -299,6 +236,22 @@ void CL_Move() //Create and send the command packet to the server
 	CL_Move_s();
 }
 
+void HUD_ProcessPlayerState(struct entity_state_s *dst, const struct entity_state_s *src)
+{
+	if (cvar.bypass_valid_blockers) 
+	{
+		src->mins[0] = -16;
+		src->mins[1] = -16;
+		src->mins[2] = -36;
+
+		src->maxs[0] = 16;
+		src->maxs[1] = 16;
+		src->maxs[2] = 36;
+	}
+
+	g_Client.HUD_ProcessPlayerState(dst, src);
+}
+
 void HookClient()
 {
 	g_pClient->HUD_Frame = HUD_Frame_init;
@@ -309,6 +262,7 @@ void HookClient()
 	g_pClient->V_CalcRefdef = V_CalcRefdef;
 	g_pClient->HUD_AddEntity = HUD_AddEntity;
 	g_pClient->HUD_GetHullBounds = HUD_GetHullBounds;
+	g_pClient->HUD_ProcessPlayerState = HUD_ProcessPlayerState;
 
 	g_pStudio->StudioCheckBBox = StudioCheckBBox;
 	g_pStudio->StudioSetRemapColors = StudioSetRemapColors;
