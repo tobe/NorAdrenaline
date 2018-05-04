@@ -73,11 +73,12 @@ void CL_CreateMove(float frametime, struct usercmd_s *cmd, int active)
 		g_Systems.BunnyHop(cmd);
 		g_Systems.AutoStrafe(cmd);
 
+        g_Misc.FastZoom(cmd); // before aimbot
+
 		g_AimBot.Run(cmd);
 
 		g_Misc.AutoReload(cmd);
 		g_Misc.AutoPistol(cmd);
-		g_Misc.FastZoom(cmd);
 
 		ItemPostFrame(cmd);// do weapon stuff
 
@@ -231,7 +232,7 @@ int HUD_GetHullBounds(int hullnum, float* mins, float* maxs)
 
 void CL_Move() //Create and send the command packet to the server
 {
-	g_Utils.bSendpacket(true);
+    g_Utils.bSendpacket(true);
 
 	CL_Move_s();
 }

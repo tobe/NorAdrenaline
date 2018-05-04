@@ -315,6 +315,9 @@ void CMenu::Tabs()
 
             Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
             line_y += 40;
+
+            Slider(x + indent_x, y + line_y, 0, 100, cvar.aim_psilent_ticks, "PSilent ticks", true);
+            line_y += 40;
 		}
 
 		{//BOX3

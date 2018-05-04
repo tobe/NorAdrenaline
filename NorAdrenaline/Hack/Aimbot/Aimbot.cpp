@@ -40,6 +40,14 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 	if (!cvar.aim && !IsCurWeaponGun() || !CanAttack())
 		return;
 
+    g_Engine.Con_NPrintf(1, "choked: %i", this->choked);
+
+    if(cmd->buttons & IN_ATTACK) {
+        if(++this->choked < cvar.aim_psilent_ticks) {
+            g_Utils.bSendpacket(false);
+        }
+    }
+
 	deque<unsigned int> Hitboxes;
 
 	if (cvar.aim_hitbox == 1)//"Head", "Neck", "Chest", "Stomach"
@@ -200,6 +208,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		{
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 			g_Utils.bSendpacket(false);
+            this->choked++;
 
             //g_Engine.pfnConsolePrint("initial choke!");
 

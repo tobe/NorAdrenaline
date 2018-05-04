@@ -9,10 +9,10 @@ public:
 	float m_flCurrentFOV;
 
 	bool TriggerKeyStatus;
-private:
-	void Aimbot(struct usercmd_s *cmd);
 
     unsigned int choked = 0;
+private:
+	void Aimbot(struct usercmd_s *cmd);
 };
 extern CAimBot g_AimBot;
 

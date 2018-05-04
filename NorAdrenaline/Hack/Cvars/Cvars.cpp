@@ -16,6 +16,7 @@ void CCvars::Init()
 	aim_autowall = true; // Autowall
 	aim_silent = true;
 	aim_perfect_silent = true;
+    aim_psilent_ticks = 100;
     aim_autoscope = true;
     aim_fov = 10;
 
