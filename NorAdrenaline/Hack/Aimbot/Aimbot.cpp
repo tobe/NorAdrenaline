@@ -175,7 +175,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 
     if(m_iTarget <= 0) return;
 
-	if (cvar.aim_autoscope && IsCurWeaponSniper() && g_Local.iFOV == DEFAULT_FOV)
+	if (cvar.aim_autoscope && IsCurWeaponSniper() && (cmd->buttons & IN_ATTACK) && g_Local.iFOV == DEFAULT_FOV)
 	{
 		cmd->buttons |= IN_ATTACK2;
 	}
