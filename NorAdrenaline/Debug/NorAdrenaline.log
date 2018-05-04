@@ -1,6 +1,0 @@
-﻿  Aimbot.cpp
-d:\noradrenaline-master\noradrenaline\vector.h(213): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(19): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(78): warning C4018: '<': signed/unsigned mismatch
-d:\noradrenaline-master\noradrenaline\hack\aimbot\aimbot.cpp(98): warning C4018: '<=': signed/unsigned mismatch
-  NorAdrenaline.vcxproj -> D:\NorAdrenaline-master\Debug\NorAdrenaline.dll
