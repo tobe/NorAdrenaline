@@ -66,6 +66,7 @@ typedef void(*Snapshot_t)();
 typedef void(*Screenshot_t)();
 typedef void(*PreS_DynamicSound_t)(int, DWORD, char *, float *, float, float, int, int);
 typedef void(*CL_Move_t)();
+typedef void(*Netchan_TransmitBits_t)(void *, int, byte *);
 
 extern cl_clientfunc_t *g_pClient;
 extern cl_clientfunc_t g_Client;
@@ -83,6 +84,7 @@ extern CL_Move_t CL_Move_s;
 extern PreS_DynamicSound_t PreS_DynamicSound_s;
 extern StudioModelRenderer_t g_StudioModelRenderer;
 extern StudioModelRenderer_t* g_pStudioModelRenderer;
+extern Netchan_TransmitBits_t Netchan_TransmitBits_s;
 
 void HookClient();
 void WINAPI PaintTraversePanel(vgui::IPanel* vguiPanel, bool forceRepaint, bool allowForce);

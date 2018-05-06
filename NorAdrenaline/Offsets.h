@@ -26,6 +26,7 @@ public:
 	PVOID FindStudioModelRenderer(void);
 	
 	DWORD PreS_DynamicSound(void);
+    DWORD Netchan_TransmitBits(void);
 	DWORD CL_Move(void);
 	DWORD FindSpeed(void);
 

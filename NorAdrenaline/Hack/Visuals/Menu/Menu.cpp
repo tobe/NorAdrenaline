@@ -230,7 +230,7 @@ void CMenu::Tabs()
 			save[7] = y + line_y;
 			line_y += 40;
 
-			static char *szTargetHitbox[] = { "Head", "Neck", "Chest", "Stomach", "All hitboxes", "Vital hitboxes" };
+			static char *szTargetHitbox[] = { "Head", "Leftarm", "Chest", "Stomach"};
 			save[8] = y + line_y;
 			line_y += 40;
 
@@ -315,9 +315,8 @@ void CMenu::Tabs()
 
             Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
             line_y += 40;
-
-            Slider(x + indent_x, y + line_y, 0, 100, cvar.aim_psilent_ticks, "PSilent ticks", true);
-            line_y += 40;
+            g_Drawing.DrawString(MENU, x + indent_x, y + line_y, 255, 255, 255, 255, FONT_LEFT, "FoV: %d°", (int)cvar.aim_fov * 2);
+            line_y += 20;
 		}
 
 		{//BOX3
@@ -332,17 +331,14 @@ void CMenu::Tabs()
 
 			char *tmp1[] = { "Fakedown", "Down", "Up", "Jitter", "Random" };
 			save[0] = y + line_y;
-			//ListBox(iListIndex++, x + box_indent_x, y + line_y, "Pitch", cvar.esp_weapon, tmp1, 6, false);
 			line_y += 40;
 
 			char *tmp2[] = { "180", "180 jitter", "Spin", "Jitter", "Sideways", "Random", "Static" };
 			save[1] = y + line_y;
-			//ListBox(iListIndex++, x + box_indent_x, y + line_y, "Yaw", cvar.esp_weapon, tmp2, 7, false);
 			line_y += 40;
 
 			char *tmp3[] = { "180", "180 jitter", "Spin", "Jitter", "Sideways", "Random", "Static" };
 			save[2] = y + line_y;
-			//ListBox(iListIndex++, x + box_indent_x, y + line_y, "Yaw while running", cvar.esp_weapon, tmp3, 7, false);
 			line_y += 40;
 
 			char *tmp4[] = { "Standing", "In move", "All", "All + Fake" };
@@ -381,6 +377,9 @@ void CMenu::Tabs()
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Bunny hop");
 			line_y += 20;
+
+            Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "Autostrafe");
+            line_y += 20;
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.bunnyhop, "FPS boost");
 			line_y += 20;

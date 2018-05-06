@@ -3,6 +3,9 @@
 CGlobalsVars g_pGlobals;
 SCREENINFO g_Screen;
 
+static float ticks = 0;
+static bool inAttack = false;
+
 void AntiSnapshot() { g_pGlobals.bSnapshot = true; }
 void AntiScreenshot() { g_pGlobals.bScreenshot = true; }
 void AntiScreen()
@@ -63,15 +66,22 @@ void CL_CreateMove(float frametime, struct usercmd_s *cmd, int active)
 {
 	g_Client.CL_CreateMove(frametime, cmd, active);
 
+    ticks += frametime;
+
 	World.Update(frametime, cmd);
 	
 	if (g_Local.bAlive)
 	{
+        // psilent
+        inAttack = (cmd->buttons & IN_ATTACK) ? true : false;
+
 		UpdateWeaponData();
 
 		g_Systems.KnifeBot(cmd);
 		g_Systems.BunnyHop(cmd);
 		g_Systems.AutoStrafe(cmd);
+        g_Systems.StandUpGroundStrafe(cmd);
+        g_Systems.Fastrun(cmd);
 
         g_Misc.FastZoom(cmd); // before aimbot
 
@@ -157,9 +167,28 @@ void HUD_Frame_init(double time)
 	if (!g_pConsole->IsConsoleVisible())
 		g_pConsole->Activate();
 
+    // Patch interpolation
+    g_Offsets.PatchInterpolation();
+
+    // Register SGS
+    g_pEngine->pfnAddCommand("+zw_gstrafe", []() {
+        cvar.sgs_temp = true;
+    });
+    g_pEngine->pfnAddCommand("-zw_gstrafe", []() {
+        cvar.sgs_temp = false;
+    });
+    // Register fastrun
+    g_pEngine->pfnAddCommand("+zw_fastrun", []() {
+        cvar.fastrun_temp = true;
+    });
+    g_pEngine->pfnAddCommand("-zw_fastrun", []() {
+        cvar.fastrun_temp = false;
+    });
+
+    // Patch rates
+    g_Engine.pfnClientCmd("rate 50000;cl_updaterate 200;cl_cmdrate 200");
+
 	g_pConsole->DPrintf("\n\tNorAdrenaline loaded.\n");
-	g_pConsole->DPrintf("\n\tSite: hack.ovh\n");
-	g_pConsole->DPrintf("\n\tSupport: noradrenalinehelp@hack.ovh\n");
 
 	g_pClient->HUD_Frame = HUD_Frame;
 
@@ -237,6 +266,12 @@ void CL_Move() //Create and send the command packet to the server
 	CL_Move_s();
 }
 
+void Netchan_TransmitBits(void *chan, int length, byte *data) {
+    //g_Engine.pfnConsolePrint("Netchan_TransmitBits")
+
+    Netchan_TransmitBits_s(chan, length, data);
+}
+
 void HUD_ProcessPlayerState(struct entity_state_s *dst, const struct entity_state_s *src)
 {
 	if (cvar.bypass_valid_blockers) 
@@ -274,6 +309,7 @@ void HookClient()
 
 	PreS_DynamicSound_s = (PreS_DynamicSound_t)DetourFunction((LPBYTE)g_Offsets.PreS_DynamicSound(), (LPBYTE)&PreS_DynamicSound);
 	CL_Move_s = (CL_Move_t)DetourFunction((LPBYTE)g_Offsets.CL_Move(), (LPBYTE)&CL_Move);
+    //Netchan_TransmitBits_s = (Netchan_TransmitBits_t)DetourFunction((LPBYTE)g_Offsets.Netchan_TransmitBits(), (LPBYTE)&Netchan_TransmitBits);
 
 	g_Offsets.EnablePageWrite((DWORD)g_pStudioModelRenderer, sizeof(StudioModelRenderer_t));
 	g_pStudioModelRenderer->StudioRenderModel = StudioRenderModel_Gate;

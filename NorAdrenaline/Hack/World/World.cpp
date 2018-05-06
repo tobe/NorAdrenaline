@@ -358,13 +358,13 @@ void CWorld::UpdateVisibility(int id)
 	{
 		if (cvar.aim)//Rage aimbot
 		{
-			if (cvar.aim_hitbox == 1)//"Head", "Neck", "Chest", "Stomach"
+			if (cvar.aim_hitbox == 1)//"Head", "Leftarm", "Chest", "Stomach"
 			{
 				Hitboxes.push_back(11);
 			}
 			else if (cvar.aim_hitbox == 2)
 			{
-				Hitboxes.push_back(10);
+				Hitboxes.push_back(8);
 			}
 			else if (cvar.aim_hitbox == 3)
 			{
@@ -374,64 +374,6 @@ void CWorld::UpdateVisibility(int id)
 			{
 				Hitboxes.push_back(0);
 			}
-			else if(cvar.aim_hitbox == 5)//All
-			{
-				for (unsigned int j = 0; j < g_Local.iMaxHitboxes; j++)
-					Hitboxes.push_back(j);
-			}
-			else if (cvar.aim_hitbox == 6)//Vital
-			{
-				for (unsigned int j = 0; j <= 11; j++)
-					Hitboxes.push_back(j);
-			}
-		}
-		else if (cvar.legit[g_Local.weapon.m_iWeaponID].aim)
-		{
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].aim_head)
-				Hitboxes.push_back(11);
-
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].aim_chest)
-				Hitboxes.push_back(7);
-
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].aim_stomach)
-				Hitboxes.push_back(0);
-
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger)
-			{
-				if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_head && !cvar.legit[g_Local.weapon.m_iWeaponID].aim_head)
-					Hitboxes.push_back(11);
-
-				if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_chest && !cvar.legit[g_Local.weapon.m_iWeaponID].aim_chest)
-				{
-					Hitboxes.push_back(7);
-					Hitboxes.push_back(8);
-					Hitboxes.push_back(9);
-					Hitboxes.push_back(10);
-					Hitboxes.push_back(12);
-					Hitboxes.push_back(17);
-				}
-
-				if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_stomach && !cvar.legit[g_Local.weapon.m_iWeaponID].aim_stomach)
-					Hitboxes.push_back(0);
-			}
-		}
-		else if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger)
-		{
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_head)
-				Hitboxes.push_back(11);
-
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_chest)
-			{
-				Hitboxes.push_back(7);
-				Hitboxes.push_back(8);
-				Hitboxes.push_back(9);
-				Hitboxes.push_back(10);
-				Hitboxes.push_back(12);
-				Hitboxes.push_back(17);
-			}
-
-			if (cvar.legit[g_Local.weapon.m_iWeaponID].trigger_stomach)
-				Hitboxes.push_back(0);
 		}
 	}
 	else if (IsCurWeaponKnife() && cvar.knifebot)

@@ -23,6 +23,7 @@ CL_Move_t CL_Move_s = nullptr;
 PreS_DynamicSound_t PreS_DynamicSound_s = nullptr;
 StudioModelRenderer_t g_StudioModelRenderer;
 StudioModelRenderer_t* g_pStudioModelRenderer = nullptr;
+Netchan_TransmitBits_t Netchan_TransmitBits_s = nullptr;
 
 VHookTable PanelHook;
 

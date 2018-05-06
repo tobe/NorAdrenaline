@@ -66,16 +66,16 @@ DWORD COffsets::CL_Move(void)
 
 void COffsets::GlobalTime()
 {
-	/*dwSendPacketPointer = FindPattern("\x75\x13\xD9\x05\x00\x00\x00\x00\xD8\x1D\x00\x00\x00\x00\xDF\xE0\xF6\xC4\x00\x00\x00\xD9\x05\x00\x00\x00\x00\xDC\x1D\x00\x00\x00\x00\xDF\xE0\xF6\xC4\x41", "xxxx????xx????xxxx???xx????xx????xxxxx", hardware.base, hardware.end, 0x1b) + 2;
+	dwSendPacketPointer = FindPattern("\x75\x13\xD9\x05\x00\x00\x00\x00\xD8\x1D\x00\x00\x00\x00\xDF\xE0\xF6\xC4\x00\x00\x00\xD9\x05\x00\x00\x00\x00\xDC\x1D\x00\x00\x00\x00\xDF\xE0\xF6\xC4\x41", "xxxx????xx????xxxx???xx????xx????xxxxx", hardware.base, hardware.end, 0x1b) + 2;
 
 	if (FarProc(dwSendPacketPointer, hardware.base, hardware.end))
 		Error("dwSendPacket: not found.");
 
 	dwSendPacketBackup = *((uintptr_t *)(dwSendPacketPointer));
 
-	EnablePageWrite(dwSendPacketPointer, sizeof(DWORD));*/
+	EnablePageWrite(dwSendPacketPointer, sizeof(DWORD));
 
-    dwSendPacketPointer = FindPattern("\x75\x3F\xE8\x00\x00\x00\x00\x85\xC0\x75\x09", "xxx????xxxx", hardware.base, hardware.end, 0);
+    /*dwSendPacketPointer = FindPattern("\x75\x3F\xE8\x00\x00\x00\x00\x85\xC0\x75\x09", "xxx????xxxx", hardware.base, hardware.end, 0);
     if(FarProc(dwSendPacketPointer, hardware.base, hardware.end))
         Error("dwSendPacket: not found.");
 
@@ -84,7 +84,7 @@ void COffsets::GlobalTime()
     native_memwrite(dwSendPacketPointer + 9, (uintptr_t)"\x90\x90", 2);
     native_memwrite(dwSendPacketPointer + 18, (uintptr_t)"\x90\x90", 2);
 
-    EnablePageWrite(dwSendPacketPointer, sizeof(DWORD));
+    EnablePageWrite(dwSendPacketPointer, sizeof(DWORD));*/
 }
 
 PVOID COffsets::FindStudioModelRenderer(void)
@@ -112,6 +112,24 @@ DWORD COffsets::PreS_DynamicSound(void)
 	}
 
 	return Address;
+}
+
+DWORD COffsets::Netchan_TransmitBits(void) {
+    DWORD Address = FindPattern("%s:Outgoing message overflow", hardware.base, hardware.end, 0);
+    Address = FindReference(hardware.base, hardware.end, Address) - 0x5B;
+
+    if(FarProc(Address, hardware.base, hardware.end))
+        Error("Couldn't find Netchan_TransmitBits pointer.");
+
+    int limit = 0;
+
+    while(*(PBYTE)Address == 0x90) {
+        Address += 0x1;
+        limit += 1;
+        if(limit > 30) break;
+    }
+
+    return Address;
 }
 
 UserMsg COffsets::FindUserMsgBase(void)

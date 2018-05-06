@@ -423,41 +423,6 @@ void CVisuals::SoundESP()
                     } else {
                         g_Drawing.DrawString(ESP, screen[0] - size, screen[1] - size, 255, 255, 255, cvar.esp_alpha, FONT_CENTER, "%s", text);
                     }
-					/*if (!strstr(sound.name, "pl_shell") && 
-						!strstr(sound.name, "ric") && 
-						!strstr(sound.name, "die") && 
-						!strstr(sound.name, "glass") && 
-						!strstr(sound.name, "debris")) 
-					{
-						color24 color;
-						color.r = 0;
-						color.g = 0;
-						color.b = 0;
-
-						if (strstr(sound.name, "weapons")) 
-						{
-							if (strstr(sound.name, "explode3") || strstr(sound.name, "explode4") || strstr(sound.name, "he_bounce")) {
-								color.g = 0; color.b = 0;
-							}
-							else if (strstr(sound.name, "sg_explode")) {
-								color.r = 0; color.b = 0;
-							}
-							else if (strstr(sound.name, "c4_")) {
-								color.r = 0; color.g = 0;
-							}
-							else if (strstr(sound.name, "flashbang")) {
-								color.r = 255; color.g = 255; color.b = 255;
-							}
-							else {
-								color.r = 0; color.g = 0;
-							}
-						}
-						else if (strstr(sound.name, "player") && strstr(sound.name, "pl_")) {
-							color.r = 100; color.g = 200; color.b = 160;
-						}
-
-						g_Drawing.DrawBox(screen[0] - size, screen[1] - size, 10, 10, color.r, color.g, color.b, 255);
-					}*/
 				}
 			}
 		}
@@ -655,6 +620,9 @@ void CVisuals::Debug()
 		y += 15;
 		g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "m_flBombRadius: %.3f", g_MapInfo.m_flBombRadius);
 		y += 15;
+        g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "SpeedPtr: %d", g_Offsets.dwSpeedPointer);
+        y += 15;
+        g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Velocity: %.3f", g_Local.flVelocity);
 	}
 }
 
