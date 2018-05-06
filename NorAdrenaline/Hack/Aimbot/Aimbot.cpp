@@ -37,65 +37,30 @@ void CAimBot::Run(struct usercmd_s *cmd)
 
 void CAimBot::Aimbot(struct usercmd_s *cmd)
 {
-
-    /*
-    g_Engine.Con_NPrintf(1, "choked: %i", this->choked);
-    if(cmd->buttons & IN_ATTACK) {
-        if(++this->choked < cvar.aim_psilent_ticks) {
-            g_Utils.bSendpacket(false);
-
-        } else {
-            g_Utils.bSendpacket(true);
-            this->choked = 0;
-        }
-    }*/
-
 	if (!cvar.aim && !IsCurWeaponGun() || !CanAttack())
 		return;
 
-	deque<unsigned int> Hitboxes;
+    unsigned int m_iTarget = 0;
+    int m_iHitbox = -1;
+    int m_iPoint  = -1;
 
-	if (cvar.aim_hitbox == 1)//"Head", "Neck", "Chest", "Stomach"
-	{
-		Hitboxes.push_back(11);
-	}
-	else if (cvar.aim_hitbox == 2)
-	{
-		Hitboxes.push_back(10);
-	}
-	else if (cvar.aim_hitbox == 3)
-	{
-		Hitboxes.push_back(7);
-	}
-	else if (cvar.aim_hitbox == 4)
-	{
-		Hitboxes.push_back(0);
-	}
-	else if (cvar.aim_hitbox == 5)//All
-	{
-		for (unsigned int j = 0; j <= 11; j++)
-			Hitboxes.push_front(j);
-
-		for (unsigned int k = 12; k < g_Local.iMaxHitboxes; k++)
-			Hitboxes.push_back(k);
-	}
-	else if (cvar.aim_hitbox == 6)//Vital
-	{
-        unsigned int vitalHitboxes[] = {0, 7, 8, 9, 10, 12, 17};
-        for(auto &hitbox : vitalHitboxes)
-            Hitboxes.push_front(hitbox);
-	}
-
-	if (Hitboxes.empty())
-		return;
-
-	unsigned int m_iTarget = 0;
-	//int m_iHitbox = -1;
-    int m_iHitbox = 8;
-	int m_iPoint = -1;
+    switch((int)cvar.aim_hitbox) {
+        case 1:
+            m_iHitbox = 11; // head
+        break;
+        case 2:
+            m_iHitbox = 8; // neck
+        break;
+        case 3:
+            m_iHitbox = 7; // chest
+        break;
+        case 4:
+            m_iHitbox = 0; // stomach
+        break;
+    }
 
 	float m_flBestFOV = 180;
-	float m_flBestDist = 8192;
+	float m_flBestDist = FLT_MAX;
 
 	for (unsigned int id = 1; id <= g_Engine.GetMaxClients(); ++id)
 	{
@@ -108,42 +73,28 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		if (g_Player[id].bFriend)
 			continue;
 
-		/*if (!g_Player[id].bVisible)
-			continue;*/
+        if(!g_Player[id].bVisible && !cvar.aim_autowall)
+            continue;
 
 		if (!cvar.aim_teammates && g_Player[id].iTeam == g_Local.iTeam)
 			continue;
 
-		/*for (auto &&hitbox : Hitboxes)
+        // Multi point aimbot
+		if (cvar.aim_multi_point > 0)
 		{
-			if (g_PlayerExtraInfoList[id].bHitboxVisible[hitbox])
-			{
-				m_iHitbox = hitbox;
-				break;
-			}
-		}*/
+			if (cvar.aim_multi_point == 1 && m_iHitbox != 11)
+				continue;
 
-		if (m_iHitbox == -1)
-		{
-			for (auto &&hitbox : Hitboxes)
+			if (cvar.aim_multi_point == 2 && m_iHitbox > 11)
+				continue;
+
+			for (unsigned int point = 0; point <= 8; ++point)
 			{
-				if (cvar.aim_multi_point > 0)
+				if (g_PlayerExtraInfoList[id].bHitboxPointsVisible[m_iHitbox][point] && !g_PlayerExtraInfoList[id].bHitboxVisible[m_iHitbox])
 				{
-					if (cvar.aim_multi_point == 1 && hitbox != 11)
-						continue;
-
-					if (cvar.aim_multi_point == 2 && hitbox > 11)
-						continue;
-
-					for (unsigned int point = 0; point <= 8; ++point)
-					{
-						if (g_PlayerExtraInfoList[id].bHitboxPointsVisible[hitbox][point] && !g_PlayerExtraInfoList[id].bHitboxVisible[hitbox])
-						{
-							m_iPoint = point;
-							m_iHitbox = hitbox;
-							break;
-						}
-					}
+					m_iPoint = point;
+					m_iHitbox = m_iHitbox;
+					break;
 				}
 			}
 		}
@@ -214,7 +165,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		{
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 			g_Utils.bSendpacket(false);
-            //this->choked++;
 		}
 		else {
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
