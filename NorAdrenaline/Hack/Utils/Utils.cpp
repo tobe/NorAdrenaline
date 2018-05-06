@@ -41,7 +41,7 @@ bool CUtils::GetTextureInfo(CImageTexture texture, unsigned int &index, unsigned
 
 void CUtils::bSendpacket(bool status) 
 {
-    static bool bsendpacket_status = true;
+    /*static bool bsendpacket_status = true;
     if(status && bsendpacket_status != 1) {
         bsendpacket_status = 1;
         //g_Utils.MEMwrite((void*)(Haise.bSendpacket_offset), (void*)"\x75\x3F", 2);
@@ -50,9 +50,9 @@ void CUtils::bSendpacket(bool status)
     if(!status && bsendpacket_status != 0) {
         bsendpacket_status = 0;
         native_memwrite(g_Offsets.dwSendPacketPointer, (uintptr_t)"\x90\x90", 2);
-    }
+    }*/
 
-	/*static bool bsendpacket_status = true;
+	static bool bsendpacket_status = true;
 	static DWORD NULLTIME = NULL;
 
 	if (status && !bsendpacket_status) {
@@ -64,7 +64,7 @@ void CUtils::bSendpacket(bool status)
 		bsendpacket_status = false;
 
 		*(DWORD*)(g_Offsets.dwSendPacketPointer) = (DWORD)&NULLTIME;
-	}*/
+	}
 }
 
 float CUtils::Armor(float flDamage, int ArmorValue)
