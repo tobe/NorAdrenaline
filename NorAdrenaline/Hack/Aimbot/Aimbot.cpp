@@ -37,16 +37,21 @@ void CAimBot::Run(struct usercmd_s *cmd)
 
 void CAimBot::Aimbot(struct usercmd_s *cmd)
 {
-	if (!cvar.aim && !IsCurWeaponGun() || !CanAttack())
-		return;
 
+    /*
     g_Engine.Con_NPrintf(1, "choked: %i", this->choked);
-
     if(cmd->buttons & IN_ATTACK) {
         if(++this->choked < cvar.aim_psilent_ticks) {
             g_Utils.bSendpacket(false);
+
+        } else {
+            g_Utils.bSendpacket(true);
+            this->choked = 0;
         }
-    }
+    }*/
+
+	if (!cvar.aim && !IsCurWeaponGun() || !CanAttack())
+		return;
 
 	deque<unsigned int> Hitboxes;
 
@@ -85,7 +90,8 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		return;
 
 	unsigned int m_iTarget = 0;
-	int m_iHitbox = -1;
+	//int m_iHitbox = -1;
+    int m_iHitbox = 8;
 	int m_iPoint = -1;
 
 	float m_flBestFOV = 180;
@@ -102,20 +108,20 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		if (g_Player[id].bFriend)
 			continue;
 
-		if (!g_Player[id].bVisible)
-			continue;
+		/*if (!g_Player[id].bVisible)
+			continue;*/
 
 		if (!cvar.aim_teammates && g_Player[id].iTeam == g_Local.iTeam)
 			continue;
 
-		for (auto &&hitbox : Hitboxes)
+		/*for (auto &&hitbox : Hitboxes)
 		{
 			if (g_PlayerExtraInfoList[id].bHitboxVisible[hitbox])
 			{
 				m_iHitbox = hitbox;
 				break;
 			}
-		}
+		}*/
 
 		if (m_iHitbox == -1)
 		{
@@ -208,19 +214,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		{
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 			g_Utils.bSendpacket(false);
-            this->choked++;
-
-            //g_Engine.pfnConsolePrint("initial choke!");
-
-            /*if(++this->choked < cvar.aim_psilent_ticks) {
-                g_Engine.Con_NPrintf(2, "choked: %i", this->choked);
-                g_Utils.bSendpacket(false);
-            } else {
-                g_Engine.Con_NPrintf(2, "not choking anymore");
-                g_Utils.bSendpacket(true);
-                //g_Utils.MakeAngle(false, QMyAngles, cmd);
-                this->choked = 0;
-            }*/
+            //this->choked++;
 		}
 		else {
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
