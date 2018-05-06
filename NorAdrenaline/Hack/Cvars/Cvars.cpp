@@ -10,13 +10,12 @@ void CCvars::Init()
 
 	aim = true; // Aim or not
 	aim_teammates = false; // Deathmatch
-	aim_target_selection = 3; // 
+	aim_target_selection = 1; // fov
 	aim_hitbox = 6; // Hitbox of choice
 	aim_multi_point = 0; // Multipoint
 	aim_autowall = true; // Autowall
 	aim_silent = true;
 	aim_perfect_silent = true;
-    aim_psilent_ticks = 100;
     aim_autoscope = true;
     aim_fov = 10;
 
@@ -75,7 +74,7 @@ void CCvars::Init()
 	esp_flags = false;
 	esp_distance = false;
 	esp_hitboxes = false;
-	esp_sound = false;
+	esp_sound = true;
 
 	esp_alpha = 200;
 
@@ -160,10 +159,14 @@ void CCvars::Init()
 
 	bunnyhop = true;
 	knifebot = true;
+    autostrafe = true;
+
+    sgs_temp = false;
+    fastrun_temp = false;
 
 	name_stealer = false;
 
-	debug = true;
+	debug = false;
 }
 
 static double PRECISION = 0.00000000000001;

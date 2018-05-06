@@ -14,7 +14,6 @@ public:
 	bool aim_autowall;
 	bool aim_silent;
 	bool aim_perfect_silent;
-    float aim_psilent_ticks;
 	bool aim_autoscope;
     float aim_fov;
 
@@ -159,6 +158,10 @@ public:
 
 	bool bunnyhop;
 	bool knifebot;
+    bool autostrafe;
+
+    bool sgs_temp;
+    bool fastrun_temp;
 
 	float name_stealer;
 
