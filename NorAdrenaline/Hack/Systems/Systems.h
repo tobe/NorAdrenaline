@@ -7,6 +7,7 @@ public:
     void StandUpGroundStrafe(struct usercmd_s *cmd);
 	void BunnyHop(struct usercmd_s *cmd);
     void Fastrun(struct usercmd_s *cmd);
+    void RandomizeSteamID();
 private:
     int DetectStrafeDir(struct usercmd_s *cmd);
 };

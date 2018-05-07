@@ -1,4 +1,5 @@
 #include "../../Required.h"
+#include <time.h>
 
 CSystems g_Systems;
 
@@ -32,6 +33,29 @@ void ComputeMove(int id, float forwardmove, float sidemove)
 		forwardmove = 0;
 		sidemove = 0;
 	}
+}
+
+void CSystems::RandomizeSteamID() {
+    DWORD dwMask = 0x5A448; // steamclient.dll+5A448
+    DWORD dwSteamID = 0x5AC4C; // steamclient.dll+5AC4C
+    DWORD dwFlag = 0x5B4D4; // steamclient.dll+5B4D
+    DWORD dwBase = reinterpret_cast<DWORD>(GetModuleHandle("steamclient.dll"));
+    char szMask[14];
+
+    srand(static_cast<unsigned int>(time(NULL)));
+    char *szChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    for(uint8_t i = 0; i < 14; i++) {
+        szMask[i] = szChars[rand() % strlen(szChars)];
+    }
+
+    native_memwrite(dwBase + dwMask, reinterpret_cast<uintptr_t>(szMask), sizeof(szMask));
+
+    DWORD dwOldProtect;
+    VirtualProtect(LPVOID(dwBase + dwFlag), 1, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+    *reinterpret_cast<uint8_t *>(dwBase + dwFlag) = 0;
+    VirtualProtect(LPVOID(dwBase + dwFlag), 1, dwOldProtect, &dwOldProtect);
+
+    g_pConsole->Printf("Randomized. New mask: %s", szMask);
 }
 
 void CSystems::KnifeBot(struct usercmd_s *cmd)
@@ -136,35 +160,6 @@ void CSystems::BunnyHop(struct usercmd_s *cmd)
 
 void CSystems::StandUpGroundStrafe(struct usercmd_s *cmd) {
     if(!cvar.sgs_temp) return;
-
-    /*if(pmove->flags & FL_ONGROUND)
-        cmd->buttons |= IN_DUCK;
-    if(((pmove->flags & FL_ONGROUND) && (pmove->bInDuck)) || !(pmove->flags & FL_ONGROUND) && pmove->waterlevel < 2 && pmove->movetype != MOVETYPE_FLY)
-        cmd->buttons &= ~IN_DUCK;*/
-
-
-
-
-    /*static int gs_state = 0;
-    if(g_Local.flHeight < 0) {
-        //if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(0.0001); }
-        if(pmove->flFallVelocity >= 140)
-            if(g_Local.flHeight <= 30)
-                cmd->buttons |= IN_DUCK;
-    }
-    if(gs_state == 0 && pmove->flags&FL_ONGROUND) {
-        if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(0.0001); }
-        cmd->buttons |= IN_DUCK;
-        gs_state = 1;
-    } else if(gs_state == 1) {
-        if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(1); }
-        //if(cvar.gstrafe_bhop->value && g_Local.iUseHull == 0) { cmd->buttons |= IN_JUMP; }
-        cmd->buttons &= ~IN_DUCK;
-        gs_state = 0;
-    }*/
-
-
-
 
     static int gs_state = 0;
 

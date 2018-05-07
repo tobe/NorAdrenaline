@@ -184,9 +184,16 @@ void HUD_Frame_init(double time)
     g_pEngine->pfnAddCommand("-zw_fastrun", []() {
         cvar.fastrun_temp = false;
     });
+    // Register steamid randomization
+    g_pEngine->pfnAddCommand("na_randsteam", []() {
+        g_Systems.RandomizeSteamID();
+    });
 
     // Patch rates
     g_Engine.pfnClientCmd("rate 50000;cl_updaterate 200;cl_cmdrate 200");
+
+    // Randomize steamid
+    g_Systems.RandomizeSteamID();
 
 	g_pConsole->DPrintf("\n\tNorAdrenaline loaded.\n");
 
