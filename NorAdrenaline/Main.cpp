@@ -1,6 +1,8 @@
 #include "Required.h"
 #include <Shlobj.h>
-#include "Reflective\ReflectiveLoader.h"
+
+HINSTANCE hAppInstance;
+#define DLL_QUERY_HMODULE		6
 
 IVGuiModuleLoader* g_pIVGuiModuleLoader = nullptr;
 IRunGameEngine* g_pIRunGameEngine = nullptr;

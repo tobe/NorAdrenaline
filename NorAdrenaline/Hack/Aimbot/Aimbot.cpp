@@ -159,14 +159,15 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		g_Utils.VectorAngles(vAimOrigin - g_Local.vEye, QAimAngles);
 
         // We have to be in attack to process the rest. And also check the fov.
-        if(!(cmd->buttons & IN_ATTACK) || m_flBestFOV > cvar.aim_fov && cvar.aim_silent) return;
+        if(!(cmd->buttons & IN_ATTACK) && (cvar.aim_silent || cvar.aim_perfect_silent)) return;
+        //if(!(cmd->buttons & IN_ATTACK) || m_flBestFOV > cvar.aim_fov && cvar.aim_silent) return;
 
-		if (cvar.aim_perfect_silent)
+		if (cvar.aim_perfect_silent && m_flBestFOV <= cvar.aim_fov)
 		{
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 			g_Utils.bSendpacket(false);
 		}
-		else {
+		else { // No FoV check for rage aim
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 
 			if (!cvar.aim_silent)
