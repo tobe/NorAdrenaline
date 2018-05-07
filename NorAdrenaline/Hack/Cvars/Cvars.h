@@ -146,7 +146,8 @@ public:
 	float aa_yaw_static;
 	float aa_pitch;
 	float aa_edge;
-    bool aa_legit;
+    float aa_legit;
+    bool  aa_legit_flip;
 
 	float menu_legit_global_section;
 	float menu_legit_sub_section;

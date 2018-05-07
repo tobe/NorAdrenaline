@@ -193,7 +193,7 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
 				g_Utils.VectorAngles(g_PlayerExtraInfoList[id].vHitbox[0] - g_Local.vEye, vAngles);
 
             // Legit antiaim (flip)
-            if(cvar.aa_legit && (pmove->flags & FL_ONGROUND)) {
+            if(cvar.aa_legit > 0 && (pmove->flags & FL_ONGROUND)) {
                 static int ChokedPackets = -1;
                 ChokedPackets++;
                 static bool yFlip;
@@ -201,12 +201,20 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
                     g_Utils.bSendpacket(true);
                 } else {
                     g_Utils.bSendpacket(false);
-                    //yFlip ? cmd->viewangles.y += 90.f : cmd->viewangles.y -= 90.f;
-                    // TODO: fix this add new cvar fakehead or something
-                    yFlip ?
-                        cmd->viewangles.y += (cvar.aa_yaw == 1 ? 180.f : 90.f)
-                        :
-                        cmd->viewangles.y -= (cvar.aa_yaw == 1 ? 180.f : 90.f);
+                    switch((int)cvar.aa_legit) {
+                        case 1:
+                            if(cvar.aa_legit_flip)
+                                yFlip ? cmd->viewangles.y += 90.f : cmd->viewangles.y -= 90.f;
+                            else
+                                cmd->viewangles.y += 90.f;
+                        break;
+                        case 2:
+                            if(cvar.aa_legit_flip)
+                                yFlip ? cmd->viewangles.y += 180.f : cmd->viewangles.y -= 180.f;
+                            else
+                                cmd->viewangles.y += 180.f;
+                        break;
+                    }
                     ChokedPackets = -1;
                 }
                 yFlip != yFlip;

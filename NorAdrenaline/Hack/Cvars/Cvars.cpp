@@ -17,14 +17,14 @@ void CCvars::Init()
 	aim_silent = true;
 	aim_perfect_silent = true;
     aim_autoscope = true;
-    aim_fov = 5;
+    aim_fov = 3;
 
 	fakelag = true;
 	fakelag_while_shooting = false;
 	fakelag_type = 3;
 	fakelag_move = 3;
-	fakelag_variance = 1;
-	fakelag_limit = 2;
+	fakelag_variance = 3.5;
+	fakelag_limit = 7;
 
 	autopistol = true;
 	autoreload = false;
@@ -69,7 +69,7 @@ void CCvars::Init()
 	esp_fake = true;
 	bypass_trace_blockers = true;
 	bypass_valid_blockers = true;
-	esp_sound_minimum_volume = 0;
+	esp_sound_minimum_volume = 0.5;
 
 	esp_flags = false;
 	esp_distance = false;
@@ -149,7 +149,8 @@ void CCvars::Init()
 	aa_yaw_static = 0;
 	aa_pitch = 0;
 	aa_edge = 0;
-    aa_legit = false;
+    aa_legit = 0;
+    aa_legit_flip = false;
 
 	menu_legit_global_section = 1;
 	menu_legit_sub_section = 1;
