@@ -193,7 +193,7 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
 				g_Utils.VectorAngles(g_PlayerExtraInfoList[id].vHitbox[0] - g_Local.vEye, vAngles);
 
             // Legit antiaim (flip)
-            if(cvar.aa_legit) {
+            if(cvar.aa_legit && (pmove->flags & FL_ONGROUND)) {
                 static int ChokedPackets = -1;
                 ChokedPackets++;
                 static bool yFlip;
