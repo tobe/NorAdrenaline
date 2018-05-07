@@ -136,23 +136,58 @@ void CSystems::BunnyHop(struct usercmd_s *cmd)
 
 void CSystems::StandUpGroundStrafe(struct usercmd_s *cmd) {
     if(!cvar.sgs_temp) return;
-    static int gs_state = 0;
 
-    if(pmove->flFallVelocity > 0) {
+    /*if(pmove->flags & FL_ONGROUND)
+        cmd->buttons |= IN_DUCK;
+    if(((pmove->flags & FL_ONGROUND) && (pmove->bInDuck)) || !(pmove->flags & FL_ONGROUND) && pmove->waterlevel < 2 && pmove->movetype != MOVETYPE_FLY)
+        cmd->buttons &= ~IN_DUCK;*/
+
+
+
+
+    /*static int gs_state = 0;
+    if(g_Local.flHeight < 0) {
+        //if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(0.0001); }
         if(pmove->flFallVelocity >= 140)
             if(g_Local.flHeight <= 30)
                 cmd->buttons |= IN_DUCK;
     }
+    if(gs_state == 0 && pmove->flags&FL_ONGROUND) {
+        if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(0.0001); }
+        cmd->buttons |= IN_DUCK;
+        gs_state = 1;
+    } else if(gs_state == 1) {
+        if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(1); }
+        //if(cvar.gstrafe_bhop->value && g_Local.iUseHull == 0) { cmd->buttons |= IN_JUMP; }
+        cmd->buttons &= ~IN_DUCK;
+        gs_state = 0;
+    }*/
+
+
+
+
+    static int gs_state = 0;
+
+    if(pmove->flFallVelocity > 0) {
+        if((g_Local.flGroundAngle < 5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(0.0001); }
+
+        if(pmove->flFallVelocity >= 140) {
+            if(g_Local.flHeight <= 30) {
+                cmd->buttons |= IN_DUCK;
+            }
+        }
+    }
 
     if(gs_state == 0 && (pmove->flags & FL_ONGROUND)) {
+        if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(0.0001); }
+
         cmd->buttons |= IN_DUCK;
 
         gs_state = 1;
     } else if(gs_state == 1) {
-        /*if(((pmove->flags & FL_DUCKING) ? 1 : 0) == 0)
-            cmd->buttons |= IN_JUMP;*/
-
         cmd->buttons &= ~IN_DUCK;
+
+        if((g_Local.flGroundAngle<5) && (g_Local.flHeight <= 0.000001f || pmove->flags&FL_ONGROUND)) { func.AdjustSpeed(1); }
 
         gs_state = 0;
     }
@@ -271,113 +306,4 @@ void CSystems::AutoStrafe(struct usercmd_s *cmd)
 {
     if(!cvar.autostrafe || cvar.sgs_temp) return;
 
-    static bool strafing;
-
-    if(!(pmove->flags & FL_ONGROUND) && (pmove->movetype != 5) && g_Local.flVelocity >= 100) {
-        float dir = 0.0f;
-
-        int dir_value = /*this->DetectStrafeDir(cmd);*/1;
-
-        if(dir_value == 1)dir = 0 * M_PI / 180.0f;
-        else if(dir_value == 2)	dir = 90 * M_PI / 180.0f;
-        else if(dir_value == 3)	dir = 180 * M_PI / 180.0f;
-        else if(dir_value == 4)	dir = -90 * M_PI / 180.0f;
-
-        if(g_Local.flVelocity < 15.0f) {
-            if(cmd->buttons&IN_FORWARD) {
-                if(cmd->buttons&IN_MOVELEFT) {
-                    cmd->forwardmove = 900;
-                    cmd->sidemove = -900;
-                } else if(cmd->buttons&IN_MOVERIGHT) {
-                    cmd->forwardmove = 900;
-                    cmd->sidemove = 900;
-                } else
-                    cmd->forwardmove = 900;
-            } else if(cmd->buttons&IN_BACK) {
-                if(cmd->buttons&IN_MOVELEFT) {
-                    cmd->forwardmove = -900;
-                    cmd->sidemove = -900;
-                } else if(cmd->buttons&IN_MOVERIGHT) {
-                    cmd->forwardmove = -900;
-                    cmd->sidemove = 900;
-                } else
-                    cmd->forwardmove = -900;
-            } else if(cmd->buttons&IN_MOVELEFT)
-                cmd->sidemove = -900;
-            else if(cmd->buttons&IN_MOVERIGHT)
-                cmd->sidemove = 900;
-            else
-                cmd->forwardmove = 900;
-        } else {
-            float va_speed = atan2(pmove->velocity.y, pmove->velocity.x);
-
-            float va[3] = {0, 0, 0};
-            g_Engine.GetViewAngles(va);
-
-            float adif = va_speed - va[1] * M_PI / 180.0f - dir;
-
-            adif = sin(adif);
-            adif = atan2(adif, sqrt(1 - adif * adif));
-
-
-            cmd->sidemove = (437.8928)*(adif > 0 ? 1 : -1);
-            cmd->forwardmove = 0;
-
-            float angle;
-            float osin, ocos, nsin, ncos;
-
-            angle = cmd->viewangles.y * M_PI / 180.0f;
-            osin = sin(angle);
-            ocos = cos(angle);
-
-            angle = 2.0f * cmd->viewangles.y * M_PI / 180.0f - va_speed + dir;
-            nsin = sin(angle);
-            ncos = cos(angle);
-
-            cmd->forwardmove = cmd->sidemove * (osin * ncos - ocos * nsin);
-            cmd->sidemove *= osin * nsin + ocos * ncos;
-
-            float fs = 0;
-            if(atan2(30.0 / g_Local.flVelocity, 1.0f) >= abs(adif)) {
-                Vector vBodyDirection;
-
-                if(dir_value)
-                    vBodyDirection = g_Local.vForward;
-                else
-                    vBodyDirection = g_Local.vRight;
-
-                vBodyDirection[2] = 0;
-                vBodyDirection = vBodyDirection.Normalize();
-
-                #define POW(a) ((a) * (a))
-                float vel = POW(vBodyDirection[0] * pmove->velocity[0]) + POW(vBodyDirection[1] * pmove->velocity[1]);
-
-                fs = sqrt(69.0 * 100000 / vel);
-            }
-
-            cmd->forwardmove += fs;
-        }
-
-        float sdmw = cmd->sidemove;
-        float fdmw = cmd->forwardmove;
-
-        switch((int)dir_value) {
-            case 1:
-            cmd->forwardmove = fdmw;
-            cmd->sidemove = sdmw;
-            break;
-            case 2:
-            cmd->forwardmove = -sdmw;
-            cmd->sidemove = fdmw;
-            break;
-            case 3:
-            cmd->forwardmove = -fdmw;
-            cmd->sidemove = -sdmw;
-            break;
-            case 4:
-            cmd->forwardmove = sdmw;
-            cmd->sidemove = -fdmw;
-            break;
-        }
-    }
 }

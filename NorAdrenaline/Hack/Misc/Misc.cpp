@@ -192,6 +192,26 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
 			if(id > 0)
 				g_Utils.VectorAngles(g_PlayerExtraInfoList[id].vHitbox[0] - g_Local.vEye, vAngles);
 
+            // Legit antiaim (flip)
+            if(cvar.aa_legit) {
+                static int ChokedPackets = -1;
+                ChokedPackets++;
+                static bool yFlip;
+                if(ChokedPackets < 1) {
+                    g_Utils.bSendpacket(true);
+                } else {
+                    g_Utils.bSendpacket(false);
+                    //yFlip ? cmd->viewangles.y += 90.f : cmd->viewangles.y -= 90.f;
+                    // TODO: fix this add new cvar fakehead or something
+                    yFlip ?
+                        cmd->viewangles.y += (cvar.aa_yaw == 1 ? 180.f : 90.f)
+                        :
+                        cmd->viewangles.y -= (cvar.aa_yaw == 1 ? 180.f : 90.f);
+                    ChokedPackets = -1;
+                }
+                yFlip != yFlip;
+            }
+
 			//Yaw
 			if (g_Local.flVelocity > 0) {
 				if (cvar.aa_yaw_while_running > 0) {

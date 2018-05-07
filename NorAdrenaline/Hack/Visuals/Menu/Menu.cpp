@@ -251,7 +251,7 @@ void CMenu::Tabs()
 			line_y += 20;
 
 			ListBox(iListIndex++, x + indent_x, save[9], "Multi-point", cvar.aim_multi_point, szMultipoint, 3, true);
-			ListBox(iListIndex++, x + indent_x, save[8], "Target hitbox", cvar.aim_hitbox, szTargetHitbox, 6, false);
+			ListBox(iListIndex++, x + indent_x, save[8], "Target hitbox", cvar.aim_hitbox, szTargetHitbox, 4, false);
 			ListBox(iListIndex++, x + indent_x, save[7], "Target selection", cvar.aim_target_selection, szTargetSelection, 3, false);
 		}
 
@@ -315,19 +315,22 @@ void CMenu::Tabs()
 
             Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
             line_y += 40;
-            g_Drawing.DrawString(MENU, x + indent_x, y + line_y, 255, 255, 255, 255, FONT_LEFT, "FoV: %d°", (int)cvar.aim_fov * 2);
+            g_Drawing.DrawString(MENU, x + indent_x, y + line_y, 255, 255, 255, 255, FONT_LEFT, "FoV: %d degrees", (int)cvar.aim_fov * 2);
             line_y += 20;
 		}
 
 		{//BOX3
 			y = y + 220;
-			line_y = 30;
+			line_y = 0;
 
 			DrawBox(x, y, 250, 210);//Anti-Aimbot
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 86, y + 2);
 			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Anti-Aimbot");
+
+            Checkbox(x + indent_x, y + line_y, cvar.aa_legit, "Legit Antiaim (bSendPacket)");
+            line_y += 20;
 
 			char *tmp1[] = { "Fakedown", "Down", "Up", "Jitter", "Random" };
 			save[0] = y + line_y;
