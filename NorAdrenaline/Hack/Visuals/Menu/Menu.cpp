@@ -321,9 +321,9 @@ void CMenu::Tabs()
 
 		{//BOX3
 			y = y + 220;
-			line_y = 0;
+			line_y = 15;
 
-			DrawBox(x, y, 250, 210);//Anti-Aimbot
+			DrawBox(x, y, 250, 230);//Anti-Aimbot
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 86, y + 2);
