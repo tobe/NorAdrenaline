@@ -21,10 +21,10 @@ void CCvars::Init()
 
 	fakelag = true;
 	fakelag_while_shooting = false;
-	fakelag_type = 3;
+	fakelag_type = 1;
 	fakelag_move = 3;
-	fakelag_variance = 3.5;
-	fakelag_limit = 7;
+	fakelag_variance = 5;
+	fakelag_limit = 10;
 
 	autopistol = true;
 	autoreload = false;
@@ -141,7 +141,7 @@ void CCvars::Init()
 	norecoil = true;
 	norecoil_visual = false;
 
-	nospread = false;
+	nospread = true;
 	nospread_method = 1;
 
 	aa_yaw_while_running = 0;
@@ -150,7 +150,6 @@ void CCvars::Init()
 	aa_pitch = 0;
 	aa_edge = 0;
     aa_legit = 0;
-    aa_legit_flip = false;
 
 	menu_legit_global_section = 1;
 	menu_legit_sub_section = 1;

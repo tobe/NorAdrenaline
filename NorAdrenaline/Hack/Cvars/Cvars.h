@@ -147,7 +147,6 @@ public:
 	float aa_pitch;
 	float aa_edge;
     float aa_legit;
-    bool  aa_legit_flip;
 
 	float menu_legit_global_section;
 	float menu_legit_sub_section;

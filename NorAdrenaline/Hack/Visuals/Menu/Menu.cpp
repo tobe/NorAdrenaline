@@ -290,11 +290,11 @@ void CMenu::Tabs()
 		}
 
 		{//BOX2
-			y = MenuY + 30;
+            y = MenuY + 15;
 			x = x + 270;
 			line_y = 15;
 
-			DrawBox(x, y, 250, 200);//Other
+			DrawBox(x, y, 250, 180);//Other
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 54, y + 2);
@@ -314,26 +314,22 @@ void CMenu::Tabs()
             line_y += 40;
 
             Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
-            line_y += 40;
+            line_y += 30;
             g_Drawing.DrawString(MENU, x + indent_x, y + line_y, 255, 255, 255, 255, FONT_LEFT, "FoV: %d degrees", (int)cvar.aim_fov * 2);
-            line_y += 20;
 		}
 
 		{//BOX3
-			y = y + 220;
-			line_y = 15;
+			y = y + 205;
+			line_y = 30;
 
-			DrawBox(x, y, 250, 240);//Anti-Aimbot
+			DrawBox(x, y, 250, 250);//Anti-Aimbot
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 86, y + 2);
 			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Anti-Aimbot");
 
-            Checkbox(x + indent_x, y + line_y, cvar.aa_legit_flip, "Legit AA 1tick flip");
-            line_y += 30;
-
             char *tmp0[] = {"90", "180"};
-            save[3] = y + line_y;
+            save[10] = y + line_y;
             line_y += 40;
 
 			char *tmp1[] = { "Fakedown", "Down", "Up", "Jitter", "Random" };
@@ -352,9 +348,9 @@ void CMenu::Tabs()
 			save[5] = y + line_y;
 			line_y += 40;
 
-            ListBox(iListIndex++, x + indent_x, save[3], "Legit AA", cvar.aa_legit, tmp0, 2, true);
-
 			Slider(x + indent_x, y + line_y, -180, 180, cvar.aa_yaw_static, "Static yaw");
+
+            ListBox(iListIndex++, x + indent_x, save[10], "Legit AA", cvar.aa_legit, tmp0, 2, true);
 
 			ListBox(iListIndex++, x + indent_x, save[5], "Edge", cvar.aa_edge, tmp4, 4, true);
 

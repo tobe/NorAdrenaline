@@ -203,16 +203,10 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
                     g_Utils.bSendpacket(false);
                     switch((int)cvar.aa_legit) {
                         case 1:
-                            if(cvar.aa_legit_flip)
-                                yFlip ? cmd->viewangles.y += 90.f : cmd->viewangles.y -= 90.f;
-                            else
-                                cmd->viewangles.y += 90.f;
+                            yFlip ? cmd->viewangles.y += 90.f : cmd->viewangles.y -= 90.f;
                         break;
                         case 2:
-                            if(cvar.aa_legit_flip)
-                                yFlip ? cmd->viewangles.y += 180.f : cmd->viewangles.y -= 180.f;
-                            else
-                                cmd->viewangles.y += 180.f;
+                            yFlip ? cmd->viewangles.y += 180.f : cmd->viewangles.y -= 180.f;
                         break;
                     }
                     ChokedPackets = -1;
