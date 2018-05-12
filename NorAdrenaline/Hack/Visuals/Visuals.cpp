@@ -1,5 +1,6 @@
 #include "../../Required.h"
 #include "../../icons.h"
+#include <time.h>
 
 CVisuals g_Visuals;
 
@@ -188,6 +189,7 @@ void CVisuals::Run()
 	SoundESP();
 
 	Debug();
+    Status();
 
 	g_NoRecoil.DrawRecoil();
 	g_NoSpread.DrawSpread();
@@ -601,6 +603,47 @@ void CVisuals::PlayerESP(unsigned int i)
 		byte a = (255 / HISTORY_MAX) * ent->current_position;
 		ScreenESP(i, r, g, b, a);
 	}
+}
+
+void CVisuals::Status() {
+    if(!cvar.status) return;
+
+    int y = 135;
+    #define WIDTH   g_Screen.iWidth / 100
+    #define HEIGHT (g_Screen.iHeight / 100) + y
+
+    char *hitbox[5] = {"Head", "Leftarm", "Chest", "Stomach", "Nonstandard"};
+    char *multipoint[4] = {"Low", "Medium", "High", "Off"};
+
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim FoV: %f", cvar.aim_fov);
+    y += 15;
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Hitbox: %s", hitbox[(int)cvar.aim_hitbox - 1]);
+    y += 15;
+    if(cvar.aim_multi_point) {
+        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Multipoint: %s", multipoint[(int)cvar.aim_multi_point - 1]);
+        y += 15;
+    }
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
+    y += 15;
+        
+    if(cvar.aa_edge || cvar.aa_legit || cvar.aa_pitch || cvar.aa_yaw) {
+        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 0, cvar.esp_alpha, FONT_LEFT, "AA: ON");
+    } else {
+        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "AA: OFF");
+    }
+
+    y += 15;
+
+    // Time
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, 80, "%H:%M", timeinfo);
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Time: %s", buffer);
 }
 
 void CVisuals::Debug() 

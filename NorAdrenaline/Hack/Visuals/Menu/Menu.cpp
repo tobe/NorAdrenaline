@@ -693,12 +693,8 @@ void CMenu::Tabs()
 
 			line_y += 30;
 
-			if (DrawButton(x + box_indent_x, y + line_y, "Disable lag compensation (server)"))
-			{
-				g_Engine.PlayerInfo_SetValueForKey("cl_lc", "0");
-			}
-
-			line_y += 20;
+            Checkbox(x + box_indent_x, y + line_y, cvar.status, "Draw status");
+            line_y += 20;
 		}
 	}
 	else if (iCurrentTab == 6)

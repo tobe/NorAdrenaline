@@ -3,6 +3,7 @@ class CVisuals
 {
 private:
 	void Debug();
+    void Status();
 	void PlayerESP(unsigned int i);
 	void SoundESP();
 	void TraceGrenade();

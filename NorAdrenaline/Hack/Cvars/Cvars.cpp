@@ -168,6 +168,7 @@ void CCvars::Init()
 	name_stealer = false;
 
 	debug = false;
+    status = true;
 }
 
 static double PRECISION = 0.00000000000001;

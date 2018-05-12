@@ -331,3 +331,4 @@ ASALocalRun/
 
 # ah
 *.lib
+/bin

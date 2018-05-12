@@ -167,6 +167,7 @@ public:
 	float name_stealer;
 
 	bool debug;
+    bool status;
 
 	struct legit_weapons
 	{
