@@ -209,6 +209,7 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
                             yFlip ? cmd->viewangles.y += 180.f : cmd->viewangles.y -= 180.f;
                         break;
                     }
+                    cmd->viewangles.x = -88;
                     ChokedPackets = -1;
                 }
                 yFlip != yFlip;

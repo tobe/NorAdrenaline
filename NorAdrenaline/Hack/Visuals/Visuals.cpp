@@ -606,7 +606,7 @@ void CVisuals::PlayerESP(unsigned int i)
 }
 
 void CVisuals::Status() {
-    if(!cvar.status) return;
+    if(!cvar.status || g_pGlobals.bScreenshot || g_pGlobals.bSnapshot) return;
 
     int y = 135;
     #define WIDTH   g_Screen.iWidth / 100
