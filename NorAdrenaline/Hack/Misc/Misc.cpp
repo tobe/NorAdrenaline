@@ -195,38 +195,19 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
             // Legit antiaim (flip)d
             if(cvar.aa_legit > 0 && (pmove->flags & FL_ONGROUND)) {
                 static int chokedPackets = 0;
-                if(chokedPackets++ < 2) { // 2 packets
-                    // No nearest enemy, flip to side or backwards of current direction
-                    if(!id) {
-                        switch((int)cvar.aa_legit) {
-                            case 1:
-                            cmd->viewangles.y += 90.f;
-                            break;
-                            case 2:
-                            cmd->viewangles.y += 180.f;
-                            break;
-                        }
-                    } else {
-                        // Got an enemy, adjust accordingly so we face backwards
-                        // Or sideways, depends on the option
-                        Vector myOrigin = g_Local.vOrigin;
-                        Vector enemyOrigin = g_Player[id].vOrigin;
-                        Vector angles = Vector(0, -90, 0);
-                        g_Utils.CalcAngles(myOrigin, enemyOrigin, angles);
-                        angles.Normalize();
 
-                        switch((int)cvar.aa_legit) {
-                            case 1:
-                            cmd->viewangles.y += 90;
-                            break;
-                            case 2: // We face back to them
-                            cmd->viewangles.y = angles.y - 180;
-                            break;
-                        }
+                if(chokedPackets++ < 2) { // 2 packets
+                    switch((int)cvar.aa_legit) {
+                        case 1:
+                        cmd->viewangles.y += 90.f;
+                        break;
+                        case 2:
+                        cmd->viewangles.y += 180.f;
+                        break;
                     }
 
                     // Head is always down
-                    cmd->viewangles.x = -88;
+                    cmd->viewangles.x = 89.f;
 
                     g_Utils.bSendpacket(false);
                 } else {
