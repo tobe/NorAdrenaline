@@ -459,6 +459,16 @@ bool CUtils::bPathFree(float *pflFrom, float *pflTo)
 	return (bool)(pTrace.fraction == 1.0f);
 }
 
+void CUtils::CalcAngles(Vector src, Vector end, Vector &out) {
+    Vector delta(src - end);
+    float hyp = delta.Length2D();
+    out.x = RAD2DEG(atan(delta.z / hyp));
+    out.y = RAD2DEG(atan(delta.y / delta.x));
+    out.z = 0.0f;
+    if(delta.x >= 0.0f)
+        out.y += 180.0f;
+}
+
 void CUtils::VectorAngles(const float *forward, float *angles)
 {
 	float tmp, yaw, pitch;

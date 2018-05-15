@@ -28,6 +28,7 @@ public:
 	void FixMoveStart(struct usercmd_s *cmd);
 	void FixMoveEnd(struct usercmd_s *cmd);
 	void VectorAngles(const float *forward, float *angles);
+    void CalcAngles(Vector src, Vector end, Vector &out);
 
 	//bool Intersect(Vector vHitboxMin, Vector vHitboxMax, Vector vSpreadDir, float &distance);
 

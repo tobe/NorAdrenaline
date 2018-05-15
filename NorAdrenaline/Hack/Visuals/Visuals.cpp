@@ -666,6 +666,9 @@ void CVisuals::Debug()
         g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "SpeedPtr: %d", g_Offsets.dwSpeedPointer);
         y += 15;
         g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Velocity: %.3f", g_Local.flVelocity);
+        y += 15;
+        auto myViewangles = g_Local.vViewAngles;
+        g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Viewangles: %.3f %.3f %.3f", myViewangles.x, myViewangles.y, myViewangles.z);
 	}
 }
 
