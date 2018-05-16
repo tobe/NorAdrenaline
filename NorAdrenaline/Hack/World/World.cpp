@@ -358,13 +358,13 @@ void CWorld::UpdateVisibility(int id)
 	{
 		if (cvar.aim)//Rage aimbot
 		{
-			if (cvar.aim_hitbox == 1)//"Head", "Leftarm", "Chest", "Stomach"
+			if (cvar.aim_hitbox == 1)
 			{
 				Hitboxes.push_back(11);
 			}
 			else if (cvar.aim_hitbox == 2)
 			{
-				Hitboxes.push_back(8);
+				Hitboxes.push_back(10);
 			}
 			else if (cvar.aim_hitbox == 3)
 			{
@@ -372,7 +372,7 @@ void CWorld::UpdateVisibility(int id)
 			}
 			else if (cvar.aim_hitbox == 4)
 			{
-				Hitboxes.push_back(0);
+				Hitboxes.push_back(4);
 			}
 		}
 	}

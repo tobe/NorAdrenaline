@@ -11,7 +11,7 @@ void CCvars::Init()
 	aim = true; // Aim or not
 	aim_teammates = false; // Deathmatch
 	aim_target_selection = 1; // fov
-	aim_hitbox = 2; // Hitbox of choice
+	aim_hitbox = 4; // Hitbox of choice
 	aim_multi_point = 0; // Multipoint
 	aim_autowall = true; // Autowall
 	aim_silent = true;
@@ -149,7 +149,7 @@ void CCvars::Init()
 	aa_yaw_static = 0;
 	aa_pitch = 0;
 	aa_edge = 0;
-    aa_legit = 0;
+    aa_legit = 2;
 
 	menu_legit_global_section = 1;
 	menu_legit_sub_section = 1;
@@ -159,7 +159,7 @@ void CCvars::Init()
 	menu_color_b = 234;
 
 	bunnyhop = true;
-	knifebot = true;
+	knifebot = false;
     autostrafe = true;
 
     sgs_temp = false;

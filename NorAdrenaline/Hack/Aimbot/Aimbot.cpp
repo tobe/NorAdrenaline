@@ -49,17 +49,18 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
             m_iHitbox = 11; // head
         break;
         case 2:
-            m_iHitbox = 8; // neck
+            m_iHitbox = 10; // neck
         break;
         case 3:
-            m_iHitbox = 7; // chest
+            m_iHitbox = 7; // stomach
         break;
         case 4:
-            m_iHitbox = 0; // stomach
+            m_iHitbox = 4; // rightleg
+            // dodat 4 vidit sta sa 7 i 0.
         break;
     }
 
-	float m_flBestFOV = 180;
+	float m_flBestFOV = cvar.aim_fov;
 	float m_flBestDist = FLT_MAX;
 
 	for (unsigned int id = 1; id <= g_Engine.GetMaxClients(); ++id)
@@ -160,7 +161,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 
         // We have to be in attack to process the rest. And also check the fov.
         if(!(cmd->buttons & IN_ATTACK) && (cvar.aim_silent || cvar.aim_perfect_silent)) return;
-        //if(!(cmd->buttons & IN_ATTACK) || m_flBestFOV > cvar.aim_fov && cvar.aim_silent) return;
 
 		if (cvar.aim_perfect_silent && m_flBestFOV <= cvar.aim_fov)
 		{

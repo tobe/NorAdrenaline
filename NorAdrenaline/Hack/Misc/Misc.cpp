@@ -164,39 +164,13 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
 			g_Utils.FixMoveStart(cmd);
 
 			int id = NULL;
-			float flDist = 8192.f;
-
-			for (int i = 1; i <= g_Engine.GetMaxClients(); i++)
-			{
-				if (i == g_Local.iIndex)
-					continue;
-
-				if (!g_Player[i].bAlive)
-					continue;
-
-				if (g_Player[i].bFriend)
-					continue;
-
-				if (!cvar.aim_teammates && g_Player[i].iTeam == g_Local.iTeam)
-					continue;
-
-				if (g_Player[i].flDist < flDist || id == NULL)
-				{
-					flDist = g_Player[i].flDist;
-					id = i;
-				}
-			}
-
 			Vector vAngles = cmd->viewangles;
-
-			if(id > 0)
-				g_Utils.VectorAngles(g_PlayerExtraInfoList[id].vHitbox[0] - g_Local.vEye, vAngles);
 
             // Legit antiaim (flip)d
             if(cvar.aa_legit > 0 && (pmove->flags & FL_ONGROUND)) {
                 static int chokedPackets = 0;
 
-                if(chokedPackets++ < 2) { // 2 packets
+                if(chokedPackets++ < 1) { // 1 packet
                     switch((int)cvar.aa_legit) {
                         case 1:
                         cmd->viewangles.y += 90.f;

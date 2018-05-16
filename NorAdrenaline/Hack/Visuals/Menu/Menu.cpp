@@ -230,7 +230,7 @@ void CMenu::Tabs()
 			save[7] = y + line_y;
 			line_y += 40;
 
-			static char *szTargetHitbox[] = { "Head", "Leftarm", "Chest", "Stomach"};
+			static char *szTargetHitbox[] = { "Head", "Neck", "Stomach", "Rightleg"};
 			save[8] = y + line_y;
 			line_y += 40;
 
