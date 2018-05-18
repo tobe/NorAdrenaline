@@ -25,7 +25,7 @@ void ComputeMove(int id, float forwardmove, float sidemove)
 
 		if (forwardmove > 250)
 			forwardmove = 250;
-		
+
 		if (sidemove > 250)
 			sidemove = 250;
 	}
@@ -93,7 +93,7 @@ void CSystems::KnifeBot(struct usercmd_s *cmd)
 		{
 			cl_entity_s *ent = g_Engine.GetEntityByIndex(id);
 
-			if (!ent) 
+			if (!ent)
 				return;
 
 			int fDidHit = FALSE;
@@ -131,7 +131,7 @@ void CSystems::KnifeBot(struct usercmd_s *cmd)
 					flDamage *= 3.0f;
 				}
 
-				if (fDidHit) 
+				if (fDidHit)
 				{
 					g_Utils.MakeAngle(false, QAimAngle, cmd);
 

@@ -5,14 +5,14 @@ CUtils g_Utils;
 
 unsigned int Cstrike_SequenceInfo[] =
 {
-	0,    0,    0,    0,    0,    0,    0,    0,    0,    0, // 0..9   
-	0,    1,    2,    0,    1,    2,    0,    1,    2,    0, // 10..19 
-	1,    2,    0,    1,    1,    2,    0,    1,    1,    2, // 20..29 
-	0,    1,    2,    0,    1,    2,    0,    1,    2,    0, // 30..39 
-	1,    2,    0,    1,    2,    0,    1,    2,    0,    1, // 40..49 
-	2,    0,    1,    2,    0,    0,    0,    8,    0,    8, // 50..59 
+	0,    0,    0,    0,    0,    0,    0,    0,    0,    0, // 0..9
+	0,    1,    2,    0,    1,    2,    0,    1,    2,    0, // 10..19
+	1,    2,    0,    1,    1,    2,    0,    1,    1,    2, // 20..29
+	0,    1,    2,    0,    1,    2,    0,    1,    2,    0, // 30..39
+	1,    2,    0,    1,    2,    0,    1,    2,    0,    1, // 40..49
+	2,    0,    1,    2,    0,    0,    0,    8,    0,    8, // 50..59
 	0,    16,   0,   16,    0,    0,    1,    1,    2,    0, // 60..69
-	1,    1,    2,    0,    1,    0,    1,    0,    1,    2, // 70..79 
+	1,    1,    2,    0,    1,    0,    1,    0,    1,    2, // 70..79
 	0,    1,    2,   32,   40,   32,   40,   32,   32,   32, // 80..89
 	33,   32,   33,   34,   64,    4,   34,   32,   32,    4, // 90..99
 	4,    4,    4,    4,    4,    4,    4,    4,    4,    4, // 100..109
@@ -39,7 +39,7 @@ bool CUtils::GetTextureInfo(CImageTexture texture, unsigned int &index, unsigned
 	return false;
 }
 
-void CUtils::bSendpacket(bool status) 
+void CUtils::bSendpacket(bool status)
 {
     /*static bool bsendpacket_status = true;
     if(status && bsendpacket_status != 1) {
@@ -69,7 +69,7 @@ void CUtils::bSendpacket(bool status)
 
 float CUtils::Armor(float flDamage, int ArmorValue)
 {
-	if (ArmorValue > 0) 
+	if (ArmorValue > 0)
 	{
 		float flNew = flDamage * ARMOR_RATIO;
 		float flArmor = (flDamage - flNew) * ARMOR_BONUS;
@@ -212,7 +212,7 @@ bool CUtils::IsPlayerAlive(struct cl_entity_s *ent)
 	return true;
 }
 
-bool CUtils::IsLocalAlive(struct cl_entity_s *ent) 
+bool CUtils::IsLocalAlive(struct cl_entity_s *ent)
 {
 	if (ent == NULL)
 		return false;
@@ -550,7 +550,7 @@ void CUtils::MakeAngle(bool addangle, float *angles, struct usercmd_s *cmd)
 {
 	FixMoveStart(cmd);
 
-	if (addangle) 
+	if (addangle)
 	{
 		cmd->viewangles[0] += angles[0];
 		cmd->viewangles[1] += angles[1];
@@ -644,7 +644,7 @@ bool CUtils::IsBoxIntersectingRay(const Vector& boxMin, const Vector& boxMax, co
 	directionInverse.x = 1.0f / vSpreadDir.x;
 	directionInverse.y = 1.0f / vSpreadDir.y;
 	directionInverse.z = 1.0f / vSpreadDir.z;
-	// If line is parallel and outsite the box it is not possible to intersect 
+	// If line is parallel and outsite the box it is not possible to intersect
 	if (vSpreadDir.x == 0.0f && (origin.x < min(vHitboxMin.x, vHitboxMax.x) || origin.x > max(vHitboxMin.x, vHitboxMax.x)))
 		return false;
 

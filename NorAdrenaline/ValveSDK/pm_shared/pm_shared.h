@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -28,7 +28,7 @@ char PM_FindTextureType( char *name );
 #define OBS_NONE				0
 #define OBS_CHASE_LOCKED		1
 #define OBS_CHASE_FREE			2
-#define OBS_ROAMING				3		
+#define OBS_ROAMING				3
 #define OBS_IN_EYE				4
 #define OBS_MAP_FREE			5
 #define OBS_MAP_CHASE			6

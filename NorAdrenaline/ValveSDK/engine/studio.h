@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -44,7 +44,7 @@ Studio models are position independent, so the cache manager can move them.
 #define MAXSTUDIOPIVOTS		256
 #define MAXSTUDIOCONTROLLERS 8
 
-typedef struct 
+typedef struct
 {
 	int					id;
 	int					version;
@@ -54,10 +54,10 @@ typedef struct
 
 	vec3_t				eyeposition;	// ideal eye position
 	vec3_t				min;			// ideal movement hull size
-	vec3_t				max;			
+	vec3_t				max;
 
 	vec3_t				bbmin;			// clipping bounding box
-	vec3_t				bbmax;		
+	vec3_t				bbmax;
 
 	int					flags;
 
@@ -68,8 +68,8 @@ typedef struct
 	int					bonecontrollerindex;
 
 	int					numhitboxes;			// complex bounding boxes
-	int					hitboxindex;			
-	
+	int					hitboxindex;
+
 	int					numseq;				// animation sequences
 	int					seqindex;
 
@@ -84,7 +84,7 @@ typedef struct
 	int					numskinfamilies;
 	int					skinindex;
 
-	int					numbodyparts;		
+	int					numbodyparts;
 	int					bodypartindex;
 
 	int					numattachments;		// queryable attachable points
@@ -100,7 +100,7 @@ typedef struct
 } studiohdr_t;
 
 // header for demand loaded sequence group data
-typedef struct 
+typedef struct
 {
 	int					id;
 	int					version;
@@ -110,7 +110,7 @@ typedef struct
 } studioseqhdr_t;
 
 // bones
-typedef struct 
+typedef struct
 {
 	char				name[32];	// bone name for symbolic links
 	int		 			parent;		// parent bone
@@ -122,7 +122,7 @@ typedef struct
 
 
 // bone controllers
-typedef struct 
+typedef struct
 {
 	int					bone;	// -1 == 0
 	int					type;	// X, Y, Z, XR, YR, ZR, M
@@ -138,7 +138,7 @@ typedef struct
 	int					bone;
 	int					group;			// intersection group
 	vec3_t				bbmin;		// bounding box
-	vec3_t				bbmax;		
+	vec3_t				bbmax;
 } mstudiobbox_t;
 
 #if !defined( CACHE_USER ) && !defined( QUAKEDEF_H )
@@ -163,7 +163,7 @@ typedef struct
 {
 	char				label[32];	// sequence label
 
-	float				fps;		// frames per second	
+	float				fps;		// frames per second
 	int					flags;		// looping/non-looping flags
 
 	int					activity;
@@ -177,14 +177,14 @@ typedef struct
 	int					numpivots;	// number of foot pivots
 	int					pivotindex;
 
-	int					motiontype;	
+	int					motiontype;
 	int					motionbone;
 	vec3_t				linearmovement;
 	int					automoveposindex;
 	int					automoveangleindex;
 
 	vec3_t				bbmin;		// per sequence bounding box
-	vec3_t				bbmax;		
+	vec3_t				bbmax;
 
 	int					numblends;
 	int					animindex;		// mstudioanim_t pointer relative to start of sequence group data
@@ -200,14 +200,14 @@ typedef struct
 	int					entrynode;		// transition node at entry
 	int					exitnode;		// transition node at exit
 	int					nodeflags;		// transition rules
-	
+
 	int					nextseq;		// auto advancing sequences
 } mstudioseqdesc_t;
 
 // events
 #include "../common/studio_event.h"
 /*
-typedef struct 
+typedef struct
 {
 	int 				frame;
 	int					event;
@@ -217,7 +217,7 @@ typedef struct
 */
 
 // pivots
-typedef struct 
+typedef struct
 {
 	vec3_t				org;	// pivot point
 	int					start;
@@ -225,7 +225,7 @@ typedef struct
 } mstudiopivot_t;
 
 // attachment
-typedef struct 
+typedef struct
 {
 	char				name[32];
 	int					type;
@@ -240,7 +240,7 @@ typedef struct
 } mstudioanim_t;
 
 // animation frames
-typedef union 
+typedef union
 {
 	struct {
 		byte	valid;
@@ -304,7 +304,7 @@ typedef struct
 
 
 // meshes
-typedef struct 
+typedef struct
 {
 	int					numtris;
 	int					triindex;
@@ -315,7 +315,7 @@ typedef struct
 
 // triangles
 #if 0
-typedef struct 
+typedef struct
 {
 	short				vertindex;		// index into vertex array
 	short				normindex;		// index into normal array
@@ -330,7 +330,7 @@ typedef struct
 
 // motion flags
 #define STUDIO_X		0x0001
-#define STUDIO_Y		0x0002	
+#define STUDIO_Y		0x0002
 #define STUDIO_Z		0x0004
 #define STUDIO_XR		0x0008
 #define STUDIO_YR		0x0010

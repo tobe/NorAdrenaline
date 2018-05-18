@@ -1,6 +1,6 @@
 //========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
@@ -42,9 +42,9 @@
 
 typedef enum
 {
-	mod_brush, 
-	mod_sprite, 
-	mod_alias, 
+	mod_brush,
+	mod_sprite,
+	mod_alias,
 	mod_studio
 } modtype_t;
 
@@ -104,7 +104,7 @@ typedef struct texture_s
 
 typedef struct
 {
-	float		vecs[2][4];		// [s/t] unit vectors in world space. 
+	float		vecs[2][4];		// [s/t] unit vectors in world space.
 								// [i][3] is the s/t offset relative to the origin.
 								// s or t = dot(3Dpoint,vecs[i])+vecs[i][3]
 	float		mipadjust;		// ?? mipmap limits for very small surfaces
@@ -117,14 +117,14 @@ typedef struct mnode_s
 // common with leaf
 	int			contents;		// 0, to differentiate from leafs
 	int			visframe;		// node needs to be traversed if current
-	
+
 	short		minmaxs[6];		// for bounding box culling
 
 	struct mnode_s	*parent;
 
 // node specific
 	mplane_t	*plane;
-	struct mnode_s	*children[2];	
+	struct mnode_s	*children[2];
 
 	unsigned short		firstsurface;
 	unsigned short		numsurfaces;
@@ -172,29 +172,29 @@ struct msurface_s
 	int			visframe;		// should be drawn when node is crossed
 
 	int			dlightframe;	// last frame the surface was checked by an animated light
-	int			dlightbits;		// dynamically generated. Indicates if the surface illumination 
+	int			dlightbits;		// dynamically generated. Indicates if the surface illumination
 								// is modified by an animated light.
 
-	mplane_t	*plane;			// pointer to shared plane			
+	mplane_t	*plane;			// pointer to shared plane
 	int			flags;			// see SURF_ #defines
 
 	int			firstedge;	// look up in model->surfedges[], negative numbers
 	int			numedges;	// are backwards edges
-	
+
 // surface generation data
 	struct surfcache_s	*cachespots[MIPLEVELS];
 
 	short		texturemins[2]; // smallest s/t position on the surface.
 	short		extents[2];		// ?? s/t texture size, 1..256 for all non-sky surfaces
 
-	mtexinfo_t	*texinfo;		
-	
+	mtexinfo_t	*texinfo;
+
 // lighting info
-	byte		styles[MAXLIGHTMAPS]; // index into d_lightstylevalue[] for animated lights 
-									  // no one surface can be effected by more than 4 
+	byte		styles[MAXLIGHTMAPS]; // index into d_lightstylevalue[] for animated lights
+									  // no one surface can be effected by more than 4
 									  // animated lights.
 	color24		*samples;
-	
+
 	decal_t		*pdecals;
 };
 
@@ -230,12 +230,12 @@ typedef struct model_s
 	modtype_t	type;
 	int			numframes;
 	synctype_t	synctype;
-	
+
 	int			flags;
 
 //
 // volume occupied by the model
-//		
+//
 	vec3_t		mins, maxs;
 	float		radius;
 
@@ -337,7 +337,7 @@ typedef struct player_info_s
 	int		bottomcolor;
 
 	// last frame rendered
-	int		renderframe;	
+	int		renderframe;
 
 	// Gait frame estimation
 	int		gaitsequence;

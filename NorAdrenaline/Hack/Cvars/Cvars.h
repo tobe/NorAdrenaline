@@ -59,7 +59,7 @@ public:
 	float esp_box_t_invis_r;
 	float esp_box_t_invis_g;
 	float esp_box_t_invis_b;
-	
+
 	bool esp_box_outline;
 	bool esp_name;
 
@@ -168,34 +168,6 @@ public:
 
 	bool debug;
     bool status;
-
-	struct legit_weapons
-	{
-		bool aim;
-		bool aim_head;
-		bool aim_chest;
-		bool aim_stomach;
-		bool aim_quick_stop;
-		bool aim_humanize;
-		bool aim_spread_compenstation;
-		float aim_accuracy;
-		float aim_psilent;
-		float aim_fov;
-		float aim_speed;
-		float aim_speed_in_attack;
-		float aim_speed_scale_fov;
-		float aim_recoil_compensation_pitch;
-		float aim_recoil_compensation_yaw;
-		float aim_recoil_compensation_after_shots_fired;
-		float aim_reaction_time;
-
-		bool trigger;
-		bool trigger_head;
-		bool trigger_chest;
-		bool trigger_stomach;
-		bool trigger_penetration;
-		float trigger_accuracy;
-	} legit[31];
 };
 extern CCvars cvar;
 

@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1999, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -43,49 +43,49 @@ void BEGIN_READ( void *buf, int size )
 int READ_CHAR( void )
 {
 	int     c;
-	
+
 	if (giRead + 1 > giSize)
 	{
 		giBadRead = true;
 		return -1;
 	}
-		
+
 	c = (signed char)gpBuf[giRead];
 	giRead++;
-	
+
 	return c;
 }
 
 int READ_BYTE( void )
 {
 	int     c;
-	
+
 	if (giRead+1 > giSize)
 	{
 		giBadRead = true;
 		return -1;
 	}
-		
+
 	c = (unsigned char)gpBuf[giRead];
 	giRead++;
-	
+
 	return c;
 }
 
 int READ_SHORT( void )
 {
 	int     c;
-	
+
 	if (giRead+2 > giSize)
 	{
 		giBadRead = true;
 		return -1;
 	}
-		
+
 	c = (short)( gpBuf[giRead] + ( gpBuf[giRead+1] << 8 ) );
-	
+
 	giRead += 2;
-	
+
 	return c;
 }
 
@@ -98,17 +98,17 @@ int READ_WORD( void )
 int READ_LONG( void )
 {
 	int     c;
-	
+
 	if (giRead+4 > giSize)
 	{
 		giBadRead = true;
 		return -1;
 	}
-		
+
  	c = gpBuf[giRead] + (gpBuf[giRead + 1] << 8) + (gpBuf[giRead + 2] << 16) + (gpBuf[giRead + 3] << 24);
-	
+
 	giRead += 4;
-	
+
 	return c;
 }
 
@@ -120,16 +120,16 @@ float READ_FLOAT( void )
 		float   f;
 		int     l;
 	} dat;
-	
+
 	dat.b[0] = gpBuf[giRead];
 	dat.b[1] = gpBuf[giRead+1];
 	dat.b[2] = gpBuf[giRead+2];
 	dat.b[3] = gpBuf[giRead+3];
 	giRead += 4;
-	
+
 //	dat.l = LittleLong (dat.l);
 
-	return dat.f;   
+	return dat.f;
 }
 
 char* READ_STRING( void )
@@ -151,9 +151,9 @@ char* READ_STRING( void )
 		string[l] = c;
 		l++;
 	} while (l < sizeof(string)-1);
-	
+
 	string[l] = 0;
-	
+
 	return string;
 }
 

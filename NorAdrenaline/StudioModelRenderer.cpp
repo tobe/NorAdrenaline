@@ -157,7 +157,7 @@ void StudioRenderModel(void)
 	{
 		if (g_Utils.IsPlayer(ent) && ent->index != g_Local.iIndex)
 		{
-			if (cvar.disable_render_teammates && g_Player[ent->index].iTeam == g_Local.iTeam) 
+			if (cvar.disable_render_teammates && g_Player[ent->index].iTeam == g_Local.iTeam)
 				return;
 
 			if (!cvar.esp_teammates && g_Player[ent->index].iTeam == g_Local.iTeam)
@@ -205,7 +205,7 @@ void StudioRenderModel(void)
 				}
 			}
 
-			if (cvar.chams) 
+			if (cvar.chams)
 			{
 				g_pGlobals.chams = true;
 

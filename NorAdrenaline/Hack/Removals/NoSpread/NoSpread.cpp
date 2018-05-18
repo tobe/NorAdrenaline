@@ -332,7 +332,7 @@ void CNoSpread::GetSpreadOffset(unsigned int seed, int future, float *inangles, 
 
 void CNoSpread::CL_CreateMove(usercmd_s *cmd)
 {
-	if (!IsCurWeaponGun()) 
+	if (!IsCurWeaponGun())
 		return;
 
 	Vector vAngles;

@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -36,7 +36,7 @@ typedef struct
 
 typedef struct
 {
-	float					prevanimtime;  
+	float					prevanimtime;
 	float					sequencetime;
 	byte					prevseqblending[2];
 	vec3_t					prevorigin;
@@ -77,7 +77,7 @@ struct cl_entity_s
 	int						index;      // Index into cl_entities ( should match actual slot, but not necessarily )
 
 	qboolean				player;     // True if this entity is a "player"
-	
+
 	entity_state_t			baseline;   // The original state from which to delta during an uncompressed message
 	entity_state_t			prevstate;  // The state information from the penultimate message received from the server
 	entity_state_t			curstate;   // The state information from the last message received from server

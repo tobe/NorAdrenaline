@@ -1,6 +1,6 @@
 //========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
@@ -63,7 +63,7 @@ typedef struct net_response_s
 typedef struct net_status_s
 {
 		// Connected to remote server?  1 == yes, 0 otherwise
-	int			connected; 
+	int			connected;
 	// Client's IP address
 	netadr_t	local_address;
 	// Address of remote server

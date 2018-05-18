@@ -36,7 +36,7 @@ tstring VirtualKeyCodeToString(UCHAR virtualKey)
 
 void CMenu::Init()
 {
-	if (bInitialised) 
+	if (bInitialised)
 		return;
 
 	if (!background.index) background.index = g_pISurface->CreateNewTextureID(true);
@@ -112,7 +112,7 @@ void CMenu::Init()
 		//default menu position
 		MenuX = 60;
 		MenuY = 20;
-		
+
 		iCurrentTab = 5;//default tab
 	}
 }
@@ -156,10 +156,10 @@ void CMenu::Run()
 		}
 	}
 
-	if (!bOpened || 
-		!g_pISurface->IsTextureIDValid(background.index) || 
+	if (!bOpened ||
+		!g_pISurface->IsTextureIDValid(background.index) ||
 		!g_pISurface->IsTextureIDValid(icon_headshot.index) || !g_pISurface->IsTextureIDValid(icon_aimbot.index) || !g_pISurface->IsTextureIDValid(icon_options.index) || !g_pISurface->IsTextureIDValid(icon_visuals.index) || !g_pISurface->IsTextureIDValid(icon_systems.index) || !g_pISurface->IsTextureIDValid(icon_members.index) ||
-		!g_pISurface->IsTextureIDValid(icon_headshot_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_aimbot_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_options_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_visuals_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_systems_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_members_not_selected.index)) 
+		!g_pISurface->IsTextureIDValid(icon_headshot_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_aimbot_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_options_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_visuals_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_systems_not_selected.index) || !g_pISurface->IsTextureIDValid(icon_members_not_selected.index))
 		return;
 
 	if (g_pIRunGameEngine->IsInGame() && !g_pGameUI->IsGameUIActive())
@@ -230,7 +230,7 @@ void CMenu::Tabs()
 			save[7] = y + line_y;
 			line_y += 40;
 
-			static char *szTargetHitbox[] = { "Head", "Neck", "Stomach", "Rightleg"};
+			static char *szTargetHitbox[] = { "Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multipoint)", "All (Multipoint)"};
 			save[8] = y + line_y;
 			line_y += 40;
 
@@ -251,7 +251,7 @@ void CMenu::Tabs()
 			line_y += 20;
 
 			ListBox(iListIndex++, x + indent_x, save[9], "Multi-point", cvar.aim_multi_point, szMultipoint, 3, true);
-			ListBox(iListIndex++, x + indent_x, save[8], "Target hitbox", cvar.aim_hitbox, szTargetHitbox, 4, false);
+			ListBox(iListIndex++, x + indent_x, save[8], "Target hitbox", cvar.aim_hitbox, szTargetHitbox, 7, false);
 			ListBox(iListIndex++, x + indent_x, save[7], "Target selection", cvar.aim_target_selection, szTargetSelection, 3, false);
 		}
 
@@ -612,7 +612,7 @@ void CMenu::Tabs()
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.fastzoom, "Fast zoom");
 			line_y += 30;
-			
+
 			Slider(x + box_indent_x, y + line_y, 0, 10000, cvar.name_stealer, "Name stealer", true, "ms");
 			line_y += 20;
 
@@ -806,7 +806,7 @@ bool CMenu::DrawButton(int x, int y, char *text)
 		g_pISurface->DrawSetColor(60, 60, 60, 255);
 		g_pISurface->DrawFilledRect(x, y, x + w, y + h);
 	}
-	else 
+	else
 	{
 		g_pISurface->DrawSetColor(20, 26, 26, 255);
 		g_pISurface->DrawFilledRect(x, y, x + w, y + h);
@@ -868,7 +868,7 @@ void CMenu::Palette(int x, int y, float &r, float &g, float &b)
 		//shadow
 		g_pISurface->DrawSetColor(0, 0, 0, 255);
 		g_pISurface->DrawOutlinedRect(x + w + indent - border - 2, y - indent - 2, x + w + panel_w + indent + border + 2, y + panel_h + indent + 2);
-		
+
 		SliderInPallete(x + w + indent, y, 0, 255, r, "", true);
 		SliderInPallete(x + w + indent, y + 20, 0, 255, g, "", true);
 		SliderInPallete(x + w + indent, y + 40, 0, 255, b, "", true);
@@ -1297,9 +1297,9 @@ void CMenu::DrawMenuTabs()
 	}
 }
 
-void CMenu::Drag() 
+void CMenu::Drag()
 {
-	if (bCursorInList || bCursorInPalette) 
+	if (bCursorInList || bCursorInPalette)
 	{
 		IsDragging = false;
 		return;
@@ -1340,7 +1340,7 @@ void CMenu::SelectTab()
 
 	if (keys[VK_LBUTTON] && !IsDragging)
 	{
-		for (unsigned int i = 1; i <= MAX_TABS; i++) 
+		for (unsigned int i = 1; i <= MAX_TABS; i++)
 		{
 			if (CursorX >= MenuX + x && CursorX <= MenuX + w && CursorY >= MenuY + y && CursorY <= MenuY + y + h)
 			{
@@ -1368,8 +1368,8 @@ void CMenu::Checkbox(int x, int y, bool &value, char *text)
 		g_pISurface->DrawSetColor(cvar.menu_color_r, cvar.menu_color_g, cvar.menu_color_b, 255);
 		g_pISurface->DrawFilledRect(x + 1, y + 1, x + w - 1, y + h - 1);
 	}
-	
-	if (text) 
+
+	if (text)
 		g_Drawing.DrawString(MENU, x + 16, y + 4, 180, 180, 180, 255, FONT_LEFT, text);
 
 	if (GetTickCount() - dwCheckboxBlockedTime > 200 && !bCursorInPalette && !bCursorInList && keys[VK_LBUTTON] && !IsDragging && CursorX >= x && CursorX <= x + w && CursorY >= y && CursorY <= y + h)

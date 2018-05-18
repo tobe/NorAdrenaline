@@ -145,13 +145,13 @@ void CVisuals::Run()
 {
 	IconInit();
 
-	if (!g_pIRunGameEngine->IsInGame()) 
+	if (!g_pIRunGameEngine->IsInGame())
 		return;
 
 	while (mySounds.size() && GetTickCount() - mySounds.front().timestamp >= 300)
 		mySounds.pop_front();
 
-	if (g_pGlobals.bSnapshot || g_pGlobals.bScreenshot) 
+	if (g_pGlobals.bSnapshot || g_pGlobals.bScreenshot)
 		return;
 
 	DrawEntities();
@@ -224,9 +224,9 @@ void CVisuals::DrawAimBotFOV()
 	}
 }
 
-void CVisuals::RemoveScope() 
+void CVisuals::RemoveScope()
 {
-	if (g_Local.bScoped && cvar.remove_scope) 
+	if (g_Local.bScoped && cvar.remove_scope)
 	{
 		g_Engine.pfnTintRGBA(1, g_Screen.iHeight / 2, g_Screen.iWidth, 1, 0, 0, 0, 255);
 		g_Engine.pfnTintRGBA(g_Screen.iWidth / 2, 1, 1, g_Screen.iHeight, 0, 0, 0, 255);
@@ -393,7 +393,7 @@ void CVisuals::TraceGrenade()
 	vecOut = vecStart;
 }
 
-void CVisuals::SoundESP() 
+void CVisuals::SoundESP()
 {
 	if (cvar.esp_sound)
 	{
@@ -404,7 +404,7 @@ void CVisuals::SoundESP()
 
 			if (g_Utils.bCalcScreen(sound.origin, screen))
 			{
-				if (!g_Utils.bPathFree(g_Local.vEye, sound.origin)) 
+				if (!g_Utils.bPathFree(g_Local.vEye, sound.origin))
 				{
                     color24 color;
                     color.r = 255;
@@ -433,7 +433,7 @@ void CVisuals::SoundESP()
 
 void CVisuals::PlayerESP(unsigned int i)
 {
-	if (!cvar.esp) 
+	if (!cvar.esp)
 		return;
 
 	if (!cvar.esp_behind && g_Player[i].bBehindTheWall)
@@ -444,12 +444,12 @@ void CVisuals::PlayerESP(unsigned int i)
 
 	cl_entity_s *ent = g_Engine.GetEntityByIndex(i);
 
-	if (!ent) 
+	if (!ent)
 		return;
 
 	byte r = 0, g = 0, b = 0;
 
-	if (!g_Player[i].bFriend) 
+	if (!g_Player[i].bFriend)
 	{
 		if (g_Player[i].iTeam == TERRORIST)
 		{
@@ -466,7 +466,7 @@ void CVisuals::PlayerESP(unsigned int i)
 				b = cvar.esp_box_t_invis_b;
 			}
 		}
-		else if (g_Player[i].iTeam == CT) 
+		else if (g_Player[i].iTeam == CT)
 		{
 			if (g_Player[i].bVisible)
 			{
@@ -625,7 +625,7 @@ void CVisuals::Status() {
     }
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
     y += 15;
-        
+
     if(cvar.aa_edge || cvar.aa_legit || cvar.aa_pitch || cvar.aa_yaw) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 0, cvar.esp_alpha, FONT_LEFT, "AA: ON");
     } else {
@@ -646,9 +646,9 @@ void CVisuals::Status() {
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Time: %s", buffer);
 }
 
-void CVisuals::Debug() 
+void CVisuals::Debug()
 {
-	if (cvar.debug && g_Local.bAlive) 
+	if (cvar.debug && g_Local.bAlive)
 	{
 		int y = 135;
 		g_Drawing.DrawString(ESP, g_Screen.iWidth / 100, (g_Screen.iHeight / 100) + y, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "m_iWeaponID: %i", g_Local.weapon.m_iWeaponID);
@@ -711,7 +711,7 @@ bool WorldToScreen(float *vOrigin, float *vScreen, bool &behind)
 
 void CVisuals::ScreenESP(unsigned int i, byte r, byte g, byte b, byte a)
 {
-	if (!cvar.esp_screen || !g_Local.bAlive) 
+	if (!cvar.esp_screen || !g_Local.bAlive)
 		return;
 
 	float vecBottom[2], vecTop[2];
@@ -775,7 +775,7 @@ float GetAmountOfPlayerVisible(Vector vecSrc, cl_entity_s *entity)
 {
 	float retval = 0.0f;
 
-	if (!entity->player) 
+	if (!entity->player)
 		return retval;
 
 	pmtrace_t tr;
@@ -967,7 +967,7 @@ void CVisuals::DrawEntities()
 			continue;
 		}
 
-		if (cvar.debug) 
+		if (cvar.debug)
 		{
 			float flScreen[2];
 
@@ -993,7 +993,7 @@ void CVisuals::DrawEntities()
 		}
 	}
 
-	if (cvar.grenade_trajectory) 
+	if (cvar.grenade_trajectory)
 	{
 		float flScreen[2], flScreenLast[2];
 

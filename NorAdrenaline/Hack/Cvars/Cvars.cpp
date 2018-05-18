@@ -1,5 +1,5 @@
 #include "../../Required.h"
-#include <stdio.h> 
+#include <stdio.h>
 
 CCvars cvar;
 CFunctions func;
@@ -11,7 +11,7 @@ void CCvars::Init()
 	aim = true; // Aim or not
 	aim_teammates = false; // Deathmatch
 	aim_target_selection = 1; // fov
-	aim_hitbox = 4; // Hitbox of choice
+	aim_hitbox = 2; // Hitbox of choice
 	aim_multi_point = 0; // Multipoint
 	aim_autowall = true; // Autowall
 	aim_silent = true;
@@ -23,8 +23,8 @@ void CCvars::Init()
 	fakelag_while_shooting = false;
 	fakelag_type = 1;
 	fakelag_move = 3;
-	fakelag_variance = 5;
-	fakelag_limit = 10;
+	fakelag_variance = 3.5;
+	fakelag_limit = 7.5;
 
 	autopistol = true;
 	autoreload = false;
@@ -44,7 +44,7 @@ void CCvars::Init()
 
 	esp = true;
 	esp_behind = true;
-	esp_teammates = true;
+	esp_teammates = false;
 
 	esp_box = true;
 	esp_box_ct_vis_r = 0;
@@ -252,7 +252,7 @@ char * dtoa(char *s, double n) {
 void CFunctions::SaveCvars()
 {
 	char *Section = "Settings";
-	
+
 	char s[32];
 
 	g_Utils.cIniWrite(g_pGlobals.IniPath, Section, "aim", dtoa(s, cvar.aim));
@@ -433,7 +433,7 @@ void CFunctions::LoadCvars()
 	cvar.fakelag_move = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_move", "0"));
 	cvar.fakelag_variance = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_variance", "0"));
 	cvar.fakelag_limit = atof(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fakelag_limit", "0"));
-	
+
 	cvar.autopistol = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "autopistol", "0"));
 	cvar.autoreload = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "autoreload", "0"));
 	cvar.fastzoom = atoi(g_Utils.cIniRead(g_pGlobals.IniPath, Section, "fastzoom", "0"));

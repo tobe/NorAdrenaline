@@ -71,7 +71,7 @@ void CL_CreateMove(float frametime, struct usercmd_s *cmd, int active)
     ticks += frametime;
 
 	World.Update(frametime, cmd);
-	
+
 	if (g_Local.bAlive)
 	{
         // psilent
@@ -283,7 +283,7 @@ void Netchan_TransmitBits(void *chan, int length, byte *data) {
 
 void HUD_ProcessPlayerState(struct entity_state_s *dst, const struct entity_state_s *src)
 {
-	if (cvar.bypass_valid_blockers) 
+	if (cvar.bypass_valid_blockers)
 	{
 		src->mins[0] = -16;
 		src->mins[1] = -16;

@@ -11,7 +11,7 @@ void CMisc::FastZoom(struct usercmd_s *cmd)
 	}
 }
 
-void CMisc::FakeLag(struct usercmd_s *cmd) 
+void CMisc::FakeLag(struct usercmd_s *cmd)
 {
 	if (cvar.aim && cvar.fakelag)
 	{
@@ -40,8 +40,8 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
 			if (g_Local.flHeight <= 0)
 				fakelag = false;
 		}
-		
-		if (fakelag) 
+
+		if (fakelag)
 		{
 			static int choked = 0;
 			static int good = 0;
@@ -153,7 +153,7 @@ bool CMisc::FakeEdge(float &angle)
 
 void CMisc::AntiAim(struct usercmd_s *cmd)
 {
-	if (cvar.aim) 
+	if (cvar.aim)
 	{
 		int m_OnLadder = (pmove->movetype == MOVETYPE_FLY);// determine if we are on a ladder
 		int m_Use = (cmd->buttons & IN_USE);
@@ -323,7 +323,7 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
 					}
 				}
 			}
-			
+
 			//Pitch
 			if (cvar.aa_pitch > 0)
 			{
@@ -362,7 +362,7 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
 	}
 }
 
-void CMisc::AutoPistol(struct usercmd_s *cmd) 
+void CMisc::AutoPistol(struct usercmd_s *cmd)
 {
 	if (cvar.autopistol && cmd->buttons & IN_ATTACK && IsCurWeaponPistol() && !g_Local.weapon.m_iInReload)
 	{
@@ -373,7 +373,7 @@ void CMisc::AutoPistol(struct usercmd_s *cmd)
 			cmd->buttons |= IN_ATTACK;
 			bFire = false;
 		}
-		else if (!bFire) 
+		else if (!bFire)
 		{
 			cmd->buttons &= ~IN_ATTACK;
 			bFire = true;
@@ -383,7 +383,7 @@ void CMisc::AutoPistol(struct usercmd_s *cmd)
 
 void CMisc::AutoReload(struct usercmd_s *cmd)
 {
-	if (cvar.autoreload && cmd->buttons & IN_ATTACK && g_Local.weapon.m_iClip < 1 && IsCurWeaponGun()) 
+	if (cvar.autoreload && cmd->buttons & IN_ATTACK && g_Local.weapon.m_iClip < 1 && IsCurWeaponGun())
 	{
 		cmd->buttons &= ~IN_ATTACK;
 		cmd->buttons |= IN_RELOAD;
@@ -392,7 +392,7 @@ void CMisc::AutoReload(struct usercmd_s *cmd)
 
 void CMisc::ThirdPerson(struct ref_params_s *pparams)
 {
-	if (g_Local.bAlive && cvar.thirdperson > 0 && !g_pGlobals.bSnapshot && !g_pGlobals.bScreenshot && !cvar.hide_from_obs) 
+	if (g_Local.bAlive && cvar.thirdperson > 0 && !g_pGlobals.bSnapshot && !g_pGlobals.bScreenshot && !cvar.hide_from_obs)
 	{
 		Vector Offset(0, 0, 0);
 		Vector r, u, b;

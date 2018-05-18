@@ -8,9 +8,9 @@ void QAngle::AngleVectors ( Vector* Forward, Vector* Right, Vector* Up )
 	rady = y * ( M_PI*2 / 360 );
 	radz = z * ( M_PI*2 / 360 );
 
-	sp = sin ( radx ); 
-	sy = sin ( rady ); 
-	sr = sin ( radz ); 
+	sp = sin ( radx );
+	sy = sin ( rady );
+	sr = sin ( radz );
 
 	cp = cos ( radx );
 	cy = cos ( rady );
@@ -45,10 +45,10 @@ void QAngle::AngleVectorsTranspose ( Vector* Forward, Vector* Right, Vector* Up 
 	radx = x * ( M_PI*2 / 360 );
 	rady = y * ( M_PI*2 / 360 );
 	radz = z * ( M_PI*2 / 360 );
-		
-	sp = sin ( radx ); 
-	sy = sin ( rady ); 
-	sr = sin ( radz ); 
+
+	sp = sin ( radx );
+	sy = sin ( rady );
+	sr = sin ( radz );
 
 	cp = cos ( radx );
 	cy = cos ( rady );

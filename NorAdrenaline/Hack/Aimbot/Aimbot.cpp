@@ -43,6 +43,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
     unsigned int m_iTarget = 0;
     int m_iHitbox = -1;
     int m_iPoint  = -1;
+    deque<unsigned int> Hitboxes;
 
     switch((int)cvar.aim_hitbox) {
         case 1:
@@ -52,16 +53,29 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
             m_iHitbox = 10; // neck
         break;
         case 3:
-            m_iHitbox = 7; // stomach
+            m_iHitbox = 9;  // low head
         break;
         case 4:
-            m_iHitbox = 4; // rightleg
-            // dodat 4 vidit sta sa 7 i 0.
+            m_iHitbox = 8;  // chest
+        break;
+        case 5:
+            m_iHitbox = 7; // stomach
+        break;
+        case 6: // Vital (Multipoint)
+            for(unsigned int j = 0; j <= 11; j++)
+                Hitboxes.push_back(j);
+        break;
+        case 7: // All (Multipoint)
+            for(unsigned int j = 0; j <= 11; j++)
+                Hitboxes.push_back(j);
+
+            for(unsigned int k = 12; k < g_Local.iMaxHitboxes; k++)
+                Hitboxes.push_back(k);
         break;
     }
 
-	float m_flBestFOV = cvar.aim_fov;
-	float m_flBestDist = FLT_MAX;
+	float m_flBestFOV = 180.f;
+	float m_flBestDist = 8192.f;
 
 	for (unsigned int id = 1; id <= g_Engine.GetMaxClients(); ++id)
 	{
@@ -80,24 +94,35 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		if (!cvar.aim_teammates && g_Player[id].iTeam == g_Local.iTeam)
 			continue;
 
+        // Multi point only visible hitbox selection
+        if(cvar.aim_multi_point > 0) {
+            for(auto &&hitbox : Hitboxes) {
+                if(g_PlayerExtraInfoList[id].bHitboxVisible[hitbox]) {
+                    m_iHitbox = hitbox;
+                    break;
+                }
+            }
+        }
+
         // Multi point aimbot
 		if (cvar.aim_multi_point > 0)
 		{
-			if (cvar.aim_multi_point == 1 && m_iHitbox != 11)
-				continue;
+            for(auto &&hitbox : Hitboxes) {
+                // TODO: wtf is the point of this?
+                if(cvar.aim_multi_point == 1 && m_iHitbox != 11)
+                    continue;
 
-			if (cvar.aim_multi_point == 2 && m_iHitbox > 11)
-				continue;
+                if(cvar.aim_multi_point == 2 && m_iHitbox > 11)
+                    continue;
 
-			for (unsigned int point = 0; point <= 8; ++point)
-			{
-				if (g_PlayerExtraInfoList[id].bHitboxPointsVisible[m_iHitbox][point] && !g_PlayerExtraInfoList[id].bHitboxVisible[m_iHitbox])
-				{
-					m_iPoint = point;
-					m_iHitbox = m_iHitbox;
-					break;
-				}
-			}
+                for(unsigned int point = 0; point <= 8; point++) {
+                    if(g_PlayerExtraInfoList[id].bHitboxPointsVisible[m_iHitbox][point] /*&& !g_PlayerExtraInfoList[id].bHitboxVisible[m_iHitbox]*/) {
+                        m_iPoint = point;
+                        m_iHitbox = m_iHitbox;
+                        break;
+                    }
+                }
+            }
 		}
 
 		if (m_iHitbox < 0 || m_iHitbox > g_Local.iMaxHitboxes)
@@ -108,7 +133,8 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 			m_iTarget = id;
 			break;
 		}
-		//"Field of view", "Distance", "Cycle"
+
+        //"Field of view", "Distance", "Cycle"
 		if (cvar.aim_target_selection == 1)
 		{
 			if (g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox] < m_flBestFOV)
@@ -117,7 +143,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 				m_iTarget = id;
 			}
 		}
-		else if (cvar.aim_target_selection == 2) 
+		else if (cvar.aim_target_selection == 2)
 		{
 			if (g_Player[id].flDist < m_flBestDist)
 			{

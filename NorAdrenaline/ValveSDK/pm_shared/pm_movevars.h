@@ -1,6 +1,6 @@
 //========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
@@ -21,8 +21,8 @@ struct movevars_s
 	float	accelerate;        // Acceleration factor
 	float	airaccelerate;     // Same for when in open air
 	float	wateraccelerate;   // Same for when in water
-	float	friction;          
-	float   edgefriction;	   // Extra friction near dropofs 
+	float	friction;
+	float   edgefriction;	   // Extra friction near dropofs
 	float	waterfriction;     // Less in water
 	float	entgravity;        // 1.0
 	float   bounce;            // Wall bounce value. 1.0
@@ -35,11 +35,11 @@ struct movevars_s
 	float	rollangle;
 	float	rollspeed;
 	float	skycolor_r;			// Sky color
-	float	skycolor_g;			// 
+	float	skycolor_g;			//
 	float	skycolor_b;			//
 	float	skyvec_x;			// Sky vector
-	float	skyvec_y;			// 
-	float	skyvec_z;			// 
+	float	skyvec_y;			//
+	float	skyvec_z;			//
 };
 
 extern movevars_t movevars;

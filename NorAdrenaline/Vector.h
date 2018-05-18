@@ -36,11 +36,11 @@ class Vector
 		inline Vector& operator= ( const Vector& in );
 		inline Vector& operator= ( float* p );
 		inline Vector& operator= ( float f );
-		
+
 		inline float& operator[] ( int i ) const;
-		
+
 		inline bool operator! ( void ) const;
-		
+
 		inline bool operator== ( const Vector& other ) const;
 
 		inline bool operator!= ( const Vector& other ) const;
@@ -52,35 +52,35 @@ class Vector
 		inline Vector& operator-= ( const Vector& other );
 		inline Vector& operator-= ( float* p );
 		inline Vector& operator-= ( float f );
-		
+
 		inline Vector& operator*= ( const Vector& other );
 		inline Vector& operator*= ( float *p );
 		inline Vector& operator*= ( float f );
-		
+
 		inline Vector& operator/= ( const Vector& other );
 		inline Vector& operator/= ( float* p );
 		inline Vector& operator/= ( float f );
-		
+
 		inline Vector operator+ ( const Vector& other ) const;
 		inline Vector operator+ ( float* p ) const;
 		inline Vector operator+ ( float f ) const;
-		
+
 		inline Vector operator- ( const Vector& other ) const;
 		inline Vector operator- ( float* p ) const;
 		inline Vector operator- ( float f ) const;
 		inline Vector operator- ( void ) const;
-		
+
 		inline Vector operator* ( const Vector& other ) const;
 		inline Vector operator* ( float* p ) const;
 		inline Vector operator* ( float f ) const;
-		
+
 		inline Vector operator/ ( const Vector& other ) const;
 		inline Vector operator/ ( float* p ) const;
 		inline Vector operator/ ( float f ) const;
 
 		operator float *()								{ return &x; }
 		operator const float *() const					{ return &x; }
-		
+
 		inline bool Vector::IsZero ( void ) const
 		{
 			return x == 0.0f && y == 0.0f && z == 0.0f;
@@ -94,10 +94,10 @@ class Vector
 		inline Vector& Clear ( void )
 		{
 			x = y = z = 0;
-						
+
 			return *this;
 		}
-		
+
 		inline Vector& Init ( float X, float Y, float Z )
 		{
 			x = X;
@@ -138,7 +138,7 @@ class Vector
 			float Length = 0;
 
 			Length = sqrt ( LengthSqr() );
-	
+
 			return Length;
 		}
 
@@ -147,7 +147,7 @@ class Vector
 			float Length = 0;
 
 			Length = sqrt ( LengthSqr2D() );
-	
+
 			return Length;
 		}
 
@@ -232,11 +232,11 @@ class Vector
 
 			if ( x == 0 && y == 0)
 			{
-				Right[0] = 1;	
-				Right[1] = 0; 
+				Right[0] = 1;
+				Right[1] = 0;
 				Right[2] = 0;
-				Up[0] = -z; 
-				Up[1] = 0; 
+				Up[0] = -z;
+				Up[1] = 0;
 				Up[2] = 0;
 				return;
 			}

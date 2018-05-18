@@ -16,7 +16,7 @@ public:
 	DWORD dwSendPacketPointer, dwSendPacketBackup, dwSpeedPointer;//Saved offsets
 
 	bool FindHardware(void);//Init
-	
+
 	//Functions
 
 	PVOID FindClient(void);
@@ -24,7 +24,7 @@ public:
 	PVOID FindStudio(void);
 	PVOID FindPlayerMove(void);
 	PVOID FindStudioModelRenderer(void);
-	
+
 	DWORD PreS_DynamicSound(void);
     DWORD Netchan_TransmitBits(void);
 	DWORD CL_Move(void);

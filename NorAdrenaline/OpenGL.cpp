@@ -28,9 +28,9 @@ void APIENTRY Hooked_glBegin(GLenum mode)
 
 			glGetFloatv(GL_CURRENT_COLOR, smokecol);
 
-			if ((smokecol[0] == smokecol[1]) && (smokecol[0] == smokecol[2]) && smokecol[0] != 0.0 && smokecol[0] != 1.0) 
+			if ((smokecol[0] == smokecol[1]) && (smokecol[0] == smokecol[2]) && smokecol[0] != 0.0 && smokecol[0] != 1.0)
 				bSmoke = true;
-			else 
+			else
 				bSmoke = false;
 		}
 	}
@@ -52,13 +52,13 @@ void APIENTRY Hooked_glColor4f(GLfloat red, GLfloat green, GLfloat blue, GLfloat
 {
 	if (g_pGlobals.chams)
 	{
-		if (cvar.chams_type == 2) 
+		if (cvar.chams_type == 2)
 		{
 			red = (g_pGlobals.chams_render_r / 255) * red;
 			green = (g_pGlobals.chams_render_g / 255) * green;
 			blue = (g_pGlobals.chams_render_b / 255) * blue;
 		}
-		else 
+		else
 		{
 			red = g_pGlobals.chams_render_r / 255;
 			green = g_pGlobals.chams_render_g / 255;
@@ -110,7 +110,7 @@ BOOL APIENTRY Hooked_wglSwapBuffers(HDC hdc)
 	return(*pwglSwapBuffers)(hdc);
 }
 
-void APIENTRY Hooked_glClear(GLbitfield mask) 
+void APIENTRY Hooked_glClear(GLbitfield mask)
 {
 	if (mask == GL_DEPTH_BUFFER_BIT)
 	{

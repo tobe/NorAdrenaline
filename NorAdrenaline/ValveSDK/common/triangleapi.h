@@ -1,9 +1,9 @@
 /***
 *
 *	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
+*
+*	This product contains software technology licensed from Id
+*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc.
 *	All Rights Reserved.
 *
 *   Use, distribution, and modification of this source code and/or resulting
@@ -18,7 +18,7 @@
 #pragma once
 #endif
 
-typedef enum 
+typedef enum
 {
 	TRI_FRONT = 0,
 	TRI_NONE = 1,
@@ -30,7 +30,7 @@ typedef enum
 #define TRI_TRIANGLE_FAN	1
 #define TRI_QUADS			2
 #define TRI_POLYGON			3
-#define TRI_LINES			4	
+#define TRI_LINES			4
 #define TRI_TRIANGLE_STRIP	5
 #define TRI_QUAD_STRIP		6
 
@@ -52,7 +52,7 @@ typedef struct triangleapi_s
 	int			( *SpriteTexture ) ( struct model_s *pSpriteModel, int frame );
 	int			( *WorldToScreen ) ( float *world, float *screen );  // Returns 1 if it's z clipped
 	void		( *Fog ) ( float flFogColor[3], float flStart, float flEnd, int bOn ); //Works just like GL_FOG, flFogColor is r/g/b.
-	void		( *ScreenToWorld ) ( float *screen, float *world  ); 
+	void		( *ScreenToWorld ) ( float *screen, float *world  );
 
 } triangleapi_t;
 

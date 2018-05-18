@@ -1,6 +1,6 @@
 //========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
@@ -14,10 +14,10 @@
 
 // Versioning
 // There are two versioning cases that are handled by this:
-// 1. You add functions to the end of an interface, so it is binary compatible with the previous interface. In this case, 
+// 1. You add functions to the end of an interface, so it is binary compatible with the previous interface. In this case,
 //    you need two EXPOSE_INTERFACEs: one to expose your class as the old interface and one to expose it as the new interface.
-// 2. You update an interface so it's not compatible anymore (but you still want to be able to expose the old interface 
-//    for legacy code). In this case, you need to make a new version name for your new interface, and make a wrapper interface and 
+// 2. You update an interface so it's not compatible anymore (but you still want to be able to expose the old interface
+//    for legacy code). In this case, you need to make a new version name for your new interface, and make a wrapper interface and
 //    expose it for the old interface.
 
 #ifndef INTERFACE_H

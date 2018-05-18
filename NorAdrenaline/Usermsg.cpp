@@ -32,7 +32,7 @@ int TeamInfo(const char *pszName, int iSize, void *pbuf)
 	cl_entity_s *pLocal = g_Engine.GetLocalPlayer();
 	if (pLocal) iLocalIndex = pLocal->index;
 
-	if (iIndex > 0 && iIndex <= g_Engine.GetMaxClients()) 
+	if (iIndex > 0 && iIndex <= g_Engine.GetMaxClients())
 	{
 		if (!lstrcmpA(szTeam, "TERRORIST"))
 		{
@@ -73,7 +73,7 @@ int SetFOV(const char *pszName, int iSize, void *pbuf)
 	else if(iFOV > 0)
 		g_Local.bScoped = true;
 
-	if (cvar.remove_scope && g_Local.bScoped) 
+	if (cvar.remove_scope && g_Local.bScoped)
 	{
 		iFOV = DEFAULT_FOV;
 
@@ -143,7 +143,7 @@ int DeathMsg(const char *pszName, int iSize, void *pbuf)
 	if (KillerID != VictimID && KillerID == g_Local.iIndex && VictimID > 0 && VictimID <= g_Engine.GetMaxClients())
 		g_AimBot.dwReactionTime = GetTickCount();
 
-	if (VictimID != g_Local.iIndex) 
+	if (VictimID != g_Local.iIndex)
 	{
 		g_Player[VictimID].iHealth = 100;
 		g_Player[VictimID].iArmorType = ARMOR_NONE;

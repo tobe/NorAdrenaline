@@ -10,7 +10,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 	{
 		if (strstr(szSoundFile, "ak47-1") || strstr(szSoundFile, "ak47-2"))
 		{
-			if (iBackWeapons[entid] != WEAPON_AK47) 
+			if (iBackWeapons[entid] != WEAPON_AK47)
 			{
 				iBackWeapons[entid] = WEAPON_AK47;
 				g_Player[entid].iShotsFired = 0;
@@ -18,7 +18,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 
 			g_Player[entid].iShotsFired++;
 
-			if (g_Player[entid].iShotsFired > AK47_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > AK47_MAX_CLIP)
 				g_Player[entid].iShotsFired -= AK47_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "aug-1"))
@@ -31,7 +31,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 
 			g_Player[entid].iShotsFired++;
 
-			if (g_Player[entid].iShotsFired > AUG_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > AUG_MAX_CLIP)
 				g_Player[entid].iShotsFired -= AUG_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "awp1"))
@@ -43,7 +43,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > AWP_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > AWP_MAX_CLIP)
 				g_Player[entid].iShotsFired -= AWP_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "deagle-1") || strstr(szSoundFile, "deagle-2"))
@@ -55,7 +55,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > DEAGLE_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > DEAGLE_MAX_CLIP)
 				g_Player[entid].iShotsFired -= DEAGLE_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "elite_fire"))
@@ -67,7 +67,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > ELITE_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > ELITE_MAX_CLIP)
 				g_Player[entid].iShotsFired -= ELITE_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "famas-1") || strstr(szSoundFile, "famas-2"))
@@ -79,7 +79,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > FAMAS_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > FAMAS_MAX_CLIP)
 				g_Player[entid].iShotsFired -= FAMAS_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "fiveseven-1"))
@@ -139,7 +139,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > M3_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > M3_MAX_CLIP)
 				g_Player[entid].iShotsFired -= M3_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "m4a1_unsil-1") || strstr(szSoundFile, "m4a1_unsil-2") || strstr(szSoundFile, "m4a1-2"))
@@ -163,7 +163,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > M249_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > M249_MAX_CLIP)
 				g_Player[entid].iShotsFired -= M249_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "mac10-1"))
@@ -187,7 +187,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			}
 
 			g_Player[entid].iShotsFired++;
-			if (g_Player[entid].iShotsFired > MP5N_MAX_CLIP) 
+			if (g_Player[entid].iShotsFired > MP5N_MAX_CLIP)
 				g_Player[entid].iShotsFired -= MP5N_MAX_CLIP;
 		}
 		else if (strstr(szSoundFile, "p90-1"))
@@ -298,7 +298,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 			if (g_Player[entid].iShotsFired > XM1014_MAX_CLIP)
 				g_Player[entid].iShotsFired -= XM1014_MAX_CLIP;
 		}
-		else if (strstr(szSoundFile, "reload")) 
+		else if (strstr(szSoundFile, "reload"))
 		{
 			g_Player[entid].iShotsFired = 0;
 		}
@@ -308,7 +308,7 @@ void ShotsFiredCounter(int entid, char *szSoundFile)
 	}
 }
 
-void PreS_DynamicSound(int entid, DWORD entchannel, char *szSoundFile, float *fOrigin, float fVolume, float fAttenuation, int iTimeOff, int iPitch) 
+void PreS_DynamicSound(int entid, DWORD entchannel, char *szSoundFile, float *fOrigin, float fVolume, float fAttenuation, int iTimeOff, int iPitch)
 {
 	cl_entity_s *ent = g_Engine.GetEntityByIndex(entid);
 
@@ -324,14 +324,14 @@ void PreS_DynamicSound(int entid, DWORD entchannel, char *szSoundFile, float *fO
 		{
 			ShotsFiredCounter(entid, szSoundFile);
 
-			if (strstr(szSoundFile, "player")) 
+			if (strstr(szSoundFile, "player"))
 			{
-				if (strstr(szSoundFile, "bhit_helmet")) 
+				if (strstr(szSoundFile, "bhit_helmet"))
 				{
 					g_Player[entid].iArmorType = ARMOR_VESTHELM;
 					g_Player[entid].iHealth -= 80;
 				}
-				else if (strstr(szSoundFile, "bhit_kevlar")) 
+				else if (strstr(szSoundFile, "bhit_kevlar"))
 				{
 					g_Player[entid].iArmorType = ARMOR_KEVLAR;
 					g_Player[entid].iHealth -= 20;
@@ -341,7 +341,7 @@ void PreS_DynamicSound(int entid, DWORD entchannel, char *szSoundFile, float *fO
 					g_Player[entid].iArmorType = ARMOR_NONE;
 					g_Player[entid].iHealth -= 30;
 				}
-				else if (strstr(szSoundFile, "headshot")) 
+				else if (strstr(szSoundFile, "headshot"))
 				{
 					g_Player[entid].iHealth -= 80;
 				}

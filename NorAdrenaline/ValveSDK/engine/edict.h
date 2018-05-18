@@ -1,6 +1,6 @@
 //========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
@@ -19,7 +19,7 @@ struct edict_s
 	qboolean	free;
 	int			serialnumber;
 	link_t		area;				// linked to a division node or leaf
-	
+
 	int			headnode;			// -1 to use normal leaf check
 	int			num_leafs;
 	short		leafnums[MAX_ENT_LEAFS];

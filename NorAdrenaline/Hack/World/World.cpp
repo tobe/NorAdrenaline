@@ -19,7 +19,7 @@ void MyVectorTransform(Vector in1, float in2[3][4], float *out, int xyz, float m
 
 void CWorld::GetHitboxes(struct cl_entity_s *ent)
 {
-	if (g_Utils.IsPlayer(ent) && ent->index != g_Local.iIndex) 
+	if (g_Utils.IsPlayer(ent) && ent->index != g_Local.iIndex)
 	{
 		Vector vBBMin, vBBMax, vTransform, vMultiPoint;
 
@@ -70,7 +70,7 @@ void CWorld::GetHitboxes(struct cl_entity_s *ent)
 			MyVectorTransform(pHitbox[i].bbmin, (*pBoneMatrix)[pHitbox[i].bone], vTransform, 2, vMultiPoint[2]);
 			g_PlayerExtraInfoList[ent->index].vHitboxPoints[i][7] = vTransform + g_Player[ent->index].vVelocity * g_Player[ent->index].flFrametime;
 
-			
+
 		}
 	}
 }
@@ -225,7 +225,7 @@ void CWorld::UpdateEntities()
 			m_iVictims++;
 		}
 
-		if (m_iVictims > 0) 
+		if (m_iVictims > 0)
 		{
 			for (int i = 1; i <= g_Engine.GetMaxClients(); i++)
 			{
@@ -256,7 +256,7 @@ void CWorld::UpdateEntities()
 
 			unsigned int ent = m_ResolvedEntities[i];
 
-			if (ent > 0 && ent < 256) 
+			if (ent > 0 && ent < 256)
 				g_Entities[ent].iResolvedIndex = i;
 		}
 	}
@@ -346,7 +346,7 @@ void CWorld::UpdateVisibility(int id)
 	if (cvar.aim_teammates)
 		teammates = true;
 
-	if (((cvar.aim && cvar.aim_autowall) || (cvar.legit[g_Local.weapon.m_iWeaponID].trigger && cvar.legit[g_Local.weapon.m_iWeaponID].trigger_penetration)) && IsCurWeaponGun())
+	if ((cvar.aim && cvar.aim_autowall) && IsCurWeaponGun())
 		walls = true;
 
 	if (!teammates && g_Player[id].iTeam == g_Local.iTeam)
@@ -354,9 +354,9 @@ void CWorld::UpdateVisibility(int id)
 
 	deque<unsigned int> Hitboxes;
 
-	if (IsCurWeaponGun()) 
+	if (IsCurWeaponGun())
 	{
-		if (cvar.aim)//Rage aimbot
+		if (cvar.aim)
 		{
 			if (cvar.aim_hitbox == 1)
 			{
@@ -368,12 +368,26 @@ void CWorld::UpdateVisibility(int id)
 			}
 			else if (cvar.aim_hitbox == 3)
 			{
-				Hitboxes.push_back(7);
+				Hitboxes.push_back(9);
 			}
 			else if (cvar.aim_hitbox == 4)
 			{
-				Hitboxes.push_back(4);
+				Hitboxes.push_back(8);
 			}
+            else if(cvar.aim_hitbox == 5) {
+                Hitboxes.push_back(7);
+            }
+            else if(cvar.aim_hitbox == 6) {
+                for(unsigned int j = 0; j <= 11; j++)
+                    Hitboxes.push_back(j);
+            }
+            else if(cvar.aim_hitbox == 7) {
+                for(unsigned int j = 0; j <= 11; j++)
+                    Hitboxes.push_back(j);
+
+                for(unsigned int k = 12; k < g_Local.iMaxHitboxes; k++)
+                    Hitboxes.push_back(k);
+            }
 		}
 	}
 	else if (IsCurWeaponKnife() && cvar.knifebot)
@@ -441,9 +455,9 @@ void CWorld::UpdateVisibility(int id)
 			{
 				g_Engine.pEventAPI->EV_SetTraceHull(2);
 
-				if (cvar.bypass_trace_blockers) 
+				if (cvar.bypass_trace_blockers)
 					g_Engine.pEventAPI->EV_PlayerTrace(g_Local.vEye, g_PlayerExtraInfoList[id].vHitboxPoints[hitbox][point], PM_WORLD_ONLY, -1, &tr);
-				else 
+				else
 					g_Engine.pEventAPI->EV_PlayerTrace(g_Local.vEye, g_PlayerExtraInfoList[id].vHitboxPoints[hitbox][point], PM_GLASS_IGNORE, -1, &tr);
 
 				detect = g_Engine.pEventAPI->EV_IndexFromTrace(&tr);
@@ -529,18 +543,18 @@ void CWorld::UpdateMapInfo()
 
 		if (g_MapInfo.levelname)
 		{
-			if (!lstrcmpA(g_MapInfo.levelname, "maps/de_dust2.bsp") || 
+			if (!lstrcmpA(g_MapInfo.levelname, "maps/de_dust2.bsp") ||
 				!lstrcmpA(g_MapInfo.levelname, "maps/de_dust2_2x2.bsp") ||
-				!lstrcmpA(g_MapInfo.levelname, "maps/de_inferno.bsp") || 
+				!lstrcmpA(g_MapInfo.levelname, "maps/de_inferno.bsp") ||
 				!lstrcmpA(g_MapInfo.levelname, "maps/de_inferno_2x2.bsp") ||
-				!lstrcmpA(g_MapInfo.levelname, "maps/de_train.bsp") || 
+				!lstrcmpA(g_MapInfo.levelname, "maps/de_train.bsp") ||
 				!lstrcmpA(g_MapInfo.levelname, "maps/de_kabul.bsp") ||
 				!lstrcmpA(g_MapInfo.levelname, "maps/de_mirage.bsp") ||
 				!lstrcmpA(g_MapInfo.levelname, "maps/de_aztec.bsp"))
 			{
 				g_MapInfo.m_flBombRadius = 1750;
 			}
-			else if (!lstrcmpA(g_MapInfo.levelname, "maps/de_dust.bsp")) 
+			else if (!lstrcmpA(g_MapInfo.levelname, "maps/de_dust.bsp"))
 			{
 				g_MapInfo.m_flBombRadius = 350;
 			}

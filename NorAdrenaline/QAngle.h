@@ -34,11 +34,11 @@ class QAngle
 		inline QAngle& operator= ( const QAngle& in );
 		inline QAngle& operator= ( float* p );
 		inline QAngle& operator= ( float f );
-		
+
 		inline float& operator[] ( int i ) const;
-		
+
 		inline bool operator! ( void ) const;
-		
+
 		inline bool operator== ( const QAngle& other ) const;
 
 		inline bool operator!= ( const QAngle& other ) const;
@@ -50,28 +50,28 @@ class QAngle
 		inline QAngle& operator-= ( const QAngle& other );
 		inline QAngle& operator-= ( float* p );
 		inline QAngle& operator-= ( float f );
-		
+
 		inline QAngle& operator*= ( const QAngle& other );
 		inline QAngle& operator*= ( float *p );
 		inline QAngle& operator*= ( float f );
-		
+
 		inline QAngle& operator/= ( const QAngle& other );
 		inline QAngle& operator/= ( float* p );
 		inline QAngle& operator/= ( float f );
-		
+
 		inline QAngle operator+ ( const QAngle& other ) const;
 		inline QAngle operator+ ( float* p ) const;
 		inline QAngle operator+ ( float f ) const;
-		
+
 		inline QAngle operator- ( const QAngle& other ) const;
 		inline QAngle operator- ( float* p ) const;
 		inline QAngle operator- ( float f ) const;
 		inline QAngle operator- ( void ) const;
-		
+
 		inline QAngle operator* ( const QAngle& other ) const;
 		inline QAngle operator* ( float* p ) const;
 		inline QAngle operator* ( float f ) const;
-		
+
 		inline QAngle operator/ ( const QAngle& other ) const;
 		inline QAngle operator/ ( float* p ) const;
 		inline QAngle operator/ ( float f ) const;
@@ -95,7 +95,7 @@ class QAngle
 
 			return *this;
 		}
-		
+
 		inline QAngle& Init ( float X, float Y, float Z )
 		{
 			x = X;
@@ -120,7 +120,7 @@ class QAngle
 
 			return *this;
 		}
-		
+
 		QAngle& Normalize ( void )
 		{
 			float* Pointer = ( float* )this;
@@ -143,15 +143,15 @@ class QAngle
 		QAngle Delta360 ( QAngle& other )
 		{
 			QAngle OutDifference;
-						 		
+
 			OutDifference = other - *this;
- 			
+
 			for ( int i = 0; i < 3; i++ )
 			{
 				if ( OutDifference[i] < 0 )
 				{
 					OutDifference[i] = -OutDifference[i];
-			
+
 					if ( OutDifference[i] > 180 )
 					{
 						OutDifference[i] = 360 - OutDifference[i];
@@ -168,7 +168,7 @@ class QAngle
 
 			return AngleDifference.x <= fovX && AngleDifference.y <= fovY;
 		}
-				
+
 		void AngleVectors ( Vector* Forward, Vector* Right, Vector* Up );
 		void AngleVectorsTranspose ( Vector* Forward, Vector* Right, Vector* Up );
 

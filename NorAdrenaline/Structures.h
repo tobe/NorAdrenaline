@@ -62,7 +62,7 @@ typedef float TransformMatrix[MAXSTUDIOBONES][3][4];
 
 #define NUMBLOOPS 50.0f
 #define TIMEALIVE 3.00f
-#define OLDDAMPER 1.75f 
+#define OLDDAMPER 1.75f
 #define NEWDAMPER 0.75f
 #define SVGRAVITY 3.75f
 #define FLOORSTOP 0.20f

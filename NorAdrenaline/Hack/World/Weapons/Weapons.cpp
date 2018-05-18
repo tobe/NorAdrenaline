@@ -502,7 +502,7 @@ void UpdateWeaponData()
 	}
 }
 
-void Reload() 
+void Reload()
 {
 	ResetAccuracy();
 }
@@ -932,7 +932,7 @@ void Simulate(float &m_flAccuracy, float &m_flSpread)
 	}
 }
 
-void PrimaryAttack() 
+void PrimaryAttack()
 {
 	switch (g_Local.weapon.m_iWeaponID)
 	{
@@ -1192,7 +1192,7 @@ void ItemPostFrame(struct usercmd_s *cmd)
 		{
 			g_Local.weapon.m_bDelayFire = false;
 
-			if (g_Local.weapon.m_iShotsFired > 15) 
+			if (g_Local.weapon.m_iShotsFired > 15)
 			{
 				g_Local.weapon.m_iShotsFired = 15;
 			}
@@ -1205,7 +1205,7 @@ void ItemPostFrame(struct usercmd_s *cmd)
 		{
 			g_Local.weapon.m_iShotsFired = 0;
 		}
-		else 
+		else
 		{
 			if (g_Local.weapon.m_iShotsFired > 0 && g_Local.weapon.m_flDecreaseShotsFired < g_Local.weapon.curtime)
 			{
