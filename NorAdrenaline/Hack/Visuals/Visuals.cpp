@@ -207,7 +207,7 @@ void CVisuals::Run()
 
 void CVisuals::DrawAimBotFOV()
 {
-	if (g_Local.bAlive && IsCurWeaponGun() && !cvar.aim && cvar.draw_aim_fov && g_AimBot.m_flCurrentFOV > 0 && g_AimBot.m_flCurrentFOV < 45 && g_Local.iFOV)
+	if (g_Local.bAlive && IsCurWeaponGun() && cvar.draw_aim_fov /*&& g_AimBot.m_flCurrentFOV > 0 && g_AimBot.m_flCurrentFOV < 45*/ && g_Local.iFOV)
 	{
 		float x = g_Screen.iWidth * 0.5f;
 		float y = g_Screen.iHeight * 0.5f;
@@ -612,7 +612,7 @@ void CVisuals::Status() {
     #define WIDTH   g_Screen.iWidth / 100
     #define HEIGHT (g_Screen.iHeight / 100) + y
 
-    char *hitbox[5] = {"Head", "Leftarm", "Chest", "Stomach", "Nonstandard"};
+    char *hitbox[7] = {"Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multihitbox)", "All (Multihitbox)"};
     char *multipoint[4] = {"Low", "Medium", "High", "Off"};
 
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim FoV: %f", cvar.aim_fov);

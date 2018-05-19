@@ -11,17 +11,18 @@ void CCvars::Init()
 	aim = true; // Aim or not
 	aim_teammates = false; // Deathmatch
 	aim_target_selection = 1; // fov
-	aim_hitbox = 2; // Hitbox of choice
+	aim_hitbox = 6; // Hitbox of choice
 	aim_multi_point = 0; // Multipoint
 	aim_autowall = true; // Autowall
 	aim_silent = true;
 	aim_perfect_silent = true;
     aim_autoscope = true;
-    aim_fov = 3;
+    aim_fov = 1.5;
+    aim_hschance = 33;
 
 	fakelag = true;
 	fakelag_while_shooting = false;
-	fakelag_type = 1;
+	fakelag_type = 4;
 	fakelag_move = 3;
 	fakelag_variance = 3.5;
 	fakelag_limit = 7.5;
@@ -149,7 +150,7 @@ void CCvars::Init()
 	aa_yaw_static = 0;
 	aa_pitch = 0;
 	aa_edge = 0;
-    aa_legit = 2;
+    aa_legit = 0;
 
 	menu_legit_global_section = 1;
 	menu_legit_sub_section = 1;

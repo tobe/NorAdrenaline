@@ -230,7 +230,7 @@ void CMenu::Tabs()
 			save[7] = y + line_y;
 			line_y += 40;
 
-			static char *szTargetHitbox[] = { "Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multipoint)", "All (Multipoint)"};
+			static char *szTargetHitbox[] = { "Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multihitbox)", "All (Multihitbox)"};
 			save[8] = y + line_y;
 			line_y += 40;
 
@@ -314,8 +314,9 @@ void CMenu::Tabs()
             line_y += 40;
 
             Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
-            line_y += 30;
-            g_Drawing.DrawString(MENU, x + indent_x, y + line_y, 255, 255, 255, 255, FONT_LEFT, "FoV: %d degrees", (int)cvar.aim_fov * 2);
+            line_y += 40;
+
+            Slider(x + indent_x, y + line_y, 0, 100, cvar.aim_hschance, "Legit headshot chance", true);
 		}
 
 		{//BOX3

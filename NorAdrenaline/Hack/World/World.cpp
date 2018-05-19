@@ -378,8 +378,9 @@ void CWorld::UpdateVisibility(int id)
                 Hitboxes.push_back(7);
             }
             else if(cvar.aim_hitbox == 6) {
-                for(unsigned int j = 0; j <= 11; j++)
-                    Hitboxes.push_back(j);
+                uint8_t vitalHitboxes[] = {7, 8, 9, 10, 11};
+                for(uint8_t i = 0; i < 5; i++)
+                    Hitboxes.push_front(vitalHitboxes[i]); // push_front because we scan from top to bottom
             }
             else if(cvar.aim_hitbox == 7) {
                 for(unsigned int j = 0; j <= 11; j++)

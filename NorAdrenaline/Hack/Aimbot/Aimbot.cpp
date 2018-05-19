@@ -1,4 +1,5 @@
 #include "../../Required.h"
+#include <sstream>
 
 CAimBot g_AimBot;
 
@@ -61,10 +62,12 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
         case 5:
             m_iHitbox = 7; // stomach
         break;
-        case 6: // Vital (Multipoint)
-            for(unsigned int j = 0; j <= 11; j++)
-                Hitboxes.push_back(j);
-        break;
+        case 6:
+        { // Vital (Multipoint)
+            uint8_t vitalHitboxes[] = {7, 8, 9, 10, 11};
+            for(uint8_t i = 0; i < 5; i++)
+                Hitboxes.push_back(vitalHitboxes[i]);
+        }break;
         case 7: // All (Multipoint)
             for(unsigned int j = 0; j <= 11; j++)
                 Hitboxes.push_back(j);
@@ -74,7 +77,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
         break;
     }
 
-	float m_flBestFOV = 180.f;
+	float m_flBestFOV = cvar.aim_fov;
 	float m_flBestDist = 8192.f;
 
 	for (unsigned int id = 1; id <= g_Engine.GetMaxClients(); ++id)
@@ -94,9 +97,9 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		if (!cvar.aim_teammates && g_Player[id].iTeam == g_Local.iTeam)
 			continue;
 
-        // Multi point only visible hitbox selection
-        if(cvar.aim_multi_point > 0) {
-            for(auto &&hitbox : Hitboxes) {
+        // Prioritize visible hitboxes (Multihitboxes / Multipoints)
+        if(!Hitboxes.empty()) {
+            for(auto &&hitbox : Hitboxes) {    
                 if(g_PlayerExtraInfoList[id].bHitboxVisible[hitbox]) {
                     m_iHitbox = hitbox;
                     break;
@@ -108,7 +111,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		if (cvar.aim_multi_point > 0)
 		{
             for(auto &&hitbox : Hitboxes) {
-                // TODO: wtf is the point of this?
                 if(cvar.aim_multi_point == 1 && m_iHitbox != 11)
                     continue;
 
@@ -116,7 +118,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
                     continue;
 
                 for(unsigned int point = 0; point <= 8; point++) {
-                    if(g_PlayerExtraInfoList[id].bHitboxPointsVisible[m_iHitbox][point] /*&& !g_PlayerExtraInfoList[id].bHitboxVisible[m_iHitbox]*/) {
+                    if(g_PlayerExtraInfoList[id].bHitboxPointsVisible[m_iHitbox][point] && !g_PlayerExtraInfoList[id].bHitboxVisible[m_iHitbox]) {
                         m_iPoint = point;
                         m_iHitbox = m_iHitbox;
                         break;
@@ -166,6 +168,13 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 	}
 
     if(m_iTarget <= 0) return;
+
+    if(cvar.aim_hschance > 0) {
+        uint8_t randomValue = rand() % 100;
+        if(randomValue <= cvar.aim_hschance && !IsCurWeaponSniper()) {
+            m_iHitbox = 11;
+        }
+    }
 
 	if (cvar.aim_autoscope && IsCurWeaponSniper() && (cmd->buttons & IN_ATTACK) && g_Local.iFOV == DEFAULT_FOV)
 	{
