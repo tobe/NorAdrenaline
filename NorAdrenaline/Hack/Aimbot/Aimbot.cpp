@@ -78,6 +78,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
     }
 
 	float m_flBestFOV = cvar.aim_fov;
+    this->m_flCurrentFOV = 0;
 	float m_flBestDist = 8192.f;
 
 	for (unsigned int id = 1; id <= g_Engine.GetMaxClients(); ++id)
@@ -139,11 +140,54 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
         //"Field of view", "Distance", "Cycle"
 		if (cvar.aim_target_selection == 1)
 		{
-			if (g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox] < m_flBestFOV)
-			{
-				m_flBestFOV = g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox];
-				m_iTarget = id;
-			}
+            // Get enemy W2S
+            float enemyPosition[2];
+            if(!g_Utils.bCalcScreen(g_PlayerExtraInfoList[id].vHitbox[m_iHitbox], enemyPosition)) continue; // Not on screen
+
+            cl_entity_s *ent = g_Engine.GetEntityByIndex(id);
+
+            if(!ent)
+                return;
+
+            Vector Top = Vector(ent->origin.x, ent->origin.y, ent->origin.z + ent->curstate.mins.z);
+            Vector Bot = Vector(ent->origin.x, ent->origin.y, ent->origin.z + ent->curstate.maxs.z);
+
+            float ScreenTop[2], ScreenBot[2];
+
+            bool m_bScreenTop = g_Utils.bCalcScreen(Top, ScreenTop);
+            bool m_bScreenBot = g_Utils.bCalcScreen(Bot, ScreenBot);
+
+            if(m_bScreenTop && m_bScreenBot) {
+                float _h = ScreenBot[1] - ScreenTop[1];
+                float box_height = g_Player[id].bDucked ? _h : _h * 0.9f;
+                float box_width = box_height * 0.3f;
+
+                int x = ScreenTop[0];
+                int y = ScreenTop[1];
+                int w = box_width;
+                int h = box_height;
+                int x0 = x - w;
+                int y0 = y;
+                int x1 = x + w;
+                int y1 = y + h;
+
+                if(x1 < x0)
+                    swap(x1, x0);
+
+                if(y1 < y0)
+                    swap(y1, y0);
+
+
+                static float my_x = g_Screen.iWidth * 0.5f;
+                static float my_y = g_Screen.iHeight * 0.5f;
+
+                // Inside
+                if(my_x > x0 || my_x < x1 || my_x > y0 || my_y < y1) {
+                    m_iTarget = id;
+                }
+            }
+
+            //g_Engine.pfnTintRGBA(g_Screen.iWidth / 2, g_Screen.iHeight / 2 - 14, 2, 9, r, g, b, 200);
 		}
 		else if (cvar.aim_target_selection == 2)
 		{
@@ -168,6 +212,9 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 	}
 
     if(m_iTarget <= 0) return;
+
+    // Register the FoV
+    this->m_flCurrentFOV = m_flBestFOV;
 
     if(cvar.aim_hschance > 0) {
         uint8_t randomValue = rand() % 100;
