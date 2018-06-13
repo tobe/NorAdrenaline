@@ -180,7 +180,7 @@ void CVisuals::Run()
 		if (!g_Player[i].bAliveInScoreTab)
 			continue;
 
-		if (GetTickCount() - g_Player[i].dwHistory > 2000)
+		if (GetTickCount() - g_Player[i].dwHistory > 1000) // 2000
 			continue;
 
 		DrawHistory(i);
@@ -207,7 +207,7 @@ void CVisuals::Run()
 
 void CVisuals::DrawAimBotFOV()
 {
-	if (g_Local.bAlive && IsCurWeaponGun() && cvar.draw_aim_fov /*&& g_AimBot.m_flCurrentFOV > 0 && g_AimBot.m_flCurrentFOV < 45*/ && g_Local.iFOV)
+	if (g_Local.bAlive && IsCurWeaponGun() && cvar.draw_aim_fov /*&& g_AimBot.m_flCurrentFOV > 0 && g_AimBot.m_flCurrentFOV < 45 */&& g_Local.iFOV)
 	{
 		float x = g_Screen.iWidth * 0.5f;
 		float y = g_Screen.iHeight * 0.5f;
@@ -497,12 +497,19 @@ void CVisuals::PlayerESP(unsigned int i)
 		float box_height = g_Player[i].bDucked ? _h : _h * 0.9f;
 		float box_width = box_height * 0.3f;
 
-		if (cvar.esp_box)
-			g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], box_width, box_height, r, g, b, 255);
+        /* = ScreenBot[1] - ScreenTop[1];
+        _h *= cvar.aim_fov / 6;
+        float test_height = g_Player[i].bDucked ? _h : _h * 0.9f;
+        float test_width = (test_height * .8f);*/
+
+        if(cvar.esp_box) {
+            g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], box_width, box_height, r, g, b, 255);
+            //g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], test_width, test_height, 255, 255, 255, 255);
+        }
 
 		if (cvar.esp_distance)
 		{
-			unsigned int y = ScreenBot[1] + (-8 - _h);
+			unsigned int y = ScreenBot[1] + (4 + _h);
 
 			g_Drawing.DrawString(ESP, ScreenTop[0], y, 255, 255, 255, cvar.esp_alpha, FONT_CENTER, "%.f", g_Player[i].flDist);
 		}
@@ -619,6 +626,8 @@ void CVisuals::Status() {
     y += 15;
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Hitbox: %s", hitbox[(int)cvar.aim_hitbox - 1]);
     y += 15;
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "HS chance: %d%%", cvar.aim_hschance);
+    y += 15;
     if(cvar.aim_multi_point) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Multipoint: %s", multipoint[(int)cvar.aim_multi_point - 1]);
         y += 15;
@@ -626,11 +635,10 @@ void CVisuals::Status() {
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
     y += 15;
 
-    if(cvar.aa_edge || cvar.aa_legit || cvar.aa_pitch || cvar.aa_yaw) {
-        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 0, cvar.esp_alpha, FONT_LEFT, "AA: ON");
-    } else {
-        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "AA: OFF");
-    }
+    if(cvar.aa_legit)
+        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 0, 255, 0, cvar.esp_alpha, FONT_LEFT, "AA: Legit");
+    if(cvar.aa_edge || cvar.aa_pitch || cvar.aa_yaw)
+        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 0, cvar.esp_alpha, FONT_LEFT, "AA: Rage");
 
     y += 15;
 

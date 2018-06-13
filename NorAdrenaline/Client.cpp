@@ -4,7 +4,6 @@ CGlobalsVars g_pGlobals;
 SCREENINFO g_Screen;
 
 static float ticks = 0;
-static bool inAttack = false;
 
 void AntiSnapshot() { g_pGlobals.bSnapshot = true; }
 void AntiScreenshot() { g_pGlobals.bScreenshot = true; }
@@ -74,9 +73,6 @@ void CL_CreateMove(float frametime, struct usercmd_s *cmd, int active)
 
 	if (g_Local.bAlive)
 	{
-        // psilent
-        inAttack = (cmd->buttons & IN_ATTACK) ? true : false;
-
 		UpdateWeaponData();
 
 		g_Systems.KnifeBot(cmd);
@@ -192,7 +188,7 @@ void HUD_Frame_init(double time)
     });
 
     // Patch rates
-    g_Engine.pfnClientCmd("rate 50000;cl_updaterate 200;cl_cmdrate 200");
+    g_Engine.pfnClientCmd("rate 999999;cl_updaterate 1000;cl_cmdrate 1000;cl_rate 9999;ex_interp 0.1");
 
     // Randomize steamid
     g_Systems.RandomizeSteamID();

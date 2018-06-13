@@ -216,12 +216,17 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
     // Register the FoV
     this->m_flCurrentFOV = m_flBestFOV;
 
+    // Legit headshot
     if(cvar.aim_hschance > 0) {
         uint8_t randomValue = rand() % 100;
         if(randomValue <= cvar.aim_hschance && !IsCurWeaponSniper()) {
             m_iHitbox = 11;
         }
     }
+
+    // Check if fully behind wall
+    if(g_Player[m_iTarget].bBehindTheWall && !IsCurWeaponSniper())
+        m_iHitbox = 11;
 
 	if (cvar.aim_autoscope && IsCurWeaponSniper() && (cmd->buttons & IN_ATTACK) && g_Local.iFOV == DEFAULT_FOV)
 	{

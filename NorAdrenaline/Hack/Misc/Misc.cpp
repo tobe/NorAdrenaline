@@ -1,4 +1,5 @@
 #include "../../Required.h"
+#include <algorithm>
 
 CMisc g_Misc;
 
@@ -90,30 +91,22 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
 			{
 				Vector velocity = pmove->velocity;
 				velocity.z = 0;
+                float len = velocity.Length() * g_Local.flFrametime;
 
-				float len = velocity.Length() * g_Local.flFrametime;
+                int choke = std::min<int>(static_cast<int>(std::ceilf(64 / len)), 14);
+                if(choke > 13) return;
 
-				if (len < 64.0f && velocity.Length() > 0.05f)
-				{
-					int need_choke = 64.0f / len;
+                static int choked = 0;
+                if(choked > choke) {
+                    g_Utils.bSendpacket(true);
+                    choked = 0;
+                } else {
+                    g_Utils.bSendpacket(false);
+                    choked++;
+                }
 
-					if (need_choke > cvar.fakelag_limit)
-						need_choke = cvar.fakelag_limit;
-
-					//g_Engine.Con_NPrintf(1, "need_choke: %i", need_choke);
-
-					if (choked < need_choke)
-					{
-						g_Utils.bSendpacket(false);
-
-						choked++;
-					}
-					else {
-						choked = 0;
-					}
-
-					//g_Engine.Con_NPrintf(2, "choked: %i", choked);
-				}
+                if(cvar.debug)
+                    g_Engine.Con_NPrintf(2, "choked: %i", choked);
 			}
 		}
 	}
@@ -170,13 +163,13 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
             if(cvar.aa_legit > 0 && (pmove->flags & FL_ONGROUND)) {
                 static int chokedPackets = 0;
 
-                if(chokedPackets++ < 1) { // 1 packet
+                if(chokedPackets++ < 2) { // 2 packets
                     switch((int)cvar.aa_legit) {
                         case 1:
-                        cmd->viewangles.y += 90.f;
+                            cmd->viewangles.y += 90.f;
                         break;
                         case 2:
-                        cmd->viewangles.y += 180.f;
+                            cmd->viewangles.y += 180.f;
                         break;
                     }
 

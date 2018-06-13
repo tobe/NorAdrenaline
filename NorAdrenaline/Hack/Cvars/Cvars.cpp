@@ -23,7 +23,7 @@ void CCvars::Init()
 	fakelag = true;
 	fakelag_while_shooting = false;
 	fakelag_type = 4;
-	fakelag_move = 3;
+	fakelag_move = 4;
 	fakelag_variance = 3.5;
 	fakelag_limit = 7.5;
 
@@ -65,7 +65,7 @@ void CCvars::Init()
 	esp_box_t_invis_b = 0;
 
 	esp_box_outline = false;
-	esp_name = false;
+	esp_name = true;
 
 	esp_fake = true;
 	bypass_trace_blockers = true;

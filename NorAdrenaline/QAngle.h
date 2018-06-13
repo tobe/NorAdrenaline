@@ -177,6 +177,14 @@ class QAngle
 			return isfinite ( x ) && isfinite( y ) && isfinite( z );
 		}
 
+        inline auto QAngle::Length() {
+            return sqrt(LengthSqr());
+        }
+
+        inline float QAngle::LengthSqr() {
+            return x * x + y * y + z * z;
+        }
+
 	public:
 
 		float x, y, z;
