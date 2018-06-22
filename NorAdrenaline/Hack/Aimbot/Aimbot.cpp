@@ -128,6 +128,12 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
             }
 		}
 
+        // Got no hitbox (visible, multipoint, etc...).
+        // Default to head if not using a sniper, chest otherwise.
+        // Useful for wall banging against the head
+        if(m_iHitbox < 0)
+            m_iHitbox = IsCurWeaponSniper() ? 8 : 11;
+
 		if (m_iHitbox < 0 || m_iHitbox > g_Local.iMaxHitboxes)
 			continue;
 
@@ -182,7 +188,8 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
                 static float my_y = g_Screen.iHeight * 0.5f;
 
                 // Inside
-                if(my_x > x0 || my_x < x1 || my_x > y0 || my_y < y1) {
+                if((my_x >= x0 && my_x <= x1) && (my_y >= y0 && my_y <= y1)) {
+                    g_Engine.Con_Printf("Target: %s", g_PlayerInfoList[id].name);
                     m_iTarget = id;
                 }
             }
@@ -223,10 +230,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
             m_iHitbox = 11;
         }
     }
-
-    // Check if fully behind wall
-    if(g_Player[m_iTarget].bBehindTheWall && !IsCurWeaponSniper())
-        m_iHitbox = 11;
 
 	if (cvar.aim_autoscope && IsCurWeaponSniper() && (cmd->buttons & IN_ATTACK) && g_Local.iFOV == DEFAULT_FOV)
 	{

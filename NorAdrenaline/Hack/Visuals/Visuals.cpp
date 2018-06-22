@@ -622,11 +622,11 @@ void CVisuals::Status() {
     char *hitbox[7] = {"Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multihitbox)", "All (Multihitbox)"};
     char *multipoint[4] = {"Low", "Medium", "High", "Off"};
 
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim FoV: %f", cvar.aim_fov);
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim FoV: %.2f", cvar.aim_fov);
     y += 15;
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Hitbox: %s", hitbox[(int)cvar.aim_hitbox - 1]);
     y += 15;
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "HS chance: %d%%", cvar.aim_hschance);
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "HS chance: %.2f%%", cvar.aim_hschance);
     y += 15;
     if(cvar.aim_multi_point) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Multipoint: %s", multipoint[(int)cvar.aim_multi_point - 1]);
@@ -635,12 +635,14 @@ void CVisuals::Status() {
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
     y += 15;
 
-    if(cvar.aa_legit)
+    if(cvar.aa_legit) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 0, 255, 0, cvar.esp_alpha, FONT_LEFT, "AA: Legit");
-    if(cvar.aa_edge || cvar.aa_pitch || cvar.aa_yaw)
+        y += 15;
+    }
+    if(cvar.aa_edge || cvar.aa_pitch || cvar.aa_yaw) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 0, cvar.esp_alpha, FONT_LEFT, "AA: Rage");
-
-    y += 15;
+        y += 15;
+    }
 
     // Time
     time_t rawtime;
