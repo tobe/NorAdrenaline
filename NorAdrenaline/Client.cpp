@@ -293,6 +293,21 @@ void HUD_ProcessPlayerState(struct entity_state_s *dst, const struct entity_stat
 	g_Client.HUD_ProcessPlayerState(dst, src);
 }
 
+int HUD_Key_Event(int down, int keynum, const char *pszCurrentBinding) {
+    if(down) {
+        switch(keynum) {
+            case 137: // F3
+            (int)cvar.aim_hschance--;
+            break;
+            case 138: // F4
+            (int)cvar.aim_hschance++;
+            break;
+        }
+    }
+    //g_Engine.Con_Printf("down: %d, keynum: %d, currbind: %s", down, keynum, pszCurrentBinding);
+    return g_Client.HUD_Key_Event(down, keynum, pszCurrentBinding);
+}
+
 void HookClient()
 {
 	g_pClient->HUD_Frame = HUD_Frame_init;
@@ -304,6 +319,7 @@ void HookClient()
 	g_pClient->HUD_AddEntity = HUD_AddEntity;
 	g_pClient->HUD_GetHullBounds = HUD_GetHullBounds;
 	g_pClient->HUD_ProcessPlayerState = HUD_ProcessPlayerState;
+    g_pClient->HUD_Key_Event = HUD_Key_Event;
 
 	g_pStudio->StudioCheckBBox = StudioCheckBBox;
 	g_pStudio->StudioSetRemapColors = StudioSetRemapColors;

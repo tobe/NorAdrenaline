@@ -65,7 +65,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
         case 6:
         { // Vital (Multipoint)
             uint8_t vitalHitboxes[] = {7, 8, 9, 10, 11};
-            for(uint8_t i = 0; i < 5; i++)
+            for(uint8_t i = 0; i < sizeof(vitalHitboxes); i++)
                 Hitboxes.push_back(vitalHitboxes[i]);
         }break;
         case 7: // All (Multipoint)
@@ -143,7 +143,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 			break;
 		}
 
-        //"Field of view", "Distance", "Cycle"
 		if (cvar.aim_target_selection == 1)
 		{
             // Get enemy W2S
@@ -189,12 +188,9 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 
                 // Inside
                 if((my_x >= x0 && my_x <= x1) && (my_y >= y0 && my_y <= y1)) {
-                    g_Engine.Con_Printf("Target: %s", g_PlayerInfoList[id].name);
                     m_iTarget = id;
                 }
             }
-
-            //g_Engine.pfnTintRGBA(g_Screen.iWidth / 2, g_Screen.iHeight / 2 - 14, 2, 9, r, g, b, 200);
 		}
 		else if (cvar.aim_target_selection == 2)
 		{
@@ -208,20 +204,19 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		{
 			if (g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox] < m_flBestFOV)
 			{
-				if (g_Player[id].flDist < m_flBestDist)
-				{
-					m_flBestFOV = g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox];
-					m_flBestDist = g_Player[id].flDist;
-					m_iTarget = id;
-				}
+				m_flBestFOV = g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox];
+				m_flBestDist = g_Player[id].flDist;
+				m_iTarget = id;
 			}
 		}
 	}
 
     if(m_iTarget <= 0) return;
 
-    // Register the FoV
+    // Register the FoV and check it
     this->m_flCurrentFOV = m_flBestFOV;
+    if(cvar.aim_target_selection == 3 && (m_flBestFOV > cvar.aim_fov))
+        return;
 
     // Legit headshot
     if(cvar.aim_hschance > 0) {
@@ -231,6 +226,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
         }
     }
 
+    // Quickscope
 	if (cvar.aim_autoscope && IsCurWeaponSniper() && (cmd->buttons & IN_ATTACK) && g_Local.iFOV == DEFAULT_FOV)
 	{
 		cmd->buttons |= IN_ATTACK2;
@@ -249,15 +245,15 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 
 		g_Utils.VectorAngles(vAimOrigin - g_Local.vEye, QAimAngles);
 
-        // We have to be in attack to process the rest. And also check the fov.
+        // We have to be in attack to process the rest.
         if(!(cmd->buttons & IN_ATTACK) && (cvar.aim_silent || cvar.aim_perfect_silent)) return;
 
-		if (cvar.aim_perfect_silent && m_flBestFOV <= cvar.aim_fov)
+		if (cvar.aim_perfect_silent)
 		{
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 			g_Utils.bSendpacket(false);
 		}
-		else { // No FoV check for rage aim
+		else {
 			g_Utils.MakeAngle(false, QAimAngles, cmd);
 
 			if (!cvar.aim_silent)

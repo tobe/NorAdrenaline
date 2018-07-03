@@ -226,7 +226,7 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.aim, "Enabled");
 			line_y += 30;
 
-			static char *szTargetSelection[] = { "Field of view", "Distance", "Cycle" };
+			static char *szTargetSelection[] = { "W2S FoV", "Distance", "FoV" };
 			save[7] = y + line_y;
 			line_y += 40;
 
@@ -463,8 +463,6 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.esp_name, "Name");
 			line_y += 30;
 
-			//char *tmp3[] = { "Text", "Icon" };
-			//ListBox(iListIndex++, x + box_indent_x, y + line_y, "Weapon", cvar.chams_type, tmp3, 2, true);
 			save[6] = y + line_y;
 			line_y += 30;
 

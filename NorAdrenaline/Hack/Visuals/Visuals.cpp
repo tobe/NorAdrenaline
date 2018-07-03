@@ -622,8 +622,19 @@ void CVisuals::Status() {
     char *hitbox[7] = {"Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multihitbox)", "All (Multihitbox)"};
     char *multipoint[4] = {"Low", "Medium", "High", "Off"};
 
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim FoV: %.2f", cvar.aim_fov);
+    switch((int)cvar.aim_target_selection) {
+        case 1:
+            g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim: W2S FoV", cvar.aim_fov);
+        break;
+        case 2:
+            g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim: Nearest", cvar.aim_fov);
+        break;
+        case 3:
+            g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Aim: FoV (%.2f)", cvar.aim_fov);
+        break;
+    }
     y += 15;
+
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Hitbox: %s", hitbox[(int)cvar.aim_hitbox - 1]);
     y += 15;
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "HS chance: %.2f%%", cvar.aim_hschance);
