@@ -296,11 +296,21 @@ void HUD_ProcessPlayerState(struct entity_state_s *dst, const struct entity_stat
 int HUD_Key_Event(int down, int keynum, const char *pszCurrentBinding) {
     if(down) {
         switch(keynum) {
+            case 135: // F1 -- Head/legit toggle
+                static int oldSetting;
+                if((int)cvar.aim_hitbox != 1)
+                    oldSetting = cvar.aim_hitbox;
+
+                cvar.aim_hitbox = (cvar.aim_hitbox == 1) ? oldSetting : 1;
+            break;
+            case 136: // F2 -- aimspot change
+                cvar.aim_target_selection = (++cvar.aim_target_selection > 3) ? 1 : cvar.aim_target_selection;
+            break;
             case 137: // F3
-            (int)cvar.aim_hschance--;
+                (int)cvar.aim_hschance--;
             break;
             case 138: // F4
-            (int)cvar.aim_hschance++;
+                (int)cvar.aim_hschance++;
             break;
         }
     }
