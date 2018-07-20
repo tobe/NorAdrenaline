@@ -653,10 +653,13 @@ void CVisuals::Status() {
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
     y += 15;
 
-    float fakeping = (g_Engine.pfnGetCvarFloat("ex_interp") * 1000) + g_PlayerInfoList[g_Local.iIndex].ping;
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 0, cvar.esp_alpha, FONT_LEFT, "Test: %h", g_PlayerInfoList[g_Local.iIndex].ping);
-    y += 15;
+    net_status_t networkStatus;
+    g_Engine.pNetAPI->Status(&networkStatus);
+    float fakeping = (g_Engine.pfnGetCvarFloat("ex_interp") * 1000) + (networkStatus.latency * 1000);
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 0, cvar.esp_alpha, FONT_LEFT, "Fakeping: %.2fms", fakeping);
+    y += 15;
+
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Connection time: %.2fs", networkStatus.connection_time);
     y += 15;
 
     if(cvar.aa_legit) {
