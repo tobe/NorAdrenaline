@@ -620,7 +620,13 @@ void CVisuals::Status() {
     #define HEIGHT (g_Screen.iHeight / 100) + y
 
     char *hitbox[7] = {"Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multihitbox)", "All (Multihitbox)"};
-    char *multipoint[4] = {"Low", "Medium", "High", "Off"};
+    char *multipoint[4] = {"Off", "Low", "Medium", "High"};
+
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Angles: %.2f %.2f %.2f", g_Local.vViewAngles.x, g_Local.vViewAngles.y, g_Local.vViewAngles.z);
+    y += 15;
+
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Autoshoot: %s", cvar.aim_autoshoot ? "ON" : "OFF");
+    y += 15;
 
     switch((int)cvar.aim_target_selection) {
         case 1:
@@ -639,11 +645,18 @@ void CVisuals::Status() {
     y += 15;
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "HS chance: %.2f%%", cvar.aim_hschance);
     y += 15;
+
     if(cvar.aim_multi_point) {
-        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Multipoint: %s", multipoint[(int)cvar.aim_multi_point - 1]);
-        y += 15;
+        g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Multipoint: %s", multipoint[(int)cvar.aim_multi_point]);
     }
+
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
+    y += 15;
+
+    float fakeping = (g_Engine.pfnGetCvarFloat("ex_interp") * 1000) + g_PlayerInfoList[g_Local.iIndex].ping;
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 0, cvar.esp_alpha, FONT_LEFT, "Test: %h", g_PlayerInfoList[g_Local.iIndex].ping);
+    y += 15;
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 0, cvar.esp_alpha, FONT_LEFT, "Fakeping: %.2fms", fakeping);
     y += 15;
 
     if(cvar.aa_legit) {

@@ -19,6 +19,7 @@ void CCvars::Init()
     aim_autoscope = true;
     aim_fov = 1.5;
     aim_hschance = 33;
+    aim_autoshoot = false;
 
 	fakelag = true;
 	fakelag_while_shooting = false;

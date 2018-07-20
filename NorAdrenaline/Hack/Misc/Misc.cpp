@@ -104,10 +104,8 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
                     g_Utils.bSendpacket(false);
                     choked++;
                 }
-
-                if(cvar.debug)
-                    g_Engine.Con_NPrintf(2, "choked: %i", choked);
 			}
+            g_Engine.Con_NPrintf(2, "Choked: %d", choked);
 		}
 	}
 }

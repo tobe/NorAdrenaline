@@ -17,6 +17,7 @@ public:
 	bool aim_autoscope;
     float aim_fov;
     float aim_hschance;
+    bool aim_autoshoot;
 
 	bool fakelag;
 	bool fakelag_while_shooting;
