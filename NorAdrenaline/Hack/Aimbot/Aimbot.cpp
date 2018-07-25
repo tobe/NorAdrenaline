@@ -137,12 +137,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 		if (m_iHitbox < 0 || m_iHitbox > g_Local.iMaxHitboxes)
 			continue;
 
-		if (g_Player[id].bPriority)
-		{
-			m_iTarget = id;
-			break;
-		}
-
 		if (cvar.aim_target_selection == 1)
 		{
             // Get enemy W2S
@@ -224,6 +218,11 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
         if(randomValue <= cvar.aim_hschance && !IsCurWeaponSniper()) {
             m_iHitbox = 11;
         }
+    }
+
+    // Always headshot prioritized targets
+    if(g_Player[m_iTarget].bPriority) {
+        m_iHitbox = 11;
     }
 
     // Quickscope
