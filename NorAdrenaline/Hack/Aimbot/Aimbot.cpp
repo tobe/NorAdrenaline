@@ -3,31 +3,6 @@
 
 CAimBot g_AimBot;
 
-void SmoothAimAngles(QAngle MyViewAngles, QAngle AimAngles, QAngle &OutAngles, float Smoothing, bool bSpiral, float SpiralX, float SpiralY)
-{
-	if (Smoothing < 1)
-	{
-		OutAngles = AimAngles;
-		return;
-	}
-
-	OutAngles = AimAngles - MyViewAngles;
-
-	OutAngles.Normalize();
-
-	Vector vecViewAngleDelta = OutAngles;
-
-	if (bSpiral & SpiralX != 0 && SpiralY != 0)
-		vecViewAngleDelta += Vector(vecViewAngleDelta.y / SpiralX, vecViewAngleDelta.x / SpiralY, 0.0f);
-
-	if (!isnan(Smoothing))
-		vecViewAngleDelta /= Smoothing;
-
-	OutAngles = MyViewAngles + vecViewAngleDelta;
-
-	OutAngles.Normalize();
-}
-
 void CAimBot::Run(struct usercmd_s *cmd)
 {
 	if (cvar.aim)
@@ -78,7 +53,6 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
     }
 
 	float m_flBestFOV = cvar.aim_fov;
-    this->m_flCurrentFOV = 0;
 	float m_flBestDist = 8192.f;
 
 	for (unsigned int id = 1; id <= g_Engine.GetMaxClients(); ++id)
@@ -194,23 +168,11 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 				m_iTarget = id;
 			}
 		}
-		else if (cvar.aim_target_selection == 3)
-		{
-			if (g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox] < m_flBestFOV)
-			{
-				m_flBestFOV = g_PlayerExtraInfoList[id].fHitboxFOV[m_iHitbox];
-				m_flBestDist = g_Player[id].flDist;
-				m_iTarget = id;
-			}
-		}
 	}
 
     if(m_iTarget <= 0) return;
 
-    // Register the FoV and check it
-    this->m_flCurrentFOV = m_flBestFOV;
-    if(cvar.aim_target_selection == 3 && (m_flBestFOV > cvar.aim_fov))
-        return;
+    this->currentTargetIndex = m_iTarget;
 
     // Legit headshot
     if(cvar.aim_hschance > 0) {

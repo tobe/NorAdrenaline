@@ -205,25 +205,6 @@ void CVisuals::Run()
 	PenetrationInfo();
 }
 
-void CVisuals::DrawAimBotFOV()
-{
-	if (g_Local.bAlive && IsCurWeaponGun() && cvar.draw_aim_fov /*&& g_AimBot.m_flCurrentFOV > 0 && g_AimBot.m_flCurrentFOV < 45 */&& g_Local.iFOV)
-	{
-		float x = g_Screen.iWidth * 0.5f;
-		float y = g_Screen.iHeight * 0.5f;
-		float dx = g_Screen.iWidth / g_Local.iFOV;
-		float dy = g_Screen.iHeight / g_Local.iFOV;
-
-		float radius = tanf(DEG2RAD(g_AimBot.m_flCurrentFOV) * 0.5f) / tanf(DEG2RAD(g_Local.iFOV) * 0.5f) * g_Screen.iWidth;
-
-		float positions[2];
-		positions[0] = (x - (dx * g_Local.vNoRecoilAngle[1]));
-		positions[1] = (y + (dy * g_Local.vNoRecoilAngle[0]));
-
-		g_Drawing.DrawCircle(positions, 30, radius, cvar.draw_aim_fov_r, cvar.draw_aim_fov_g, cvar.draw_aim_fov_b, 120);
-	}
-}
-
 void CVisuals::RemoveScope()
 {
 	if (g_Local.bScoped && cvar.remove_scope)

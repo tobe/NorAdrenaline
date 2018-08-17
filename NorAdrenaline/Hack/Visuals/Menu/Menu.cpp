@@ -226,7 +226,7 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.aim, "Enabled");
 			line_y += 30;
 
-			static char *szTargetSelection[] = { "W2S FoV", "Distance", "FoV" };
+			static char *szTargetSelection[] = { "W2S FoV", "Distance" };
 			save[7] = y + line_y;
 			line_y += 40;
 
@@ -628,18 +628,6 @@ void CMenu::Tabs()
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 64, y + 2);
 			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Presets");
-
-			if (DrawButton(x + box_indent_x, y + box_indent_y, "Load"))
-			{
-				func.LoadCvars();
-			}
-
-			line_y += 30;
-
-			if (DrawButton(x + box_indent_x, y + line_y, "Save"))
-			{
-				func.SaveCvars();
-			}
 
 			line_y += 30;
 

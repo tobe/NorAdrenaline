@@ -87,14 +87,14 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
 
 				jitter = !jitter;
 			}
-			else if (cvar.fakelag_type == 4)//Break lag compensation
+			else if (cvar.fakelag_type == 4) // Break lag compensation
 			{
 				Vector velocity = pmove->velocity;
 				velocity.z = 0;
                 float len = velocity.Length() * g_Local.flFrametime;
 
                 int choke = std::min<int>(static_cast<int>(std::ceilf(64 / len)), 14);
-                if(choke > 13) return;
+                if(choke > 30) return;
 
                 static int choked = 0;
                 if(choked > choke) {

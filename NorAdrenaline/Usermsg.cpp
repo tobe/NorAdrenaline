@@ -140,9 +140,6 @@ int DeathMsg(const char *pszName, int iSize, void *pbuf)
 	int IsHeadshot = READ_BYTE();
 	char *TruncatedWeaponName = READ_STRING();
 
-	if (KillerID != VictimID && KillerID == g_Local.iIndex && VictimID > 0 && VictimID <= g_Engine.GetMaxClients())
-		g_AimBot.dwReactionTime = GetTickCount();
-
 	if (VictimID != g_Local.iIndex)
 	{
 		g_Player[VictimID].iHealth = 100;

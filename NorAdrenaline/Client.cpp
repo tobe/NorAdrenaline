@@ -158,8 +158,6 @@ void HUD_Frame_init(double time)
 	cvar.Init();
 	func.Init();
 
-	func.LoadCvars();
-
 	HookOpenGL();
 
 	if (!g_pConsole->IsConsoleVisible())

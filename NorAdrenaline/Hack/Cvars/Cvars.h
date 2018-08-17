@@ -178,9 +178,6 @@ class CFunctions
 public:
 	void Init();
 
-	void LoadCvars();
-	void SaveCvars();
-
 	void AdjustSpeed(double speed);
 };
 extern CFunctions func;
