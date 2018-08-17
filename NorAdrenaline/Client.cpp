@@ -318,6 +318,44 @@ int HUD_Key_Event(int down, int keynum, const char *pszCurrentBinding) {
     return g_Client.HUD_Key_Event(down, keynum, pszCurrentBinding);
 }
 
+int(*StudioDrawPlayer)(int flags, struct entity_state_s *pplayer);
+int newStudioDrawPlayer(int flags, struct entity_state_s *pplayer) {
+    cl_entity_s *localPlayer = g_Engine.GetLocalPlayer();
+    cl_entity_t *pEnt = g_Studio.GetCurrentEntity();
+
+    if(flags & STUDIO_RENDER && pEnt == localPlayer) {
+        pEnt->angles.y -= 90;
+
+        g_pStudio->SetForceFaceFlags(STUDIO_NF_CHROME);
+        pEnt->curstate.renderfx = 0;
+        pEnt->curstate.renderamt = 0;
+        pEnt->curstate.rendermode = 0;
+        pEnt->curstate.rendercolor.r = 255;
+        pEnt->curstate.rendercolor.g = 255;
+        pEnt->curstate.rendercolor.b = 255;
+        glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+        StudioDrawPlayer(flags, pplayer);
+
+        glEnable(GL_TEXTURE_2D);
+
+        pEnt->angles.y += 90;
+    }
+
+    //g_Engine.Con_Printf("%d %d %x %x\n", localPlayer->index - 1, pplayer->number, localPlayerState, pplayer);
+
+    //if(pplayer->number == localPlayer->index) {
+        // Drawing ourselfes... -> draw twice!
+    //}
+
+    /*if(flags && pplayer)
+        g_Engine.Con_Printf("newStudioDrawPlayer: %d (%x)\n", flags, flags);*/
+
+
+    return StudioDrawPlayer(flags, pplayer);
+}
+
 void HookClient()
 {
 	g_pClient->HUD_Frame = HUD_Frame_init;
@@ -345,4 +383,17 @@ void HookClient()
 	g_Offsets.EnablePageWrite((DWORD)g_pStudioModelRenderer, sizeof(StudioModelRenderer_t));
 	g_pStudioModelRenderer->StudioRenderModel = StudioRenderModel_Gate;
 	g_Offsets.RestorePageProtection((DWORD)g_pStudioModelRenderer, sizeof(StudioModelRenderer_t));
+
+
+    // Test stuff
+    r_studio_interface_t* g_pStudioAPI = nullptr;
+    g_pStudioAPI = *(r_studio_interface_t**)g_Offsets.FindPattern("\xC7\xFF\xFF\xFF\xFF\xFF\xF3\xA5\xB9\xFF\xFF\xFF\xFF\xE8\xFF\xFF\xFF\xFF\x5F\xB8\xFF\xFF\xFF\xFF\x5E\xC3", "x?????xxx????x????xx????xx", g_Offsets.client.base, g_Offsets.client.end, 0x2);
+
+
+    if(g_pStudioAPI) {
+        StudioDrawPlayer = g_pStudioAPI->StudioDrawPlayer;
+        g_pStudioAPI->StudioDrawPlayer = newStudioDrawPlayer;
+
+        g_Engine.Con_Printf("g_pStudioAPI: %X\n", g_pStudioAPI->version);
+    }
 }
