@@ -65,6 +65,8 @@ public:
 	bool esp_box_outline;
 	bool esp_name;
 
+    float esp_weapon;
+
 	bool esp_fake;
 	bool bypass_trace_blockers;
 	bool bypass_valid_blockers;

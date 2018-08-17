@@ -10,8 +10,7 @@ private:
 	void ScreenESP(unsigned int i, byte r, byte g, byte b, byte a);
 	void Bomb();
 	void RemoveScope();
-	void Crosshair();
-	void DrawAimBotFOV();
+    void Crosshair();
 	void PenetrationInfo();
 	void DrawEntities();
 	void DrawFake(int PlayerID, int EntityID);

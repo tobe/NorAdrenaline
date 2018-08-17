@@ -82,6 +82,8 @@ void CCvars::Init()
 
 	esp_screen = false;
 
+    esp_weapon = 1;
+
 	esp_bomb = true;
 	esp_bomb_r = 255;
 	esp_bomb_g = 255;

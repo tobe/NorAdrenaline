@@ -200,7 +200,6 @@ void CVisuals::Run()
 
 	RemoveScope();
 	Crosshair();
-	DrawAimBotFOV();
 
 	PenetrationInfo();
 }
@@ -478,14 +477,88 @@ void CVisuals::PlayerESP(unsigned int i)
 		float box_height = g_Player[i].bDucked ? _h : _h * 0.9f;
 		float box_width = box_height * 0.3f;
 
-        /* = ScreenBot[1] - ScreenTop[1];
-        _h *= cvar.aim_fov / 6;
-        float test_height = g_Player[i].bDucked ? _h : _h * 0.9f;
-        float test_width = (test_height * .8f);*/
-
-        if(cvar.esp_box) {
+        if(cvar.esp_box)
             g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], box_width, box_height, r, g, b, 255);
-            //g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], test_width, test_height, 255, 255, 255, 255);
+
+        char *szWeapon = g_PlayerExtraInfoList[i].szWeaponName;
+
+        if(cvar.esp_weapon > 0 && szWeapon) {
+            if(cvar.esp_weapon == 2) //Icon
+            {
+                unsigned int y = ScreenBot[1] + (2 - _h);
+
+                unsigned int texture = 0;
+                unsigned int w = 0;
+                unsigned int h = 0;
+
+                if(!lstrcmpA(szWeapon, "knife"))
+                    g_Utils.GetTextureInfo(wpn_knife, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "ak47"))
+                    g_Utils.GetTextureInfo(wpn_ak47, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "m4a1"))
+                    g_Utils.GetTextureInfo(wpn_m4a1, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "deagle"))
+                    g_Utils.GetTextureInfo(wpn_deagle, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "awp"))
+                    g_Utils.GetTextureInfo(wpn_awp, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "scout"))
+                    g_Utils.GetTextureInfo(wpn_scout, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "mp5"))
+                    g_Utils.GetTextureInfo(wpn_mp5n, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "glock"))
+                    g_Utils.GetTextureInfo(wpn_glock18, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "p90"))
+                    g_Utils.GetTextureInfo(wpn_p90, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "usp"))
+                    g_Utils.GetTextureInfo(wpn_usp, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "xm1014"))
+                    g_Utils.GetTextureInfo(wpn_xm1014, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "p228"))
+                    g_Utils.GetTextureInfo(wpn_p228, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "sg550"))
+                    g_Utils.GetTextureInfo(wpn_sg550, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "sg552"))
+                    g_Utils.GetTextureInfo(wpn_sg552, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "m249"))
+                    g_Utils.GetTextureInfo(wpn_m249, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "g3sg1"))
+                    g_Utils.GetTextureInfo(wpn_g3sg1, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "m3"))
+                    g_Utils.GetTextureInfo(wpn_m3, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "elite"))
+                    g_Utils.GetTextureInfo(wpn_elite, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "aug"))
+                    g_Utils.GetTextureInfo(wpn_aug, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "mac10"))
+                    g_Utils.GetTextureInfo(wpn_mac10, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "fiveseven"))
+                    g_Utils.GetTextureInfo(wpn_fiveseven, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "ump45"))
+                    g_Utils.GetTextureInfo(wpn_ump45, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "tmp"))
+                    g_Utils.GetTextureInfo(wpn_tmp, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "galil"))
+                    g_Utils.GetTextureInfo(wpn_galil, texture, w, h);
+                else if(!lstrcmpA(szWeapon, "famas"))
+                    g_Utils.GetTextureInfo(wpn_famas, texture, w, h);
+
+                w /= 2;
+                h /= 2;
+
+                if(texture && w && h) {
+                    unsigned int x0 = ScreenTop[0] - (w / 2);
+                    unsigned int y0 = y;
+                    unsigned int x1 = ScreenTop[0] + (w / 2);
+                    unsigned int y1 = y0 + h;
+
+                    g_Drawing.DrawTexture(texture, x0, y0, x1, y1, 255, 255, 255, 255);
+                } else goto default_draw_weapon;
+            } else {
+            default_draw_weapon:
+                unsigned int y = ScreenBot[1] + (8 - _h);
+
+                g_Drawing.DrawString(ESP, ScreenTop[0], y, 255, 255, 255, 255, FONT_CENTER, "%s", szWeapon);
+            }
         }
 
 		if (cvar.esp_distance)

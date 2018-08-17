@@ -495,6 +495,9 @@ void CMenu::Tabs()
 
 			char *tmp[] = { "Flat", "Texture", "Material" };
 			ListBox(iListIndex++, x + box_indent_x, y + line_y, "", cvar.chams_type, tmp, 3);
+
+            char *tmp3[] = {"Text", "Icon"};
+            ListBox(iListIndex++, x + box_indent_x, save[6], "Weapon", cvar.esp_weapon, tmp3, 2, true);
 		}
 
 		{//BOX2
