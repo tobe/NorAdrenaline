@@ -12,6 +12,7 @@ public:
 	void DrawPlayerBox(int x, int y, int w, int h, int r, int g, int b, int a);
 	void DrawBox(int x, int y, int w, int h, int r, int g, int b, int a);
 	void DrawTexture(int id, int x0, int y0, int x1, int y1, int r = 255, int g = 255, int b = 255, int a = 255);
+    void DrawBone(int id, float *source, float *destination);
 
 	void SetupFonts();
 };

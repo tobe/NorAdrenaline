@@ -77,7 +77,6 @@ void CCvars::Init()
 	esp_distance = false;
 	esp_hitboxes = false;
 	esp_sound = true;
-
 	esp_alpha = 200;
 
 	esp_screen = false;

@@ -12,6 +12,7 @@ public:
 	void UpdatePlayers();
 	void UpdateEntities();
 	void GetHitboxes(struct cl_entity_s *ent);
+    void GetBones(struct cl_entity_s *ent);
 	void UpdateMapInfo();
 };
 extern CWorld World;

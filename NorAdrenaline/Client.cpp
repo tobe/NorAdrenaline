@@ -302,7 +302,7 @@ int HUD_Key_Event(int down, int keynum, const char *pszCurrentBinding) {
                 cvar.aim_hitbox = (cvar.aim_hitbox == 1) ? oldSetting : 1;
             break;
             case 136: // F2 -- aimspot change
-                cvar.aim_target_selection = (++cvar.aim_target_selection > 3) ? 1 : cvar.aim_target_selection;
+                cvar.aim_target_selection = (++cvar.aim_target_selection > 2) ? 1 : cvar.aim_target_selection;
             break;
             case 137: // F3
                 (int)cvar.aim_hschance--;
@@ -341,17 +341,14 @@ int newStudioDrawPlayer(int flags, struct entity_state_s *pplayer) {
         pEnt->angles.y += 90;
     }
 
-    //g_Engine.Con_Printf("%d %d %x %x\n", localPlayer->index - 1, pplayer->number, localPlayerState, pplayer);
-
-    //if(pplayer->number == localPlayer->index) {
-        // Drawing ourselfes... -> draw twice!
-    //}
-
-    /*if(flags && pplayer)
-        g_Engine.Con_Printf("newStudioDrawPlayer: %d (%x)\n", flags, flags);*/
-
-
     return StudioDrawPlayer(flags, pplayer);
+}
+
+void StudioEntityLight(struct alight_s *plight) {
+    cl_entity_s *ent = g_Studio.GetCurrentEntity();
+    World.GetBones(ent);
+
+    return g_Studio.StudioEntityLight(plight);
 }
 
 void HookClient()
@@ -369,6 +366,7 @@ void HookClient()
 
 	g_pStudio->StudioCheckBBox = StudioCheckBBox;
 	g_pStudio->StudioSetRemapColors = StudioSetRemapColors;
+    g_pStudio->StudioEntityLight = StudioEntityLight;
 
 	g_pEngine->pfnDrawUnicodeCharacter = pfnDrawUnicodeCharacter;
 

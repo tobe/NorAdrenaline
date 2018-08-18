@@ -17,6 +17,24 @@ void MyVectorTransform(Vector in1, float in2[3][4], float *out, int xyz, float m
 	out[2] = in1.Dot(in2[2]) + in2[2][3];
 }
 
+void CWorld::GetBones(struct cl_entity_s *ent) {
+    if(g_Utils.IsPlayer(ent) && ent->index != g_Local.iIndex) {
+        model_t *pModel = g_Studio.SetupPlayerModel(ent->index);
+        studiohdr_t *pStudioHeader = (studiohdr_t*)g_Studio.Mod_Extradata(pModel);
+        TransformMatrix *pBoneMatrix = (TransformMatrix*)g_Studio.StudioGetBoneTransform();
+        mstudiobbox_t *pHitbox = (mstudiobbox_t*)((byte*)pStudioHeader + pStudioHeader->hitboxindex);
+
+        for(int i = 0; i < pStudioHeader->numbones; i++) {
+            g_PlayerExtraInfoList[ent->index].vBones[i][0] = (*pBoneMatrix)[i][0][3];
+            g_PlayerExtraInfoList[ent->index].vBones[i][1] = (*pBoneMatrix)[i][1][3];
+            g_PlayerExtraInfoList[ent->index].vBones[i][2] = (*pBoneMatrix)[i][2][3];
+
+            g_PlayerExtraInfoList[ent->index].vBones[i] = g_PlayerExtraInfoList[ent->index].vBones[i] + (g_Player[ent->index].vVelocity * g_Player[ent->index].flFrametime) * 1;
+
+        }
+    }
+}
+
 void CWorld::GetHitboxes(struct cl_entity_s *ent)
 {
 	if (g_Utils.IsPlayer(ent) && ent->index != g_Local.iIndex)

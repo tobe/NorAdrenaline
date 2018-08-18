@@ -531,10 +531,6 @@ void CMenu::Tabs()
 
 			Checkbox(x + box_indent_x, y + line_y, cvar.penetration_info, "Penetration info");
 			line_y += 20;
-
-			Checkbox(x + box_indent_x, y + line_y, cvar.draw_aim_fov, "Aimbot FOV");
-			Palette(x + 227, y + line_y, cvar.draw_aim_fov_r, cvar.draw_aim_fov_g, cvar.draw_aim_fov_b);
-			line_y += 30;
 		}
 
 		{//BOX3

@@ -168,3 +168,14 @@ void CDrawing::DrawStringACP(vgui::HFont font, int x, int y, int r, int g, int b
 	g_pISurface->DrawSetTextPos(x, y - height / 2);
 	g_pISurface->DrawPrintText(wbuf, wcslen(wbuf));
 }
+
+void CDrawing::DrawBone(int id, float *source, float *destination) {
+    Vector fScreenBone1;
+    Vector fScreenBone2;
+
+    if(g_Utils.bCalcScreen(source, fScreenBone1) &&
+       g_Utils.bCalcScreen(destination, fScreenBone2))
+    {
+        this->DrawLine(fScreenBone1.x, fScreenBone1.y, fScreenBone2.x, fScreenBone2.y, 255, 255, 255, 255);
+    }
+}

@@ -242,6 +242,8 @@ struct player_extra_info_t
 	Vector vHitboxMax[21];
 	Vector vHitboxPoints[21][8];
 
+    Vector vBones[53];
+
 	bool bHitboxVisible[21];
 	bool bHitboxPointsVisible[21][8];
 	bool bHitboxBehindTheWall[21];
