@@ -321,8 +321,11 @@ int newStudioDrawPlayer(int flags, struct entity_state_s *pplayer) {
     cl_entity_s *localPlayer = g_Engine.GetLocalPlayer();
     cl_entity_t *pEnt = g_Studio.GetCurrentEntity();
 
-    if(flags & STUDIO_RENDER && pEnt == localPlayer) {
-        pEnt->angles.y -= 90;
+    int ret = StudioDrawPlayer(flags, pplayer); // original
+
+    if(flags & STUDIO_RENDER && pEnt == localPlayer && cvar.thirdperson > 0 && cvar.aa_legit > 0) { // fake
+        pEnt->angles = g_Player[localPlayer->index].vFakeAngles;
+        pEnt->origin.x += 1;
 
         g_pStudio->SetForceFaceFlags(STUDIO_NF_CHROME);
         pEnt->curstate.renderfx = 0;
@@ -337,11 +340,9 @@ int newStudioDrawPlayer(int flags, struct entity_state_s *pplayer) {
         StudioDrawPlayer(flags, pplayer);
 
         glEnable(GL_TEXTURE_2D);
-
-        pEnt->angles.y += 90;
     }
 
-    return StudioDrawPlayer(flags, pplayer);
+    return ret;
 }
 
 void StudioEntityLight(struct alight_s *plight) {

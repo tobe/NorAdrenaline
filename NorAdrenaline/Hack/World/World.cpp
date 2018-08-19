@@ -304,7 +304,14 @@ void CWorld::UpdatePlayers()
 			continue;
 		}
 
-		g_Player[i].dwHistory = GetTickCount();
+        DWORD tickCount = GetTickCount();
+		g_Player[i].dwHistory = tickCount;
+
+        // Backtrack -- 100 ms (ex_interp 0.1)
+        if(tickCount - g_Player[i].dwLateOriginTick > 100) {
+            g_Player[i].dwLateOriginTick = tickCount;
+            g_Player[i].vLateOrigin = ent->origin;
+        }
 
 		g_PlayerExtraInfoList[ent->index].szWeaponName = "null";
 

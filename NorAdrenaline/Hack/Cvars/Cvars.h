@@ -25,6 +25,7 @@ public:
 	float fakelag_move;
 	float fakelag_variance;
 	float fakelag_limit;
+    bool fakelag_adaptive_ex_interp;
 
 	bool autopistol;
 	bool autoreload;

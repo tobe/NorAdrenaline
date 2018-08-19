@@ -27,6 +27,7 @@ void CCvars::Init()
 	fakelag_move = 4;
 	fakelag_variance = 3.5;
 	fakelag_limit = 7.5;
+    fakelag_adaptive_ex_interp = true;
 
 	autopistol = true;
 	autoreload = false;

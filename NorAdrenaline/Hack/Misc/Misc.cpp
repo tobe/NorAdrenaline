@@ -14,6 +14,10 @@ void CMisc::FastZoom(struct usercmd_s *cmd)
 
 void CMisc::FakeLag(struct usercmd_s *cmd)
 {
+    // Restore adaptive ex_interp on CreateMove
+    if(cvar.fakelag_adaptive_ex_interp && !(cmd->buttons & IN_ATTACK))
+        g_Engine.Cvar_SetValue("ex_interp", 0.01);
+
 	if (cvar.aim && cvar.fakelag)
 	{
 		int m_InAttack = (cmd->buttons & IN_ATTACK);
@@ -94,7 +98,7 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
                 float len = velocity.Length() * g_Local.flFrametime;
 
                 int choke = std::min<int>(static_cast<int>(std::ceilf(64 / len)), 14);
-                if(choke > 30) return;
+                if(choke > 13) return;
 
                 static int choked = 0;
                 if(choked > choke) {
@@ -103,9 +107,9 @@ void CMisc::FakeLag(struct usercmd_s *cmd)
                 } else {
                     g_Utils.bSendpacket(false);
                     choked++;
+                    g_Engine.Con_NPrintf(2, "choked: %d", choked);
                 }
 			}
-            g_Engine.Con_NPrintf(2, "Choked: %d", choked);
 		}
 	}
 }
@@ -144,6 +148,9 @@ bool CMisc::FakeEdge(float &angle)
 
 void CMisc::AntiAim(struct usercmd_s *cmd)
 {
+    // Update fake angles
+    g_Player[g_Engine.GetLocalPlayer()->index].vFakeAngles = cmd->viewangles;
+
 	if (cvar.aim)
 	{
 		int m_OnLadder = (pmove->movetype == MOVETYPE_FLY);// determine if we are on a ladder
@@ -161,7 +168,7 @@ void CMisc::AntiAim(struct usercmd_s *cmd)
             if(cvar.aa_legit > 0 && (pmove->flags & FL_ONGROUND)) {
                 static int chokedPackets = 0;
 
-                if(chokedPackets++ < 2) { // 2 packets
+                if(chokedPackets++ < 10) { // 10 packets
                     switch((int)cvar.aa_legit) {
                         case 1:
                             cmd->viewangles.y += 90.f;

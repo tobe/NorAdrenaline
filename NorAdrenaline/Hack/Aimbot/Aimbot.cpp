@@ -172,7 +172,13 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 
     if(m_iTarget <= 0) return;
 
+    // Set the current target
     this->currentTargetIndex = m_iTarget;
+
+    // Check if adaptive ex_interp is set, if so set the interpolation
+    if(cvar.fakelag_adaptive_ex_interp) {
+        g_Engine.Cvar_SetValue("ex_interp", 0.1);
+    }
 
     // Legit headshot
     if(cvar.aim_hschance > 0) {

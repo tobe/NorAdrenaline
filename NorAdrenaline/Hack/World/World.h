@@ -83,8 +83,12 @@ public:
 	Vector vVelocity;
 	Vector vOrigin;
 	Vector vPrevOrigin;
+    Vector vFakeAngles;
 
 	DWORD dwHistory;
+
+    DWORD dwLateOriginTick;
+    Vector vLateOrigin;
 };
 extern CBasePlayer g_Player[MAX_CLIENTS + 1];
 

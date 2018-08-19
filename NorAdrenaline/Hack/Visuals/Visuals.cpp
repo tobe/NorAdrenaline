@@ -141,6 +141,37 @@ void CVisuals::DrawHistory(int i)
 	}
 }
 
+void CVisuals::LateESP(unsigned int i) {
+    if(!cvar.esp)
+        return;
+
+    if(!cvar.esp_behind && g_Player[i].bBehindTheWall)
+        return;
+
+    if(!cvar.esp_teammates && g_Player[i].iTeam == g_Local.iTeam)
+        return;
+
+    byte r = 105;
+    byte g = 105;
+    byte b = 105;
+
+    Vector Top = Vector(g_Player[i].vLateOrigin.x, g_Player[i].vLateOrigin.y, g_Player[i].vLateOrigin.z - 36);
+    Vector Bot = Vector(g_Player[i].vLateOrigin.x, g_Player[i].vLateOrigin.y, g_Player[i].vLateOrigin.z + 36);
+
+    float ScreenTop[2], ScreenBot[2];
+
+    bool m_bScreenTop = g_Utils.bCalcScreen(Top, ScreenTop);
+    bool m_bScreenBot = g_Utils.bCalcScreen(Bot, ScreenBot);
+
+    if(m_bScreenTop && m_bScreenBot) {
+        float _h = ScreenBot[1] - ScreenTop[1];
+        float box_height = g_Player[i].bDucked ? _h : _h * 0.9f;
+        float box_width = box_height * 0.3f;
+
+        g_Drawing.DrawPlayerBox(ScreenTop[0], ScreenTop[1], box_width, box_height, r, g, b, 255);
+    }
+}
+
 void CVisuals::Run()
 {
 	IconInit();
@@ -158,6 +189,8 @@ void CVisuals::Run()
 
 	Bomb();
 
+    int nearestPlayerId = 0;
+    float maxDistance = 9999.f;
 	for (int i = 1; i <= g_Engine.GetMaxClients(); i++)
 	{
 		if (i == g_Local.iIndex)
@@ -166,8 +199,15 @@ void CVisuals::Run()
 		if (!g_Player[i].bAlive)
 			continue;
 
+        if(g_Player[i].flDist < maxDistance) {
+            nearestPlayerId = i;
+            maxDistance = g_Player[i].flDist;
+        }
+
 		PlayerESP(i);
 	}
+
+    LateESP(nearestPlayerId);
 
 	for (int i = 1; i <= g_Engine.GetMaxClients(); i++)
 	{
@@ -463,6 +503,9 @@ void CVisuals::PlayerESP(unsigned int i)
 		}
 	}
 
+    if(i == g_AimBot.currentTargetIndex)
+        r = 0; g = 255; b = 0;
+
 	Vector Top = Vector(ent->origin.x, ent->origin.y, ent->origin.z + ent->curstate.mins.z);
 	Vector Bot = Vector(ent->origin.x, ent->origin.y, ent->origin.z + ent->curstate.maxs.z);
 
@@ -634,7 +677,7 @@ void CVisuals::Status() {
     char *hitbox[7] = {"Head", "Neck", "Low head", "Chest", "Stomach", "Vital (Multihitbox)", "All (Multihitbox)"};
     char *multipoint[4] = {"Off", "Low", "Medium", "High"};
 
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Angles: %.2f %.2f %.2f", g_Local.vViewAngles.x, g_Local.vViewAngles.y, g_Local.vViewAngles.z);
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Angles: %.2f %.2f", g_Local.vViewAngles.x, g_Local.vViewAngles.y);
     y += 15;
 
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Autoshoot: %s", cvar.aim_autoshoot ? "ON" : "OFF");
@@ -662,15 +705,20 @@ void CVisuals::Status() {
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
     y += 15;
 
+    // TODO: Make this more optimal some day, getting this every frame is too much...
     net_status_t networkStatus;
     g_Engine.pNetAPI->Status(&networkStatus);
-    float fakeping = (g_Engine.pfnGetCvarFloat("ex_interp") * 1000) + (networkStatus.latency * 1000);
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 0, cvar.esp_alpha, FONT_LEFT, "Fakeping: %.2fms", fakeping);
+    float ex_interp = g_Engine.pfnGetCvarFloat("ex_interp");
+    float fakeping = (ex_interp * 1000) + (networkStatus.latency * 1000);
+    int fakepingColors[3] = {255, 255, 255};
+    if(ex_interp > 0.01) {
+        fakepingColors[1] = 0;
+        fakepingColors[2] = 0;
+    }
+    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, fakepingColors[0], fakepingColors[1], fakepingColors[2], cvar.esp_alpha, FONT_LEFT, "Fakeping: %.2fms", fakeping);
     y += 15;
 
-    g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Connection time: %.2fs", networkStatus.connection_time);
-    y += 15;
-
+    // AA
     if(cvar.aa_legit) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 0, 255, 0, cvar.esp_alpha, FONT_LEFT, "AA: Legit");
         y += 15;
@@ -1032,6 +1080,12 @@ void CVisuals::DrawEntities()
 
 				Grenades[i].vPoints.push_back(g_Entities[i].vOrigin);
 			}
+
+            if(strstr(g_Entities[i].szModelName, "backpack")) {
+                float flScreen[2];
+                if(g_Utils.bCalcScreen(g_Entities[i].vOrigin, flScreen))
+                    g_Drawing.DrawString(ESP, flScreen[0], flScreen[1], 255, 255, 255, cvar.esp_alpha, FONT_CENTER, "backpack");
+            }
 		}
 		else if (cvar.esp && cvar.esp_fake && g_Entities[i].bIsFakeEntity && g_Entities[i].iResolvedIndex != g_Local.iIndex)
 		{

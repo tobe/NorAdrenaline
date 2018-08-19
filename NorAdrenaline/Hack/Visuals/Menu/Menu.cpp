@@ -259,7 +259,7 @@ void CMenu::Tabs()
 			y = y + 250;
 			line_y = 15;
 
-			DrawBox(x, y, 250, 180);//Fakelag
+			DrawBox(x, y, 250, 190);//Fakelag
 
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 68, y + 2);
@@ -285,8 +285,12 @@ void CMenu::Tabs()
 			Checkbox(x + indent_x, y + line_y, cvar.fakelag_while_shooting, "Fake lag while shooting");
 			line_y += 20;
 
+            // ??
 			ListBox(iListIndex++, x + indent_x, save[3], "", cvar.fakelag_move, tmp4, 4, false);
 			ListBox(iListIndex++, x + indent_x, save[4], "", cvar.fakelag_type, tmp3, 4, false);
+
+            Checkbox(x + indent_x, y + line_y, cvar.fakelag_adaptive_ex_interp, "Adaptive ex_interp");
+            line_y += 20;
 		}
 
 		{//BOX2
@@ -313,9 +317,6 @@ void CMenu::Tabs()
 			ListBox(iListIndex++, x + indent_x, y + line_y, "Remove spread method", cvar.nospread_method, tmp, 2, false);
             line_y += 40;
 
-            Slider(x + indent_x, y + line_y, 0, 180, cvar.aim_fov, "Aimbot FoV");
-            line_y += 40;
-
             Slider(x + indent_x, y + line_y, 0, 100, cvar.aim_hschance, "Legit headshot chance", true);
 		}
 
@@ -330,7 +331,7 @@ void CMenu::Tabs()
 			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Anti-Aimbot");
 
             char *tmp0[] = {"90", "180"};
-            save[10] = y + line_y;
+            save[11] = y + line_y;
             line_y += 40;
 
 			char *tmp1[] = { "Fakedown", "Down", "Up", "Jitter", "Random" };
@@ -351,7 +352,7 @@ void CMenu::Tabs()
 
 			Slider(x + indent_x, y + line_y, -180, 180, cvar.aa_yaw_static, "Static yaw");
 
-            ListBox(iListIndex++, x + indent_x, save[10], "Legit AA", cvar.aa_legit, tmp0, 2, true);
+            ListBox(iListIndex++, x + indent_x, save[11], "Legit AA", cvar.aa_legit, tmp0, 2, true);
 
 			ListBox(iListIndex++, x + indent_x, save[5], "Edge", cvar.aa_edge, tmp4, 4, true);
 
@@ -362,6 +363,9 @@ void CMenu::Tabs()
 			ListBox(iListIndex++, x + indent_x, save[0], "Pitch", cvar.aa_pitch, tmp1, 5, true);
 		}
 	}
+    else if(iCurrentTab == 2) {
+
+    }
 	else if (iCurrentTab == 3)//Systems
 	{
 		int x = MenuX + 100;
