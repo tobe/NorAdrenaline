@@ -48,8 +48,10 @@ public:
 	bool esp;
 	bool esp_behind;
 	bool esp_teammates;
-
+    bool esp_box_outline;
+    bool esp_name;
 	bool esp_box;
+    bool esp_trace_angles;
 	float esp_box_ct_vis_r;
 	float esp_box_ct_vis_g;
 	float esp_box_ct_vis_b;
@@ -62,9 +64,6 @@ public:
 	float esp_box_t_invis_r;
 	float esp_box_t_invis_g;
 	float esp_box_t_invis_b;
-
-	bool esp_box_outline;
-	bool esp_name;
 
     float esp_weapon;
 

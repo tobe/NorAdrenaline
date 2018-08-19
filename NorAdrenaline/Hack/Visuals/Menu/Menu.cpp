@@ -467,6 +467,9 @@ void CMenu::Tabs()
 			Checkbox(x + box_indent_x, y + line_y, cvar.esp_name, "Name");
 			line_y += 30;
 
+            Checkbox(x + box_indent_x, y + line_y, cvar.esp_trace_angles, "Trace angles");
+            line_y += 30;
+
 			save[6] = y + line_y;
 			line_y += 30;
 
@@ -631,6 +634,28 @@ void CMenu::Tabs()
 			g_pISurface->DrawSetColor(1, 8, 8, 255);
 			g_pISurface->DrawFilledRect(x + 14, y - 1, x + 64, y + 2);
 			g_Drawing.DrawString(MENU, x + 20, y, 220, 220, 220, 255, FONT_LEFT, "Presets");
+
+            line_y += 30;
+
+            if(DrawButton(x + box_indent_x, y + line_y, "HvH")) {
+                cvar.aim_target_selection = 2;
+                cvar.aim_hitbox = 1;
+                cvar.aim_multi_point = 1;
+                cvar.aim_perfect_silent = 0;
+                cvar.aim_autoshoot = true;
+                
+                cvar.nosmoke = true;
+                cvar.noflash = 255;
+                cvar.thirdperson = 200;
+
+                cvar.esp_trace_angles = true;
+                cvar.esp_sound_minimum_volume = 1;
+                cvar.esp_hitboxes = true;
+                cvar.penetration_info = true;
+
+                cvar.aa_edge = 4;
+                cvar.aa_legit = 1;
+            }
 
 			line_y += 30;
 

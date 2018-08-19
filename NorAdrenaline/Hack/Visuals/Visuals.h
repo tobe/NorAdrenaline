@@ -7,6 +7,7 @@ private:
 	void PlayerESP(unsigned int i);
     void LateESP(unsigned int i);
 	void SoundESP();
+    void TraceAnglesESP(unsigned int i);
 	void TraceGrenade();
 	void ScreenESP(unsigned int i, byte r, byte g, byte b, byte a);
 	void Bomb();

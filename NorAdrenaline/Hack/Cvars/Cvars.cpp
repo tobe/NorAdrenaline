@@ -48,6 +48,7 @@ void CCvars::Init()
 	esp = true;
 	esp_behind = true;
 	esp_teammates = false;
+    esp_trace_angles = true;
 
 	esp_box = true;
 	esp_box_ct_vis_r = 0;

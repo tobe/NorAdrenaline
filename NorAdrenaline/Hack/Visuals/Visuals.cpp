@@ -205,6 +205,7 @@ void CVisuals::Run()
         }
 
 		PlayerESP(i);
+        TraceAnglesESP(i);
 	}
 
     LateESP(nearestPlayerId);
@@ -242,6 +243,29 @@ void CVisuals::Run()
 	Crosshair();
 
 	PenetrationInfo();
+}
+
+void CVisuals::TraceAnglesESP(unsigned int i) {
+    if(!cvar.esp_trace_angles || g_Player[i].iTeam == g_Local.iTeam)
+        return;
+
+    Vector vForward;
+    Vector vAngle = g_Player[i].vAngles;
+
+    g_Engine.pfnAngleVectors(vAngle, vForward, NULL, NULL);
+    int beamindex = g_Engine.pEventAPI->EV_FindModelIndex("sprites/laserbeam.spr");
+    pmtrace_t tr;
+    g_Engine.pEventAPI->EV_SetTraceHull(2);
+    g_Engine.pEventAPI->EV_PlayerTrace(g_Player[i].vOrigin, g_Player[i].vOrigin + vForward * 8192, PM_GLASS_IGNORE, -1, &tr);
+
+    float flScreen1[2], flScreen2[2];
+    if(g_Utils.bCalcScreen(g_Player[i].vOrigin, flScreen1) &&
+        g_Utils.bCalcScreen(tr.endpos, flScreen2))
+    {
+        g_Drawing.DrawLine(flScreen1[0], flScreen1[1], flScreen2[0], flScreen2[1], 255, 255, 255, 255);
+    }
+
+    //g_Engine.pEfxAPI->R_BeamPoints(g_Player[i].vOrigin, tr.endpos, beamindex, 0.3f, 0.4f, 0, 32, 2, 0, 0, 0, 255, 0);
 }
 
 void CVisuals::RemoveScope()
@@ -700,6 +724,7 @@ void CVisuals::Status() {
 
     if(cvar.aim_multi_point) {
         g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 255, 255, cvar.esp_alpha, FONT_LEFT, "Multipoint: %s", multipoint[(int)cvar.aim_multi_point]);
+        y += 15;
     }
 
     g_Drawing.DrawString(ESP, WIDTH, HEIGHT, 255, 0, 255, cvar.esp_alpha, FONT_LEFT, "Fakelag: %s", cvar.fakelag ? "ON" : "OFF");
