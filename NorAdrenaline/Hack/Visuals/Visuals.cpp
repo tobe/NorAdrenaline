@@ -734,7 +734,8 @@ void CVisuals::Status() {
     net_status_t networkStatus;
     g_Engine.pNetAPI->Status(&networkStatus);
     float ex_interp = g_Engine.pfnGetCvarFloat("ex_interp");
-    float fakeping = (ex_interp * 1000) + (networkStatus.latency * 1000);
+    //float fakeping = (ex_interp * 1000) + (networkStatus.latency * 1000);
+    float fakeping = networkStatus.latency * 1000;
     int fakepingColors[3] = {255, 255, 255};
     if(ex_interp > 0.01) {
         fakepingColors[1] = 0;

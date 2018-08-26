@@ -1,9 +1,33 @@
 #include "Required.h"
+#include <list>
 
 CGlobalsVars g_pGlobals;
 SCREENINFO g_Screen;
 
 static float ticks = 0;
+
+
+
+
+//test
+uint32_t lastincomingsequencenumber = 0;
+typedef struct s_incoming_sequence {
+    int m_nInReliableState;
+    int m_nOutReliableState;
+    int m_nInSequenceNr;
+    int curtime;
+
+    s_incoming_sequence(int m_nInReliableState, int m_nOutReliableState, int m_nInSequenceNr, int curtime) {
+        this->m_nInReliableState = m_nInReliableState;
+        this->m_nOutReliableState = m_nOutReliableState;
+        this->curtime = curtime;
+        this->m_nInSequenceNr = m_nInSequenceNr;
+    }
+} t_incoming_sequence;
+std::list<s_incoming_sequence> sequences;
+netchan_t *g_pNetchan;
+
+
 
 void AntiSnapshot() { g_pGlobals.bSnapshot = true; }
 void AntiScreenshot() { g_pGlobals.bScreenshot = true; }
@@ -97,6 +121,19 @@ void CL_CreateMove(float frametime, struct usercmd_s *cmd, int active)
 		g_Misc.FakeLag(cmd);
 		g_Misc.NameStealer();
 	}
+
+    // Update incoming sequences
+    if(g_pNetchan) {
+        if(g_pNetchan->incoming_sequence > lastincomingsequencenumber) {
+            lastincomingsequencenumber = g_pNetchan->incoming_sequence;
+
+            sequences.push_front(t_incoming_sequence(g_pNetchan->incoming_reliable_sequence, g_pNetchan->reliable_sequence, g_pNetchan->incoming_sequence, pmove->time));
+            g_Engine.Con_Printf("add: num=%d   time=%.2f\n", g_pNetchan->incoming_sequence, g_pNetchan->last_received);
+        }
+
+        if(sequences.size() > 2048)
+            sequences.pop_back();
+    }
 }
 
 void HUD_PostRunCmd(struct local_state_s *from, struct local_state_s *to, struct usercmd_s *cmd, int runfuncs, double time, unsigned int random_seed)
@@ -269,10 +306,34 @@ void CL_Move() //Create and send the command packet to the server
 	CL_Move_s();
 }
 
-void Netchan_TransmitBits(void *chan, int length, byte *data) {
-    //g_Engine.pfnConsolePrint("Netchan_TransmitBits")
+void Netchan_TransmitBits(netchan_t *chan, int length, byte *data) {
+    g_pNetchan = chan;
+    if(g_AimBot.currentTargetIndex == 0)
+        return Netchan_TransmitBits_s(chan, length, data);
 
+    //bool isReliable = (uint)chan->incoming_reliable_sequence << 31;
+    bool isReliable = chan->incoming_sequence | ((uint)chan->incoming_reliable_sequence << 31);
+
+    // Process...
+    int instate = chan->incoming_reliable_sequence;
+    int insequencenr = chan->incoming_sequence;
+    // Add lag
+    for(auto &seq : sequences) {
+        int fakepingamount = 500;
+        if(pmove->time - seq.curtime >= fakepingamount) { // fakeping value
+            chan->incoming_reliable_sequence = seq.m_nInReliableState;
+            chan->incoming_sequence = seq.m_nInSequenceNr;
+
+            g_Engine.Con_Printf(">>>>teleport to sequence %d\n", chan->incoming_sequence);
+            break;
+        }
+    }
+    // Call original
     Netchan_TransmitBits_s(chan, length, data);
+
+    // Needed?
+    /*chan->incoming_reliable_sequence = instate;
+    chan->incoming_sequence = insequencenr;*/
 }
 
 void HUD_ProcessPlayerState(struct entity_state_s *dst, const struct entity_state_s *src)
@@ -375,7 +436,7 @@ void HookClient()
 
 	PreS_DynamicSound_s = (PreS_DynamicSound_t)DetourFunction((LPBYTE)g_Offsets.PreS_DynamicSound(), (LPBYTE)&PreS_DynamicSound);
 	CL_Move_s = (CL_Move_t)DetourFunction((LPBYTE)g_Offsets.CL_Move(), (LPBYTE)&CL_Move);
-    //Netchan_TransmitBits_s = (Netchan_TransmitBits_t)DetourFunction((LPBYTE)g_Offsets.Netchan_TransmitBits(), (LPBYTE)&Netchan_TransmitBits);
+    Netchan_TransmitBits_s = (Netchan_TransmitBits_t)DetourFunction((LPBYTE)g_Offsets.Netchan_TransmitBits(), (LPBYTE)&Netchan_TransmitBits);
 
 	g_Offsets.EnablePageWrite((DWORD)g_pStudioModelRenderer, sizeof(StudioModelRenderer_t));
 	g_pStudioModelRenderer->StudioRenderModel = StudioRenderModel_Gate;

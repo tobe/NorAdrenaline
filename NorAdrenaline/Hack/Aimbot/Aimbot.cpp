@@ -16,6 +16,7 @@ void CAimBot::Aimbot(struct usercmd_s *cmd)
 	if (!cvar.aim && !IsCurWeaponGun() || !CanAttack())
 		return;
 
+    this->currentTargetIndex = 0;
     unsigned int m_iTarget = 0;
     int m_iHitbox = -1;
     int m_iPoint  = -1;

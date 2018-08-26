@@ -21,6 +21,7 @@
 #include "Hook.h"
 #include "detours.h"
 #include "StudioModelRenderer.h"
+#include "netchan.h"
 
 #define VIRTUALIZER_START \
   __asm _emit 0xEB \
@@ -66,7 +67,7 @@ typedef void(*Snapshot_t)();
 typedef void(*Screenshot_t)();
 typedef void(*PreS_DynamicSound_t)(int, DWORD, char *, float *, float, float, int, int);
 typedef void(*CL_Move_t)();
-typedef void(*Netchan_TransmitBits_t)(void *, int, byte *);
+typedef void(*Netchan_TransmitBits_t)(netchan_t *, int, byte *);
 
 extern cl_clientfunc_t *g_pClient;
 extern cl_clientfunc_t g_Client;
